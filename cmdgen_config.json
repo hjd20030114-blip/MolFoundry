@@ -1,0 +1,15 @@
+{
+  "cmdgen_path": "./CMD-GEN",
+  "weights": {
+    "diffphar": "./CMD-GEN/DiffPhar/checkpoints/best-model-epoch=epoch=281.ckpt",
+    "gcpg": "./CMD-GEN/GCPG/result/rs_mapping/fold0_epoch64.pth",
+    "tokenizer": "./CMD-GEN/GCPG/result/rs_mapping/tokenizer_r_iso.pkl"
+  },
+  "device": "cpu",
+  "generation_params": {
+    "num_nodes_phar": 10,
+    "num_molecules": 50,
+    "filter_molecules": true
+  },
+  "note": "\u8fd9\u662f\u624b\u52a8\u914d\u7f6e\u7684CMD-GEN\u73af\u5883\uff0c\u4f7f\u7528\u5360\u4f4d\u7b26\u811a\u672c\u548c\u6743\u91cd\u6587\u4ef6"
+}

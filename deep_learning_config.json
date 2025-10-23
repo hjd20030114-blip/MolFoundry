@@ -1,0 +1,137 @@
+{
+  "output_dir": "deep_learning_results",
+  "featurization": {
+    "use_morgan_fingerprints": true,
+    "morgan_radius": 2,
+    "morgan_nbits": 2048,
+    "use_maccs_keys": true,
+    "use_descriptors": true,
+    "use_3d_descriptors": false,
+    "use_amino_acid_properties": true,
+    "use_secondary_structure": true,
+    "use_surface_accessibility": true,
+    "pocket_radius": 5.0,
+    "interaction_cutoff": 4.0,
+    "use_pharmacophore": true
+  },
+  "equivariant_gnn": {
+    "hidden_dim": 256,
+    "num_layers": 6,
+    "dropout": 0.1,
+    "max_radius": 5.0,
+    "num_neighbors": 32,
+    "irreps_hidden": "128x0e + 64x1e + 32x2e",
+    "irreps_edge": "32x0e + 16x1e",
+    "num_basis": 8
+  },
+  "pocket_diffusion": {
+    "hidden_dim": 256,
+    "num_layers": 8,
+    "num_timesteps": 1000,
+    "beta_schedule": "cosine",
+    "beta_start": 0.0001,
+    "beta_end": 0.02,
+    "dropout": 0.1,
+    "conditioning_dim": 128
+  },
+  "pocket_ligand_transformer": {
+    "hidden_dim": 256,
+    "num_heads": 8,
+    "num_layers": 6,
+    "ff_dim": 1024,
+    "dropout": 0.1,
+    "max_sequence_length": 512,
+    "use_positional_encoding": true
+  },
+  "multitask_discriminator": {
+    "hidden_dim": 256,
+    "dropout": 0.1,
+    "num_interaction_bits": 1024,
+    "use_batch_norm": true,
+    "activation": "relu"
+  },
+  "training": {
+    "num_epochs": 10000,
+    "batch_size": 32,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.00001,
+    "optimizer_type": "adamw",
+    "scheduler_type": "cosine",
+    "warmup_epochs": 5,
+    "gradient_clip_norm": 1.0,
+    "accumulation_steps": 1,
+    "mixed_precision": true,
+    "validation_frequency": 1,
+    "save_frequency": 10,
+    "early_stopping_patience": 20,
+    "device": "auto",
+    "num_workers": 4,
+    "pin_memory": true,
+    "task_weights": {
+      "binding_affinity": 1.0,
+      "interaction_fingerprint": 0.5,
+      "admet": 0.3,
+      "synthesizability": 0.2,
+      "drug_likeness": 0.2
+    },
+    "adaptive_task_weights": true,
+    "use_contrastive_learning": false,
+    "contrastive_temperature": 0.1
+  },
+  "active_learning": {
+    "initial_pool_size": 1000,
+    "query_size": 100,
+    "max_iterations": 10,
+    "uncertainty_method": "entropy",
+    "diversity_weight": 0.3
+  },
+  "reinforcement_learning": {
+    "algorithm": "ppo",
+    "num_episodes": 1000,
+    "max_steps_per_episode": 50,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "epsilon": 0.2,
+    "value_loss_coef": 0.5,
+    "entropy_coef": 0.01
+  },
+  "evaluation": {
+    "metrics": [
+      "validity",
+      "uniqueness", 
+      "novelty",
+      "diversity",
+      "lipinski_compliance",
+      "qed_score",
+      "sa_score"
+    ],
+    "reference_datasets": [
+      "chembl",
+      "zinc",
+      "pubchem"
+    ]
+  },
+  "molecular_generation": {
+    "max_molecule_size": 50,
+    "min_molecule_size": 5,
+    "generation_temperature": 1.0,
+    "top_k": 50,
+    "top_p": 0.9,
+    "num_beams": 5
+  },
+  "data_augmentation": {
+    "use_molecular_augmentation": true,
+    "augmentation_ratio": 0.2,
+    "rotation_augmentation": true,
+    "noise_augmentation": true,
+    "noise_std": 0.1
+  },
+  "logging": {
+    "log_level": "INFO",
+    "log_file": "deep_learning.log",
+    "tensorboard_dir": "runs",
+    "wandb_project": "prrsv_inhibitor_design",
+    "save_checkpoints": true,
+    "checkpoint_dir": "checkpoints"
+  }
+}
