@@ -1,15 +1,13 @@
 """
 深度学习模型模块
-包含SE(3)-Equivariant GNN、Diffusion Model、Transformer等核心模型
+包含SE(3)-Equivariant GNN、Transformer等核心模型
 """
 
 MODEL_NAME = "MolFoundry"
 
 from .equivariant_gnn import EquivariantGNN, SE3TransformerLayer
-from .diffusion_model import PocketConditionedDiffusion, DiffusionScheduler
 from .transformer import PocketLigandTransformer, CrossAttentionLayer
 from .discriminator import MultiTaskDiscriminator, BindingAffinityHead
-from .pl_pair_classifier import PLPairClassifier  # 确保注册 P-L 二分类模型
 from .base_model import BaseModel, ModelConfig, ModelRegistry
 
 def create_model(model_type: str, config):
@@ -18,8 +16,8 @@ def create_model(model_type: str, config):
 
     Args:
         model_type: 模型类型（需与注册名一致，例如：
-            'equivariant_gnn', 'pocket_diffusion',
-            'pocket_ligand_transformer', 'multitask_discriminator'）
+            'equivariant_gnn', 'pocket_ligand_transformer',
+            'multitask_discriminator'）
         config: 模型配置，可以是 ModelConfig 或 dict
 
     Returns:
@@ -43,13 +41,10 @@ __all__ = [
     'MODEL_NAME',
     'EquivariantGNN',
     'SE3TransformerLayer',
-    'PocketConditionedDiffusion',
-    'DiffusionScheduler',
     'PocketLigandTransformer',
     'CrossAttentionLayer',
     'MultiTaskDiscriminator',
     'BindingAffinityHead',
-    'PLPairClassifier',
     'BaseModel',
     'ModelConfig',
     'create_model'

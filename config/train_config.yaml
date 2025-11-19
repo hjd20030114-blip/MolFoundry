@@ -1,0 +1,64 @@
+# PRRSV抑制剂设计项目训练配置
+# 基于项目实际结构和数据
+
+# 模型配置
+model:
+  name: "pl_pair_classifier"  # 使用P-L配对分类器
+  hidden_dim: 1024
+  num_layers: 3
+  dropout: 0.3
+  activation: "relu"
+  use_batch_norm: true
+
+# 数据配置
+data:
+  root_dir: "/home/hjd/PRRSV/HJD/data"
+  pl_data_dir: "/home/hjd/PRRSV/HJD/data/P-L"  # 检查这个路径是否正确
+  batch_size: 256  # A40大显存，可以用更大批次
+  num_workers: 8
+  negative_ratio: 1  # 正负样本比例 1:1
+  
+# 训练配置
+training:
+  epochs: 10000
+  learning_rate: 3e-4
+  weight_decay: 1e-4
+  gradient_clip: 1.0
+  optimizer: "adamw"
+  scheduler: "cosine"
+  warmup_epochs: 5    # 线性warmup轮数
+  eta_min: 1e-6       # CosineLR 的最小学习率
+  
+# 验证和保存
+validation:
+  frequency: 1    # 每个epoch验证一次
+  early_stopping_patience: 20
+  
+checkpoints:
+  save_frequency: 10   # 每10个epoch保存一次
+  save_best_only: true
+  
+# 硬件配置
+hardware:
+  device: "auto"  # 自动检测GPU/CPU
+  mixed_precision: true
+  multi_gpu: true  # 启用多GPU训练
+  gpus: [0, 1]  # 使用两块A40
+  
+# 日志配置
+logging:
+  project_name: "prrsv_inhibitor_design"
+  experiment_name: "pl_classifier_v1"
+  log_dir: "/home/hjd/PRRSV/HJD/logs"
+  
+# 任务权重 (多任务学习)
+task_weights:
+  binding_classification: 1.0
+  binding_affinity: 0.5
+  interaction_fingerprint: 0.3
+  
+# 数据增强 (可选)
+augmentation:
+  enabled: false
+  molecular_noise: 0.01
+  pocket_perturbation: 0.005

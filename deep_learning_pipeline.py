@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 """
 PRRSV抑制剂设计平台 - 深度学习流水线
-基于SE(3)-Equivariant GNN、Diffusion Model和Transformer的分子生成与筛选系统
+基于SE(3)-Equivariant GNN和Transformer的分子生成与筛选系统
 
 实施路线：
 - 30天：训练Equivariant GNN评分器，并在PRRSV蛋白数据上微调
 - 60天：实现Pocket-conditioned Transformer生成候选分子，结合GNN筛选与MD精修
-- 90天：引入Diffusion模型或强化学习优化生成器，建立主动学习闭环
+- 90天：基于规则与强化学习的优化与主动学习闭环
 """
 
 import os
@@ -27,7 +27,7 @@ from torch.utils.data import Dataset, DataLoader, random_split
 sys.path.append('deep_learning')
 
 from deep_learning.models import (
-    EquivariantGNN, PocketConditionedDiffusion, 
+    EquivariantGNN, 
     PocketLigandTransformer, MultiTaskDiscriminator,
     ModelConfig, create_model
 )
@@ -69,10 +69,6 @@ class DeepLearningPipeline:
                 model_type='equivariant_gnn',
                 **self.config.get('equivariant_gnn', {})
             ),
-            'pocket_diffusion': ModelConfig(
-                model_type='pocket_diffusion',
-                **self.config.get('pocket_diffusion', {})
-            ),
             'pocket_ligand_transformer': ModelConfig(
                 model_type='pocket_ligand_transformer',
                 **self.config.get('pocket_ligand_transformer', {})
@@ -98,18 +94,12 @@ class DeepLearningPipeline:
         # 外部推理集成选项（可由UI设置）
         self.external = self.config.get('external', {})
         self.external.setdefault('use_real_transformer', False)
-        self.external.setdefault('use_real_diffusion', False)
         self.external.setdefault('transformer_script', 'scripts/external_transformer_infer.py')
-        self.external.setdefault('diffusion_script', 'scripts/external_diffusion_infer.py')
         self.external.setdefault('transformer_checkpoint', None)
-        self.external.setdefault('diffusion_checkpoint', None)
         # 可选：外部模块/函数与额外参数
         self.external.setdefault('tf_module', None)
         self.external.setdefault('tf_function', None)
         self.external.setdefault('tf_kwargs_json', None)
-        self.external.setdefault('df_module', None)
-        self.external.setdefault('df_function', None)
-        self.external.setdefault('df_kwargs_json', None)
         
         logger.info(f"深度学习流水线初始化完成，使用设备: {self.device}")
 
@@ -162,12 +152,10 @@ class DeepLearningPipeline:
         # 检查模型配置
         if self.config:
             availability['gnn_config'] = 'equivariant_gnn' in self.config.get('models', {})
-            availability['diffusion_config'] = 'diffusion' in self.config.get('models', {})
             availability['transformer_config'] = 'transformer' in self.config.get('models', {})
             availability['discriminator_config'] = 'discriminator' in self.config.get('models', {})
         else:
             availability['gnn_config'] = False
-            availability['diffusion_config'] = False
             availability['transformer_config'] = False
             availability['discriminator_config'] = False
 
@@ -192,12 +180,6 @@ class DeepLearningPipeline:
                 'dropout': 0.1,
                 'max_radius': 5.0,
                 'num_neighbors': 32
-            },
-            'pocket_diffusion': {
-                'hidden_dim': 256,
-                'num_layers': 8,
-                'num_timesteps': 1000,
-                'beta_schedule': 'cosine'
             },
             'pocket_ligand_transformer': {
                 'hidden_dim': 256,
@@ -401,7 +383,7 @@ class DeepLearningPipeline:
         optimization_targets: Dict
     ) -> str:
         """
-        第三阶段（90天）：Diffusion模型和强化学习优化
+        第三阶段（90天）：强化学习优化（已移除Diffusion模块）
         
         Args:
             phase2_data_path: 第二阶段生成的分子数据路径
@@ -411,40 +393,16 @@ class DeepLearningPipeline:
         Returns:
             最终优化的分子数据路径
         """
-        logger.info("🚀 开始第三阶段：Diffusion模型和强化学习优化")
+        logger.info("🚀 开始第三阶段：多目标优化（无Diffusion/无RL）")
         
         # 1. 加载第二阶段数据
         phase2_data = pd.read_csv(phase2_data_path)
         
-        # 2. 创建Diffusion模型
-        logger.info("🌊 创建Pocket-conditioned Diffusion模型...")
-        diffusion_model = create_model(
-            'pocket_diffusion',
-            self.model_configs['pocket_diffusion']
+        # 2. 多目标优化（无Diffusion/无RL）
+        logger.info("🎯 执行多目标优化（Pareto/加权排序）...")
+        optimized_molecules = self._multi_objective_optimization(
+            phase2_data, protein_pdb, optimization_targets
         )
-        
-        # 3. 创建多任务判别器
-        logger.info("🎯 创建多任务判别器...")
-        discriminator = create_model(
-            'multitask_discriminator',
-            self.model_configs['multitask_discriminator']
-        )
-        
-        # 4. 训练Diffusion模型
-        logger.info("🏋️ 训练Diffusion模型...")
-        diffusion_model = self._train_diffusion_model(diffusion_model, phase2_data, protein_pdb)
-        
-        # 5. 强化学习/真实Diffusion优化
-        if self.external.get('use_real_diffusion', False):
-            logger.info("🔌 使用外部Diffusion推理脚本进行优化")
-            optimized_molecules = self._external_diffusion_optimize(
-                phase2_data, protein_pdb, optimization_targets
-            )
-        else:
-            logger.info("🎮 强化学习优化...")
-            optimized_molecules = self._reinforcement_learning_optimization(
-                diffusion_model, discriminator, optimization_targets, protein_pdb, phase2_data
-            )
         
         # 6. 主动学习闭环
         logger.info("🔄 主动学习闭环...")
@@ -1128,29 +1086,24 @@ class DeepLearningPipeline:
         # 简化实现
         return molecules
     
-    def _train_diffusion_model(self, model, data, protein_pdb):
-        """训练Diffusion模型"""
-        # 简化实现
-        return model
-    
-    def _reinforcement_learning_optimization(self, diffusion_model, discriminator, targets, protein_pdb, base_molecules: pd.DataFrame):
-        """强化学习优化（占位实现，基于属性启发式对第二阶段分子进行改良与重评分）"""
+    def _multi_objective_optimization(self, base_molecules: pd.DataFrame, protein_pdb: str, targets: Dict) -> List[Dict]:
+        """多目标优化：基于 RDKit 性质 + 亲和力的帕累托筛选与加权排序（无RL/无Diffusion）。
+        目标（默认权重，可由 targets 覆盖）：
+          - 亲和力（binding_affinity 或 pred_binding_affinity）：越负越好
+          - QED：越高越好
+          - SA（合成难度）：越低越好
+          - MW 距离窗口 [200,500] 越近越好
+          - LogP 距离窗口 [-1,4.5] 越近越好
+        返回：Top-K（默认50）优化候选。
+        """
         try:
-            rng = np.random.default_rng()
-            target_aff = float(targets.get('binding_affinity', -7.0)) if isinstance(targets, dict) else -7.0
-            ideal_logp = ( -1.0, 4.5 )
-            ideal_mw = ( 200.0, 500.0 )
-
-            # 若第二阶段为空，回退生成一批种子
-            if base_molecules is None or len(base_molecules) == 0:
-                seed = self._generate_molecules_with_transformer(
-                    None, {}, [{'target_affinity': target_aff, 'num_molecules': 50}]
-                )
-                base_df = pd.DataFrame(seed)
+            # 读取/就地 DataFrame
+            if isinstance(base_molecules, pd.DataFrame):
+                df = base_molecules.copy()
             else:
-                base_df = base_molecules.copy()
+                df = pd.read_csv(base_molecules)
 
-            # 尝试使用RDKit计算更丰富的性质（QED/SA）
+            # RDKit 可选
             has_rdkit = False
             try:
                 from rdkit import Chem
@@ -1160,144 +1113,122 @@ class DeepLearningPipeline:
             except Exception:
                 has_rdkit = False
 
-            optimized: List[Dict] = []
-
-            for idx, row in base_df.iterrows():
-                smi = str(row.get('smiles', ''))
-                if not smi:
-                    continue
-                base_aff = float(row.get('binding_affinity', -6.0))
-
-                mw = None
-                logp = None
-                qed = None
-                sa = None
-                if has_rdkit:
+            # 计算性质
+            if has_rdkit:
+                props = {
+                    'molecular_weight': [], 'logp': [], 'qed': [], 'sa_score': []
+                }
+                for smi in df['smiles'].astype(str).tolist():
+                    mw = logp = qed = sa = None
                     try:
-                        mol = Chem.MolFromSmiles(smi)
-                        if mol is not None:
-                            mw = float(Descriptors.MolWt(mol))
-                            logp = float(Crippen.MolLogP(mol))
-                            qed = float(QED.qed(mol))
-                            sa = float(sascorer.calculateScore(mol))
+                        m = Chem.MolFromSmiles(smi)
+                        if m is not None:
+                            mw = float(Descriptors.MolWt(m))
+                            logp = float(Crippen.MolLogP(m))
+                            qed = float(QED.qed(m))
+                            sa = float(sascorer.calculateScore(m))
                     except Exception:
                         pass
+                    props['molecular_weight'].append(mw)
+                    props['logp'].append(logp)
+                    props['qed'].append(qed)
+                    props['sa_score'].append(sa)
+                for k, v in props.items():
+                    df[k] = v
 
-                # 简单奖励：满足理想区间给予更大改良，不满足则小幅改良或不变
-                delta = rng.normal(0.6, 0.25)  # 基础改良幅度（越大越好，数值更负）
-                if mw is not None and (mw < ideal_mw[0] or mw > ideal_mw[1]):
-                    delta -= 0.3
-                if logp is not None and (logp < ideal_logp[0] or logp > ideal_logp[1]):
-                    delta -= 0.3
-                if qed is not None:
-                    delta += 0.4 * (qed - 0.6)  # 推向更高的QED
-                if sa is not None:
-                    delta += 0.2 * (0.6 - min(sa / 10.0, 1.0))  # SA越低越好
+            # 归一化/目标函数
+            aff = df.get('binding_affinity', df.get('pred_binding_affinity', pd.Series([-6.0]*len(df))))
+            # 亲和力越负越好 → aff_score = -aff
+            df['_obj_aff'] = -pd.to_numeric(aff, errors='coerce').fillna(0.0)
 
-                # 约束与采样噪声
-                delta = float(np.clip(delta, -0.2, 1.8))
-                new_aff = float(np.clip(base_aff - delta, -12.0, -3.0))
+            # QED 越高越好
+            df['_obj_qed'] = pd.to_numeric(df.get('qed', pd.Series([0.0]*len(df))), errors='coerce').fillna(0.0)
 
-                optimized.append({
-                    'compound_id': f'opt_{idx:04d}',
-                    'smiles': smi,
-                    'binding_affinity': new_aff,
-                    'molecular_weight': mw if mw is not None else row.get('molecular_weight', 'N/A'),
-                    'logp': logp if logp is not None else row.get('logp', 'N/A'),
-                    'qed': qed if qed is not None else 'N/A',
-                    'sa_score': sa if sa is not None else 'N/A',
-                    'parent_id': row.get('compound_id', ''),
-                    'source': 'diffusion_rl_placeholder'
-                })
+            # SA 越低越好 → 目标取 (max_sa - sa)，归一化
+            sa = pd.to_numeric(df.get('sa_score', pd.Series([None]*len(df))), errors='coerce')
+            max_sa = float(sa.max()) if sa.notna().any() else 10.0
+            df['_obj_sa'] = sa.apply(lambda x: (max_sa - x) if pd.notna(x) else 0.0)
 
-            # 去重与选优
-            df = pd.DataFrame(optimized)
-            # Canonical SMILES 去重（若可用）
+            # MW 距离窗口 [200,500] 越近越好 → 目标 = -距离
+            mw = pd.to_numeric(df.get('molecular_weight', pd.Series([None]*len(df))), errors='coerce')
+            def dist_window(x, lo, hi):
+                if pd.isna(x):
+                    return None
+                if lo <= x <= hi:
+                    return 0.0
+                return min(abs(x-lo), abs(x-hi))
+            df['_obj_mw'] = mw.apply(lambda x: -dist_window(x, 200.0, 500.0) if x is not None else None).fillna(-1.0)
+
+            # LogP 距离窗口 [-1,4.5] 越近越好 → 目标 = -距离
+            logp = pd.to_numeric(df.get('logp', pd.Series([None]*len(df))), errors='coerce')
+            df['_obj_logp'] = logp.apply(lambda x: -dist_window(x, -1.0, 4.5) if x is not None else None).fillna(-1.0)
+
+            # 非支配排序（简单实现）
+            objectives = ['_obj_aff','_obj_qed','_obj_sa','_obj_mw','_obj_logp']
+            vals = df[objectives].values
+            n = len(df)
+            ranks = [None]*n
+            dominated_count = [0]*n
+            dominates = [set() for _ in range(n)]
+            for i in range(n):
+                for j in range(n):
+                    if i == j:
+                        continue
+                    vi, vj = vals[i], vals[j]
+                    if np.all(vi >= vj) and np.any(vi > vj):
+                        dominates[i].add(j)
+                    elif np.all(vj >= vi) and np.any(vj > vi):
+                        dominated_count[i] += 1
+            fronts = []
+            current = [i for i,c in enumerate(dominated_count) if c==0]
+            r = 0
+            while current:
+                fronts.append(current)
+                next_front = []
+                for p in current:
+                    ranks[p] = r
+                    for q in dominates[p]:
+                        dominated_count[q] -= 1
+                        if dominated_count[q] == 0:
+                            next_front.append(q)
+                current = next_front
+                r += 1
+            df['_pareto_rank'] = ranks
+
+            # 前沿内加权排序（可由targets覆盖权重）
+            w = targets.get('weights', {}) if isinstance(targets, dict) else {}
+            w_aff = float(w.get('affinity', 1.0))
+            w_qed = float(w.get('qed', 1.0))
+            w_sa  = float(w.get('sa', 1.0))
+            w_mw  = float(w.get('mw', 0.5))
+            w_logp= float(w.get('logp', 0.5))
+            df['_score'] = (
+                w_aff*df['_obj_aff'] + w_qed*df['_obj_qed'] + w_sa*df['_obj_sa'] +
+                w_mw*df['_obj_mw'] + w_logp*df['_obj_logp']
+            )
+
+            # 去重、排序与Top-K
             if has_rdkit:
                 try:
                     from rdkit import Chem
-                    def to_canonical(s: str) -> str:
-                        try:
-                            m = Chem.MolFromSmiles(s)
-                            return Chem.MolToSmiles(m) if m is not None else s
-                        except Exception:
-                            return s
-                    df['can_smiles'] = df['smiles'].apply(to_canonical)
-                    df = df.drop_duplicates(subset=['can_smiles'])
-                    df = df.drop(columns=['can_smiles'])
+                    df['can_smiles'] = df['smiles'].apply(lambda s: Chem.MolToSmiles(Chem.MolFromSmiles(s)) if s else s)
+                    df = df.drop_duplicates(subset=['can_smiles']).drop(columns=['can_smiles'])
                 except Exception:
                     pass
 
-            # 选择前K个（binding_affinity 越负越好）
-            df = df.sort_values(by='binding_affinity', ascending=True)
+            df = df.sort_values(by=['_pareto_rank','_score'], ascending=[True, False])
             top_k = int(targets.get('top_k', 50)) if isinstance(targets, dict) else 50
             df = df.head(top_k)
 
-            return df.to_dict(orient='records')
-
+            # 选择输出列
+            keep_cols = [c for c in ['compound_id','smiles','binding_affinity','pred_binding_affinity','molecular_weight','logp','qed','sa_score'] if c in df.columns]
+            df['_source'] = 'moo_selection'
+            res = df[keep_cols + ['_pareto_rank','_score','_source']].to_dict(orient='records')
+            return res
         except Exception as e:
-            logger.error(f"RL优化失败: {e}")
+            logger.error(f"多目标优化失败: {e}")
             return []
 
-    def _external_diffusion_optimize(self, base_molecules: pd.DataFrame, protein_pdb: str, targets: Dict) -> List[Dict]:
-        """调用外部Diffusion推理脚本进行优化。输入为第二阶段CSV，输出优化后CSV。"""
-        try:
-            script_path = self.external.get('diffusion_script')
-            ckpt_path = self.external.get('diffusion_checkpoint')
-            if not script_path or not os.path.exists(script_path):
-                logger.warning("未找到外部Diffusion脚本，回退到占位RL优化")
-                return self._reinforcement_learning_optimization(None, None, targets, protein_pdb, base_molecules)
-
-            # 将base_molecules保存到临时文件（若传入为DataFrame）
-            if isinstance(base_molecules, pd.DataFrame):
-                input_csv = self.output_dir / f"phase2_input_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
-                base_molecules.to_csv(input_csv, index=False)
-            else:
-                # 假设传入是DataFrame
-                input_csv = base_molecules
-
-            tmp_out = self.output_dir / f"external_diffusion_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
-            target_aff = float(targets.get('binding_affinity', -7.0)) if isinstance(targets, dict) else -7.0
-            top_k = int(targets.get('top_k', 50)) if isinstance(targets, dict) else 50
-
-            cmd = [
-                sys.executable, script_path,
-                "--protein", protein_pdb,
-                "--input", str(input_csv),
-                "--target_aff", str(target_aff),
-                "--top_k", str(top_k),
-                "--out", str(tmp_out)
-            ]
-            if ckpt_path:
-                cmd += ["--checkpoint", ckpt_path]
-            # 动态模块/函数/参数
-            if self.external.get('df_module'):
-                cmd += ["--module", str(self.external.get('df_module'))]
-            if self.external.get('df_function'):
-                cmd += ["--function", str(self.external.get('df_function'))]
-            if self.external.get('df_kwargs_json'):
-                cmd += ["--kwargs_json", str(self.external.get('df_kwargs_json'))]
-
-            logger.info(f"运行外部Diffusion脚本: {' '.join(cmd)}")
-            import subprocess
-            result = subprocess.run(cmd, capture_output=True, text=True)
-            if result.returncode != 0:
-                logger.error(f"外部Diffusion脚本失败: {result.stderr}")
-                return self._reinforcement_learning_optimization(None, None, targets, protein_pdb, base_molecules)
-
-            if tmp_out.exists():
-                df = pd.read_csv(tmp_out)
-                if 'smiles' in df.columns:
-                    if 'compound_id' not in df.columns:
-                        df['compound_id'] = [f'opt_ext_{i+1:04d}' for i in range(len(df))]
-                    keep = [c for c in ['compound_id','smiles','binding_affinity','molecular_weight','logp','qed','sa_score'] if c in df.columns]
-                    return df[keep].to_dict(orient='records')
-
-            logger.warning("外部Diffusion脚本未产生有效输出，回退到占位RL优化")
-            return self._reinforcement_learning_optimization(None, None, targets, protein_pdb, base_molecules)
-        except Exception as e:
-            logger.error(f"外部Diffusion优化失败: {e}")
-            return self._reinforcement_learning_optimization(None, None, targets, protein_pdb, base_molecules)
     
     def _active_learning_loop(self, molecules, protein_pdb, targets):
         """主动学习闭环（占位实现：去重、排序并保留Top-N）"""

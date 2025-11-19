@@ -7,7 +7,9 @@ PRRSV（猪繁殖与呼吸综合征病毒）深度学习抑制剂设计平台是
 ## 核心功能
 
 ### 🧬 分子生成
+- **CMD-GEN集成**: 基于DiffPhar和GCPG的智能分子生成
 - **深度学习生成**: SE(3)-Equivariant GNN驱动的分子设计
+- **口袋条件生成**: 基于蛋白质结合位点的定向分子生成
 
 ### 🎯 分子对接
 - **AutoDock Vina集成**: 高精度分子对接计算
@@ -21,7 +23,6 @@ PRRSV（猪繁殖与呼吸综合征病毒）深度学习抑制剂设计平台是
 
 ### 🤖 深度学习模块
 - **SE(3)-Equivariant GNN**: 等变图神经网络
-- **Diffusion Model**: 扩散模型分子生成
 - **Transformer**: 交叉注意力机制
 - **Multi-task Learning**: 多任务学习框架
 
@@ -57,9 +58,7 @@ HJD/
 │   ├── models/
 │   │   ├── equivariant_gnn.py       # SE(3)-等变GNN评分器
 │   │   ├── transformer.py           # 口袋-配体交叉注意力Transformer
-│   │   ├── diffusion_model.py       # 口袋条件扩散生成器
 │   │   ├── discriminator.py         # 多任务判别器（ADMET/合成难度等）
-│   │   └── pl_pair_classifier.py    # 口袋-配体二分类
 │   └── data/featurizers.py          # 分子/蛋白/相互作用特征化
 │
 ├── data/                            # 示例数据与资源
@@ -167,19 +166,13 @@ molecules = generator.generate_pocket_based_molecules(
 - 深度学习研究模块（`deep_learning/models/`）
   - EquivariantGNN（SE(3)-等变 GNN）：输入蛋白/配体图结构与三维坐标，输出节点/图级表征与亲和力评分
   - PocketLigandTransformer：口袋氨基酸序列/几何与配体 token 的跨模态交叉注意力，输出 P-L 交互表征
-  - Pocket-conditioned Diffusion：以口袋条件控制的分子生成扩散过程
   - MultiTaskDiscriminator：对生成/筛选分子进行合成难度、毒性等多任务打分
-  - PLPairClassifier：口袋-配体是否匹配的轻量二分类器
 
 以上深度学习模块已给出可运行的研究版实现/占位，便于后续替换和扩展。
 
 ## 核心模型流程图（PNG）
 
 以下为核心深度学习模型的流程图（PNG），位于 `docs/diagrams/png/`：
-
-- 口袋条件扩散模型（Pocket-Conditioned Diffusion）
-
-  ![Pocket-Conditioned Diffusion](docs/diagrams/png/fig_pocket_diffusion.png)
 
 - Pocket–Ligand 交叉注意力 Transformer（Pocket–Ligand Transformer）
 
@@ -213,17 +206,9 @@ Images only (PNG, high resolution):
 
   ![Pocket–Ligand Transformer](docs/diagrams/pocket_ligand_transformer.png)
 
-- Pocket-conditioned Diffusion Model
-
-  ![Pocket-conditioned Diffusion](docs/diagrams/pocket_conditioned_diffusion.png)
-
 - Multi-task Discriminator
 
   ![Multi-task Discriminator](docs/diagrams/multitask_discriminator.png)
-
-- Pocket–Ligand Pair Classifier
-
-  ![Pocket–Ligand Pair Classifier](docs/diagrams/pl_pair_classifier.png)
 
 ## 端到端工作流程（End-to-End Pipeline）
 

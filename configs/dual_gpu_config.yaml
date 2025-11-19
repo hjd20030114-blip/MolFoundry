@@ -14,30 +14,8 @@ data:
 # 模型配置（按模型类型）
 # ============================================
 
-# 1. PocketConditionedDiffusion（扩散模型）- 顶级配置
-diffusion_model:
-  model_type: "pocket_diffusion"
-  hidden_dim: 1536            # 1024→1536（双卡可承受）
-  num_layers: 8               # 6→8层（更深）
-  num_heads: 24               # 16→24头
-  dropout: 0.1
-  mlp_ratio: 4.0
-  beta_schedule: "cosine"
-  num_timesteps: 1000
-  use_adaln: true
-  use_gated_ffn: true
-  # 预估参数：~280M
-
-# 2. PLPairClassifier（P-L分类器）- 深度强化
-pl_classifier:
-  model_type: "pl_pair_classifier"
-  input_dim: 2060
-  hidden_dim: 768             # 512→768
-  num_layers: 8               # 6→8层
-  dropout: 0.1                # 大模型降dropout
-  use_batch_norm: true
-  multi_task: true            # 启用多任务学习
-  # 预估参数：~25M
+# 1.（已删除）PocketConditionedDiffusion 配置
+# 2.（已删除）PLPairClassifier 配置
 
 # 3. PocketLigandTransformer（交叉注意力）- 大规模Transformer
 transformer:
@@ -50,7 +28,7 @@ transformer:
   dropout: 0.1
   # 预估参数：~150M
 
-# 4. EquivariantGNN（等变图神经网络）
+# 2. EquivariantGNN（等变图神经网络）
 equivariant_gnn:
   model_type: "equivariant_gnn"
   hidden_dim: 512             # 256→512

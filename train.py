@@ -67,8 +67,8 @@ def create_loss_function(task_name):
 def main():
     parser = argparse.ArgumentParser(description='PRRSV训练脚本')
     parser.add_argument('--config', type=str, required=True, help='配置文件路径')
-    parser.add_argument('--model', type=str, default='pl_pair_classifier', 
-                       choices=['pl_pair_classifier', 'pocket_ligand_transformer', 'equivariant_gnn'],
+    parser.add_argument('--model', type=str, default='equivariant_gnn', 
+                       choices=['pocket_ligand_transformer', 'equivariant_gnn'],
                        help='模型类型')
     parser.add_argument('--seed', type=int, default=42, help='随机种子（用于划分与初始化）')
     parser.add_argument('--splits_file', type=str, default='', help='数据划分文件路径（为空则按seed自动生成）')
@@ -259,7 +259,7 @@ def main():
                         val_loader=val_loader,
                         callbacks=callbacks
                     )
-                    if args.model in ['pl_pair_classifier', 'pocket_ligand_transformer']:
+                    if args.model == 'pocket_ligand_transformer':
                         trainer.criterion = create_loss_function('pl_classification')
                     else:
                         trainer.criterion = create_loss_function('binding_affinity')
@@ -524,7 +524,7 @@ def main():
         )
         
         # 设置损失函数：分类模型统一使用 BCEWithLogitsLoss
-        if args.model in ['pl_pair_classifier', 'pocket_ligand_transformer']:
+        if args.model == 'pocket_ligand_transformer':
             trainer.criterion = create_loss_function('pl_classification')
         else:
             trainer.criterion = create_loss_function('binding_affinity')

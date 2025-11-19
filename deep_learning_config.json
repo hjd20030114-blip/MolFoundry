@@ -24,16 +24,6 @@
     "irreps_edge": "32x0e + 16x1e",
     "num_basis": 8
   },
-  "pocket_diffusion": {
-    "hidden_dim": 256,
-    "num_layers": 8,
-    "num_timesteps": 1000,
-    "beta_schedule": "cosine",
-    "beta_start": 0.0001,
-    "beta_end": 0.02,
-    "dropout": 0.1,
-    "conditioning_dim": 128
-  },
   "pocket_ligand_transformer": {
     "hidden_dim": 256,
     "num_heads": 8,
