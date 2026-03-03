@@ -1,124 +1,128 @@
-# PRRSV深度学习抑制剂设计平台
+# MolFoundry — Structure-Aware Deep Learning Platform for PRRSV Inhibitor Design
 
-## 项目简介
+## Overview
 
-PRRSV（猪繁殖与呼吸综合征病毒）深度学习抑制剂设计平台是一个集成了传统计算化学方法和现代深度学习技术的药物设计系统。该平台专门针对PRRSV病毒进行抑制剂的智能设计和优化。
+MolFoundry is an end-to-end drug design platform that integrates classical computational chemistry methods with modern deep learning techniques. It is specifically designed for the intelligent design and optimization of small-molecule inhibitors targeting the Porcine Reproductive and Respiratory Syndrome Virus (PRRSV) nucleocapsid (N) protein.
 
-## 核心功能
+**Paper:** *MolFoundry: A Structure-Aware Generative Framework for De Novo Design of PRRSV Nucleocapsid Inhibitors*
+**Authors:** Jindong Hao, Weibo Jin — College of Life Sciences and Medicine, Zhejiang Sci-tech University
+**License:** MIT
 
-### 🧬 分子生成
-- **CMD-GEN集成**: 基于DiffPhar和GCPG的智能分子生成
-- **深度学习生成**: SE(3)-Equivariant GNN驱动的分子设计
-- **口袋条件生成**: 基于蛋白质结合位点的定向分子生成
+## Key Features
 
-### 🎯 分子对接
-- **AutoDock Vina集成**: 高精度分子对接计算
-- **批量对接**: 支持多配体同时对接分析
-- **结合位点分析**: 自动识别和分析蛋白质结合位点
+### 🧬 Molecular Generation
+- **CMD-GEN Integration**: Intelligent molecular generation based on DiffPhar and GCPG
+- **Deep Learning Generation**: Molecular design driven by SE(3)-Equivariant GNNs
+- **Pocket-Conditioned Generation**: Target-directed molecular generation based on protein binding sites
 
-### 💊 ADMET分析
-- **成药性评估**: Lipinski五规则等成药性指标
-- **毒性预测**: 基于机器学习的毒性风险评估
-- **药代动力学**: 吸收、分布、代谢、排泄性质预测
+### 🎯 Molecular Docking
+- **AutoDock Vina Integration**: High-precision molecular docking calculations
+- **Batch Docking**: Support for simultaneous multi-ligand docking analysis
+- **Binding Site Analysis**: Automatic identification and analysis of protein binding sites
 
-### 🤖 深度学习模块
-- **SE(3)-Equivariant GNN**: 等变图神经网络
-- **Transformer**: 交叉注意力机制
-- **Multi-task Learning**: 多任务学习框架
+### 💊 ADMET Analysis
+- **Drug-likeness Assessment**: Lipinski's Rule of Five and other drug-likeness metrics
+- **Toxicity Prediction**: Machine learning-based toxicity risk assessment
+- **Pharmacokinetics**: Prediction of absorption, distribution, metabolism, and excretion properties
 
-### 📊 可视化分析
-- **3D分子可视化**: 交互式分子结构展示
-- **对接结果可视化**: 蛋白质-配体复合物展示
-- **数据分析图表**: 实时生成分析图表
+### 🤖 Deep Learning Modules
+- **SE(3)-Equivariant GNN**: Equivariant graph neural network for binding affinity prediction
+- **Pocket–Ligand Transformer**: Cross-attention mechanism for pocket-ligand interaction modeling
+- **Multi-task Learning**: Multi-task discriminator framework (ADMET, synthetic accessibility, etc.)
 
-## 项目结构
+### 📊 Visualization & Analysis
+- **3D Molecular Visualization**: Interactive molecular structure display (py3Dmol)
+- **Docking Result Visualization**: Protein–ligand complex rendering
+- **Data Analysis Dashboards**: Real-time interactive charts (Plotly)
+
+## Project Structure
 
 ```
 HJD/
 ├── README.md
 ├── requirements.txt
-├── start_project.py                 # 启动脚本（含依赖检查与UI入口）
-├── unified_web_interface.py         # 统一 Streamlit 界面
-├── run_full_workflow.py             # 一键式完整流程（生成→对接→ADMET→3D报告）
-├── deep_learning_pipeline.py        # 深度学习端到端流水线（研究版）
+├── start_project.py                 # Entry point (dependency check + UI launch)
+├── unified_web_interface.py         # Unified Streamlit web interface
+├── run_full_workflow.py             # One-click full pipeline (generation → docking → ADMET → 3D report)
+├── deep_learning_pipeline.py        # Deep learning end-to-end pipeline (research version)
 │
-├── scripts/                         # 计算化学/工程流水线
-│   ├── config.py                    # 路径、Vina参数、ADMET筛选阈值
-│   ├── ligand_generator.py          # 配体生成（模板/片段 + CMD-GEN 可选）
-│   ├── molecular_docking.py         # AutoDock Vina 对接（含稳健回退）
-│   ├── admet_analyzer.py            # RDKit ADMET 与规则评估（含简化回退）
-│   ├── binding_site_analyzer.py     # 结合位点解析/几何/表面分析
-│   ├── visualization_3d.py          # 3D 分子/复合物/仪表板/综合报告
-│   ├── result_manager.py            # 以 run 为单位的结果目录与元信息
-│   ├── cmdgen_integration.py        # 外部 CMD-GEN 集成（DiffPhar/GCPG）
-│   ├── view_all_3d_results.py       # 打包查看3D结果
-│   └── streamlit_3d_viewer.py       # 独立3D查看器
+├── scripts/                         # Computational chemistry / engineering pipeline
+│   ├── config.py                    # Paths, Vina parameters, ADMET filtering thresholds
+│   ├── ligand_generator.py          # Ligand generation (template/fragment + CMD-GEN optional)
+│   ├── molecular_docking.py         # AutoDock Vina docking (with robust fallback)
+│   ├── admet_analyzer.py            # RDKit ADMET & rule-based evaluation (with simplified fallback)
+│   ├── binding_site_analyzer.py     # Binding site parsing / geometry / surface analysis
+│   ├── visualization_3d.py          # 3D molecule / complex / dashboard / comprehensive report
+│   ├── result_manager.py            # Run-level result directory & metadata management
+│   ├── cmdgen_integration.py        # External CMD-GEN integration (DiffPhar/GCPG)
+│   ├── view_all_3d_results.py       # Batch 3D result viewer
+│   └── streamlit_3d_viewer.py       # Standalone 3D viewer
 │
-├── deep_learning/                   # 深度学习研究模块
+├── deep_learning/                   # Deep learning research modules
 │   ├── models/
-│   │   ├── equivariant_gnn.py       # SE(3)-等变GNN评分器
-│   │   ├── transformer.py           # 口袋-配体交叉注意力Transformer
-│   │   ├── discriminator.py         # 多任务判别器（ADMET/合成难度等）
-│   └── data/featurizers.py          # 分子/蛋白/相互作用特征化
+│   │   ├── equivariant_gnn.py       # SE(3)-Equivariant GNN affinity scorer
+│   │   ├── transformer.py           # Pocket–Ligand Cross-attention Transformer
+│   │   ├── discriminator.py         # Multi-task discriminator (ADMET / synthetic difficulty, etc.)
+│   └── data/featurizers.py          # Molecular / protein / interaction featurization
 │
-├── data/                            # 示例数据与资源
+├── data/                            # Sample data & resources
 │   ├── 1p65.pdb / 1p65.pdbqt / 1p65.cif
-│   ├── AF-Q9GLP0-F1-model_v4.pdb(.pdbqt)  # 整合素相关结构
+│   ├── AF-Q9GLP0-F1-model_v4.pdb(.pdbqt)  # Integrin-related structures
 │   ├── AF-F1SR53-F1-model_v4.pdb(.pdbqt)
-│   ├── capsid.fasta / integrin.fasta       # 序列数据
-│   ├── ligands.sdf                         # 种子/示例配体
-│   └── P-L/                                # 蛋白-配体对（训练/评测示例）
+│   ├── capsid.fasta / integrin.fasta       # Sequence data
+│   ├── ligands.sdf                         # Seed / example ligands
+│   └── P-L/                                # Protein–ligand pairs (training/evaluation examples)
 │
-└── results/                         # 运行产出（按日期自动分目录）
+└── results/                         # Run outputs (auto-organized by date)
     └── run_YYYYMMDD_xxx/
-        ├── ligands/                 # 生成配体与 .smi
+        ├── ligands/                 # Generated ligands & .smi files
         ├── docking/                 # docking_results.csv
         ├── admet/                   # admet_results.csv
-        ├── visualization_3d/        # HTML报告、仪表板、画廊
-        └── reports/                 # 其他报告
+        ├── visualization_3d/        # HTML reports, dashboards, galleries
+        └── reports/                 # Additional reports
 ```
 
-## 快速开始
+## Quick Start
 
-### 1. 环境要求
+### 1. Requirements
 - Python 3.9+
 - PyTorch 2.0+
 - RDKit
 - Streamlit
-- 其他依赖见requirements.txt
+- Additional dependencies listed in `requirements.txt`
 
-### 2. 安装依赖
+### 2. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. 启动系统
+### 3. Launch the System
 ```bash
 python start_project.py
 ```
 
-### 4. 访问Web界面
-打开浏览器访问: http://localhost:8501
+### 4. Access the Web Interface
+Open your browser and navigate to: http://localhost:8501
 
-## 使用指南
+## Usage Guide
 
-### Web界面操作
-1. **主页**: 查看平台概览和功能介绍
-2. **分子生成**: 使用CMD-GEN或深度学习生成分子
-3. **分子对接**: 上传蛋白质和配体进行对接分析
-4. **ADMET分析**: 评估分子的成药性和安全性
-5. **数据可视化**: 查看3D分子结构和分析结果
-6. **实验报告**: 生成综合分析报告
+### Web Interface
+1. **Home**: Platform overview and feature introduction
+2. **Molecular Generation**: Generate molecules using CMD-GEN or deep learning models
+3. **Molecular Docking**: Upload protein structures and ligands for docking analysis
+4. **ADMET Analysis**: Evaluate drug-likeness and safety profiles of molecules
+5. **Data Visualization**: Explore 3D molecular structures and analytical results
+6. **Experiment Reports**: Generate comprehensive analysis reports
 
-### 命令行使用
+### Command-Line Interface
 ```python
-# 分子对接示例
+# Molecular docking example
 from scripts.molecular_docking import MolecularDocking
 
 docker = MolecularDocking()
 results = docker.dock_multiple_ligands("HJD/data/1p65.pdb", ["CCO", "CC(=O)O"])
 
-# CMD-GEN 分子生成示例（如未配置CMD-GEN，将自动回退到备用生成）
+# CMD-GEN molecular generation example (auto-fallback if CMD-GEN is not configured)
 from scripts.cmdgen_integration import CMDGENGenerator
 
 generator = CMDGENGenerator()
@@ -127,62 +131,62 @@ molecules = generator.generate_pocket_based_molecules(
 )
 ```
 
-## 项目原理（Principles）
+## Principles
 
-本平台围绕“结构指导的口袋-配体发现”构建可复现的一体化工作流：
-- 结构指导生成：以结合口袋为条件，先生成或导入候选分子，再进行筛选与优化
-- 物理打分 + 规则筛选：利用 AutoDock Vina 进行结合亲和力打分，结合 RDKit 描述符与 Lipinski 等规则进行 ADMET 初筛
-- 可视化闭环：输出 2D/3D 与仪表板/综合报告，辅助解释与人工复核
-- 结果可追溯：按 run 组织所有中间与最终产出，便于复现实验与对比
+This platform builds a reproducible end-to-end workflow around “structure-guided pocket-ligand discovery”:
+- Structure-guided generation: Using binding pockets as conditions, candidate molecules are first generated or imported, then screened and optimized
+- Physics-based scoring + rule-based filtering: AutoDock Vina for binding affinity scoring, combined with RDKit descriptors and Lipinski's rules for ADMET pre-screening
+- Visualization feedback loop: 2D/3D outputs with dashboards and comprehensive reports to assist interpretation and manual review
+- Traceable results: All intermediate and final outputs organized by run for reproducible experiments and comparisons
 
-平台包含两类“分子来源”：
-1) 规则/模板/片段驱动的化学空间扩展（默认内置，开箱可用）
-2) 外部生成模型（CMD-GEN：DiffPhar + GCPG；以及深度学习研究模块，便于未来挂载 SOTA 方法）
+The platform includes two types of “molecular sources”:
+1) Rule/template/fragment-driven chemical space expansion (built-in by default, ready to use)
+2) External generative models (CMD-GEN: DiffPhar + GCPG; and deep learning research modules for future integration of SOTA methods)
 
-## 数据集与预处理（Datasets & Preprocessing）
+## Datasets & Preprocessing
 
-- 蛋白质结构（Proteins）
-  - 示例：`data/1p65.pdb(.pdbqt)`、`data/AF-Q9GLP0-F1-model_v4.pdb(.pdbqt)`、`data/AF-F1SR53-F1-model_v4.pdb(.pdbqt)`
-  - 预处理：加氢、转 pdbqt（借助 Meeko/AutoDock 工具链），在 `scripts/config.py` 中设置 Vina 的网格中心与尺寸；也可用 `scripts/binding_site_analyzer.py` 进行结合位点几何/表面分析
-- 配体（Ligands）
-  - 种子/示例：`data/ligands.sdf`；运行时由 `scripts/ligand_generator.py` 生成更大规模候选（去重、规范化、SMILES/SD 导出）
-  - 3D 构象：RDKit ETKDG 生成 + 能量最小化；对接阶段自动处理
-- 蛋白-配体对（Protein–Ligand Pairs）
-  - 研究用途：`data/P-L/`（用于二分类或交互建模的示例数据）
-  - 特征：见 `deep_learning/data/featurizers.py`
-- 结果目录（Results）
-  - 每次运行自动创建 `results/run_YYYYMMDD_xxx/`，含 `ligands/`、`docking/`、`admet/`、`visualization_2d|3d/`、`reports/`
+- Protein Structures
+  - Examples: `data/1p65.pdb(.pdbqt)`, `data/AF-Q9GLP0-F1-model_v4.pdb(.pdbqt)`, `data/AF-F1SR53-F1-model_v4.pdb(.pdbqt)`
+  - Preprocessing: Hydrogen addition, conversion to pdbqt (using Meeko/AutoDock toolchain), grid center and size configuration in `scripts/config.py`; binding site geometry/surface analysis available via `scripts/binding_site_analyzer.py`
+- Ligands
+  - Seeds/examples: `data/ligands.sdf`; runtime generation of larger candidate sets by `scripts/ligand_generator.py` (deduplication, normalization, SMILES/SD export)
+  - 3D conformations: RDKit ETKDG generation + energy minimization; automatically handled during docking
+- Protein–Ligand Pairs
+  - Research use: `data/P-L/` (example data for binary classification or interaction modeling)
+  - Features: See `deep_learning/data/featurizers.py`
+- Results Directory
+  - Each run automatically creates `results/run_YYYYMMDD_xxx/` containing `ligands/`, `docking/`, `admet/`, `visualization_2d|3d/`, `reports/`
 
-## 方法与模型（Methods & Models）
+## Methods & Models
 
-- 计算化学与规则方法
-  - 对接：AutoDock Vina（`scripts/molecular_docking.py` 或 `scripts/docking_engine.py` 批量流程，含 Meeko/RDKit 预处理）
-  - ADMET：RDKit 描述符（MW、LogP、HBD/HBA、RotB、TPSA、芳香性等）与 Lipinski 五规则（`scripts/admet_analyzer.py`）
-  - 可视化：2D（`scripts/visualization/visualization_2d.py`）、3D（`scripts/visualization_3d.py`）
-- 外部生成模型（可选）
-  - CMD-GEN 集成（`scripts/cmdgen_integration.py`）：
-    - DiffPhar：由蛋白结构推断药效团点
-    - GCPG：在药效团条件下生成分子（支持过滤与回退）
-- 深度学习研究模块（`deep_learning/models/`）
-  - EquivariantGNN（SE(3)-等变 GNN）：输入蛋白/配体图结构与三维坐标，输出节点/图级表征与亲和力评分
-  - PocketLigandTransformer：口袋氨基酸序列/几何与配体 token 的跨模态交叉注意力，输出 P-L 交互表征
-  - MultiTaskDiscriminator：对生成/筛选分子进行合成难度、毒性等多任务打分
+- Computational Chemistry & Rule-Based Methods
+  - Docking: AutoDock Vina (`scripts/molecular_docking.py` or `scripts/docking_engine.py` for batch processing, with Meeko/RDKit preprocessing)
+  - ADMET: RDKit descriptors (MW, LogP, HBD/HBA, RotB, TPSA, aromaticity, etc.) and Lipinski's Rule of Five (`scripts/admet_analyzer.py`)
+  - Visualization: 2D (`scripts/visualization/visualization_2d.py`), 3D (`scripts/visualization_3d.py`)
+- External Generative Models (Optional)
+  - CMD-GEN integration (`scripts/cmdgen_integration.py`):
+    - DiffPhar: Pharmacophore inference from protein structures
+    - GCPG: Molecule generation conditioned on pharmacophores (with filtering and fallback support)
+- Deep Learning Research Modules (`deep_learning/models/`)
+  - EquivariantGNN (SE(3)-Equivariant GNN): Takes protein/ligand graph structures and 3D coordinates as input, outputs node/graph-level representations and affinity scores
+  - PocketLigandTransformer: Cross-modal cross-attention between pocket amino acid sequences/geometry and ligand tokens, outputs P-L interaction representations
+  - MultiTaskDiscriminator: Multi-task scoring of generated/screened molecules for synthetic accessibility, toxicity, etc.
 
-以上深度学习模块已给出可运行的研究版实现/占位，便于后续替换和扩展。
+The above deep learning modules provide runnable research implementations/placeholders for easy replacement and extension.
 
-## 核心模型流程图（PNG）
+## Core Model Flowcharts (PNG)
 
-以下为核心深度学习模型的流程图（PNG），位于 `docs/diagrams/png/`：
+The following are flowcharts (PNG) of core deep learning models, located in `docs/diagrams/png/`:
 
-- Pocket–Ligand 交叉注意力 Transformer（Pocket–Ligand Transformer）
+- Pocket–Ligand Cross-attention Transformer
 
   ![Pocket–Ligand Transformer](docs/diagrams/png/fig_pl_transformer.png)
 
-- SE(3)-等变图神经网络（SE(3)-Equivariant GNN）
+- SE(3)-Equivariant Graph Neural Network
 
   ![SE(3)-Equivariant GNN](docs/diagrams/png/fig_equivariant_gnn.png)
 
-- 多任务判别器（Multi-Task Discriminator）
+- Multi-Task Discriminator
 
   ![Multi-Task Discriminator](docs/diagrams/png/fig_multitask_discriminator.png)
 
@@ -210,184 +214,184 @@ Images only (PNG, high resolution):
 
   ![Multi-task Discriminator](docs/diagrams/multitask_discriminator.png)
 
-## 端到端工作流程（End-to-End Pipeline）
+## End-to-End Pipeline
 
-1) 配体生成（Ligand Generation）
-   - 规则/模板/片段扩展或 CMD-GEN 生成；产出 CSV/SMILES/SD 到 `results/.../ligands/`
-2) 分子对接（Docking）
-   - 调用 AutoDock Vina，自动准备 pdbqt 与 3D 构象；产出 `docking/docking_results.csv`
-3) ADMET 分析（ADMET Filtering）
-   - 计算描述符与合规性；产出 `admet/admet_results.csv`
-4) 可视化与报告（Visualization & Reports）
-   - 2D：Top-N 单体图/网格与 HTML 报告 → `visualization_2d/`
-   - 3D：单分子/复合物/结合位点 + 交互仪表板/综合报告 → `visualization_3d/`
-5) 结果管理（Result Management）
-   - 全流程产物以 run 归档，包含 `run_info.json` 与关键文件清单，便于复现
+1) Ligand Generation
+   - Rule/template/fragment expansion or CMD-GEN generation; outputs CSV/SMILES/SD to `results/.../ligands/`
+2) Molecular Docking
+   - Invokes AutoDock Vina, automatically prepares pdbqt and 3D conformations; outputs `docking/docking_results.csv`
+3) ADMET Analysis
+   - Calculates descriptors and compliance; outputs `admet/admet_results.csv`
+4) Visualization & Reports
+   - 2D: Top-N individual/grid plots and HTML reports → `visualization_2d/`
+   - 3D: Single molecules/complexes/binding sites + interactive dashboards/comprehensive reports → `visualization_3d/`
+5) Result Management
+   - All pipeline outputs archived by run, including `run_info.json` and key file manifests for reproducibility
 
-命令行一键运行：
+One-click command-line execution:
 ```bash
 python run_full_workflow.py
 ```
-或通过 Web 界面在“完整工作流”页交互运行。
+Or run interactively via the “Full Workflow” page in the web interface.
 
-## 实验结果与示例（Results & Examples）
+## Results & Examples
 
-- 典型运行会生成：
-  - 数十至上百个候选分子（`ligands/`）
-  - `docking_results.csv`（包含亲和力、构象信息、pose 路径）
-  - `admet_results.csv`（描述符与合规性标签）
-  - `visualization_3d/` 下的 `interactive_dashboard.html` 与 `comprehensive_3d_report.html`
-- Top-N 的确定：综合对接亲和力（越低越优）与基本 ADMET 合规性筛选
-- 数值会随蛋白、参数与生成策略而变化，请以对应 run 目录中的 CSV/HTML 为准
+- A typical run generates:
+  - Dozens to hundreds of candidate molecules (`ligands/`)
+  - `docking_results.csv` (containing affinity, conformation info, pose paths)
+  - `admet_results.csv` (descriptors and compliance labels)
+  - `interactive_dashboard.html` and `comprehensive_3d_report.html` in `visualization_3d/`
+- Top-N determination: Based on docking affinity (lower is better) combined with basic ADMET compliance filtering
+- Values vary with protein, parameters, and generation strategy; refer to CSV/HTML files in the corresponding run directory
 
-## 复现实验与扩展（Reproducibility & Extension）
+## Reproducibility & Extension
 
-- 复现实验：
-  - 固定输入（蛋白/口袋/参数），运行 `run_full_workflow.py`，比较不同生成策略或对接参数的差异
-- 扩展方向：
-  - 挂载外部 SOTA 模型（在 `deep_learning_pipeline.py` 与 `scripts/external_*_infer.py` 提供接口）
-  - 增加自定义 ADMET 任务或替换评分标准
-  - 批量化多蛋白/多口袋评估
+- Reproducibility:
+  - Fix inputs (protein/pocket/parameters), run `run_full_workflow.py`, compare differences across generation strategies or docking parameters
+- Extension Directions:
+  - Integrate external SOTA models (interfaces provided in `deep_learning_pipeline.py` and `scripts/external_*_infer.py`)
+  - Add custom ADMET tasks or replace scoring criteria
+  - Batch evaluation across multiple proteins/pockets
 
-## 外部工具与致谢（Acknowledgements）
+## Acknowledgements
 
-- AutoDock Vina、Meeko、RDKit、py3Dmol、Plotly
-- CMD-GEN（DiffPhar/GCPG），作为可选外部生成能力
+- AutoDock Vina, Meeko, RDKit, py3Dmol, Plotly
+- CMD-GEN (DiffPhar/GCPG) as optional external generation capability
 
-## 技术特色
+## Technical Features
 
-### 🔬 科学严谨
-- 基于最新的深度学习和计算化学方法
-- 集成多种成熟的药物设计工具
-- 严格的验证和评估流程
+### 🔬 Scientific Rigor
+- Based on state-of-the-art deep learning and computational chemistry methods
+- Integration of multiple mature drug design tools
+- Rigorous validation and evaluation workflows
 
-### 🚀 高效智能
-- GPU加速的深度学习计算
-- 并行化的分子对接和分析
-- 智能的分子生成和优化
+### 🚀 Efficiency & Intelligence
+- GPU-accelerated deep learning computation
+- Parallelized molecular docking and analysis
+- Intelligent molecular generation and optimization
 
-### 🌐 用户友好
-- 直观的Web界面操作
-- 实时的结果可视化
-- 详细的分析报告生成
+### 🌐 User-Friendly
+- Intuitive web interface
+- Real-time result visualization
+- Detailed analysis report generation
 
-### 🔧 模块化设计
-- 松耦合的模块架构
-- 易于扩展和维护
-- 支持自定义配置
+### 🔧 Modular Design
+- Loosely coupled modular architecture
+- Easy to extend and maintain
+- Support for custom configurations
 
-## 开发团队
+## Development Team
 
-本项目由专业的计算化学和人工智能团队开发，致力于为PRRSV药物研发提供先进的计算工具。
+This project is developed by a professional computational chemistry and artificial intelligence team, dedicated to providing advanced computational tools for PRRSV drug discovery.
 
-## 许可证
+## License
 
-本项目仅供学术研究使用。
+This project is for academic research use only.
 
-## 联系我们
+## Contact Us
 
-如有问题或建议，请通过以下方式联系：
-- 项目主页: [GitHub链接]
-- 邮箱: [联系邮箱]
+For questions or suggestions, please contact us via:
+- Project Homepage: [GitHub Link]
+- Email: [Contact Email]
 
 ---
 
-## 项目总结
+## Project Summary
 
-本项目面向 PRRSV 病毒衣壳蛋白–整合素 PPI 抑制剂的小分子发现，集成“深度学习生成 → 分子对接 → ADMET 分析 → 2D/3D 可视化 → 结果管理”的完整工作流，支持成千上万级分子的批量生成与筛选，强调可追溯、可复现、可扩展。
+This project targets small-molecule discovery for PRRSV viral capsid protein–integrin PPI inhibitors, integrating a complete workflow of “deep learning generation → molecular docking → ADMET analysis → 2D/3D visualization → result management”. It supports batch generation and screening of thousands of molecules, emphasizing traceability, reproducibility, and extensibility.
 
-### 功能矩阵
-- **[分子生成]** 深度学习生成（Transformer/Diffusion 占位实现 + 外部模型挂载），规则/模板库动态扩展（上千唯一分子），Top-K 优化与 Final-N 收敛。
-- **[分子对接]** AutoDock Vina 批量对接；RDKit+Meeko 构象、加氢与优化；结果归档为 CSV。
-- **[ADMET 分析]** RDKit 描述符与 Lipinski 合规性；无 RDKit 环境自动启用“简化模式”。
-- **[2D 可视化]** Top-N（上限 1000）单体图与网格图、HTML 报告；无对接结果时自动回退到配体 CSV。
-- **[3D 可视化]** 单分子 3D、蛋白–配体复合物、结合位点分析、Plotly 交互仪表板、综合报告；无对接结果时回退到配体 CSV；输出保存至对应 run 的 `visualization_3d/`。
-- **[结果管理]** 以 run 为单位的目录结构，自动复制深度学习 Phase2/Phase3 产物到 `ligands/`，全流程可追溯。
+### Feature Matrix
+- **[Molecular Generation]** Deep learning generation (Transformer/Diffusion placeholder implementations + external model integration), rule/template library dynamic expansion (thousands of unique molecules), Top-K optimization and Final-N convergence.
+- **[Molecular Docking]** AutoDock Vina batch docking; RDKit+Meeko conformation generation, hydrogenation, and optimization; results archived as CSV.
+- **[ADMET Analysis]** RDKit descriptors and Lipinski compliance; automatically enables “simplified mode” when RDKit is unavailable.
+- **[2D Visualization]** Top-N (up to 1000) individual and grid plots, HTML reports; automatically falls back to ligand CSV when docking results are unavailable.
+- **[3D Visualization]** Single-molecule 3D, protein–ligand complexes, binding site analysis, Plotly interactive dashboards, comprehensive reports; falls back to ligand CSV when docking results are unavailable; outputs saved to corresponding run's `visualization_3d/`.
+- **[Result Management]** Run-based directory structure, automatic copying of deep learning Phase2/Phase3 outputs to `ligands/`, full workflow traceability.
 
-### 采用的模型与算法（可挂载 SOTA 模型）
-- **[生成模型]** 现已提供“占位生成 + 化学空间动态扩展”能力，并预留外部口袋条件 Transformer、Diffusion + 强化学习（RL）等模型的对接接口（`deep_learning_pipeline.py`）。
-- **[对接评分]** AutoDock Vina；RDKit 与 Meeko 用于 3D 构象生成与能量最小化（`scripts/docking_engine.py`）。
-- **[ADMET 指标]** MW、LogP、HBD/HBA、RotB、TPSA、芳香性与环计数、Lipinski 规则（`scripts/admet_analyzer.py`）。
-- **[可视化]** 2D 基于 RDKit rdMolDraw2D（Cairo/SVG）并带 PIL 回退；3D 基于 py3Dmol 与 Plotly（`scripts/visualization_3d.py`）。
+### Models & Algorithms (SOTA Model Integration Ready)
+- **[Generative Models]** Currently provides “placeholder generation + chemical space dynamic expansion” capabilities, with reserved interfaces for external pocket-conditioned Transformer, Diffusion + Reinforcement Learning (RL) models (`deep_learning_pipeline.py`).
+- **[Docking Scoring]** AutoDock Vina; RDKit and Meeko for 3D conformation generation and energy minimization (`scripts/docking_engine.py`).
+- **[ADMET Metrics]** MW, LogP, HBD/HBA, RotB, TPSA, aromaticity and ring counts, Lipinski's rules (`scripts/admet_analyzer.py`).
+- **[Visualization]** 2D based on RDKit rdMolDraw2D (Cairo/SVG) with PIL fallback; 3D based on py3Dmol and Plotly (`scripts/visualization_3d.py`).
 
-### 关键创新点
-- **[化学空间动态扩展]** 引入苯并唑/五元唑/三嗪/噻二唑/联苯/三联苯/亚当烷/双环等骨架；系统生成 o/m/p 位点二取代苯以及三取代模板，显著提升去重后的唯一分子数（软上限 ~8000）。
-- **[强健的回退策略]** 2D/3D 在无对接结果时自动回退到配体 CSV（`ligands/`），不中断可视化与分析；RDKit/py3Dmol 缺失则启用简化模式。
-- **[高吞吐可视化]** 2D Top-N 上限提升到 1000，支持大规模候选的快速筛查。
-- **[全流程可追溯]** run 级目录管理与文件复制、步骤记录。
+### Key Innovations
+- **[Dynamic Chemical Space Expansion]** Introduces scaffolds including benzoxazole/five-membered azoles/triazine/thiadiazole/biphenyl/terphenyl/adamantane/bicyclic structures; systematically generates o/m/p-disubstituted benzenes and trisubstituted templates, significantly increasing unique molecule count after deduplication (soft limit ~8000).
+- **[Robust Fallback Strategy]** 2D/3D automatically falls back to ligand CSV (`ligands/`) when docking results are unavailable, without interrupting visualization and analysis; enables simplified mode when RDKit/py3Dmol are missing.
+- **[High-Throughput Visualization]** 2D Top-N limit increased to 1000, supporting rapid screening of large-scale candidates.
+- **[Full Workflow Traceability]** Run-level directory management with file copying and step recording.
 
-### 生成分子效果与评估指标（示例）
-- **[多样性]** 覆盖卤素化芳环、腈/硝基/酰胺、五/六元杂环、稠环、多环芳烃、脂环（亚当烷/双环）等；o/m/p 位点控制增强空间构型多样性。
-- **[典型分布]** MW 常见 100–400 Da（可拓展至 ~500）；LogP 多在 −1~5；亲和力用于 Top-N 排序筛选。
-- **[报告内容]**
-  - 2D：单体图、网格图、HTML 摘要报告（`visualization_2d/`）
-  - 3D：单分子 3D、复合物、结合位点、交互仪表板与综合报告（`visualization_3d/`）
-- 注：具体数值随 run 的参数/模型/对接条件变化，以报告与仪表板为准。
+### Generated Molecule Performance & Evaluation Metrics (Examples)
+- **[Diversity]** Covers halogenated aromatic rings, cyano/nitro/amide groups, five/six-membered heterocycles, fused rings, polycyclic aromatic hydrocarbons, alicyclic structures (adamantane/bicyclic), etc.; o/m/p positional control enhances spatial configuration diversity.
+- **[Typical Distribution]** MW commonly 100–400 Da (expandable to ~500); LogP mostly in −1~5 range; affinity used for Top-N ranking and filtering.
+- **[Report Contents]**
+  - 2D: Individual plots, grid plots, HTML summary reports (`visualization_2d/`)
+  - 3D: Single-molecule 3D, complexes, binding sites, interactive dashboards and comprehensive reports (`visualization_3d/`)
+- Note: Specific values vary with run parameters/models/docking conditions; refer to reports and dashboards.
 
-### 典型工作流
-1. **分子生成**：设置“生成分子数量”（UI 支持 10000 上限）；Phase2 生成 → Phase3 优化（Top-K 随请求量动态放大）。阶段产物 CSV 自动复制到当前 run 的 `ligands/`。
-2. **分子对接**：AutoDock Vina 批量对接，结果写入 `docking/docking_results.csv`。
-3. **ADMET 分析**：批量计算描述符与 Lipinski 合规性，生成分析 CSV/报告。
-4. **可视化**：
-   - 2D：按亲和力排序的 Top-N（≤1000）+ 网格 + 报告 → `visualization_2d/`
-   - 3D：单分子/复合物/位点 + 仪表板 + 综合报告 → `visualization_3d/`
+### Typical Workflow
+1. **Molecular Generation**: Set “number of molecules to generate” (UI supports up to 10000); Phase2 generation → Phase3 optimization (Top-K dynamically scales with request volume). Phase outputs CSV automatically copied to current run's `ligands/`.
+2. **Molecular Docking**: AutoDock Vina batch docking, results written to `docking/docking_results.csv`.
+3. **ADMET Analysis**: Batch calculation of descriptors and Lipinski compliance, generating analysis CSV/reports.
+4. **Visualization**:
+   - 2D: Affinity-sorted Top-N (≤1000) + grids + reports → `visualization_2d/`
+   - 3D: Single molecules/complexes/sites + dashboards + comprehensive reports → `visualization_3d/`
 
-### 实际工程结构（要点）
+### Engineering Structure (Key Points)
 ```
 HJD/
-├── unified_web_interface.py         # 统一 Web 界面（参数、回退、运行目录选择器等）
-├── deep_learning_pipeline.py        # 生成与优化流水线（库扩展 + 外部模型挂载接口）
+├── unified_web_interface.py         # Unified web interface (parameters, fallback, run directory selector, etc.)
+├── deep_learning_pipeline.py        # Generation and optimization pipeline (library expansion + external model integration interface)
 ├── scripts/
-│   ├── docking_engine.py            # AutoDock Vina 批量对接 + Meeko/RDKit 预处理
-│   ├── molecule_2d_generator.py     # 2D 可视化（Top-N≤1000；对接优先、配体回退）
-│   ├── visualization_3d.py          # 3D 可视化（单分子/复合物/位点/仪表板/综合报告）
-│   ├── result_manager.py            # run 级目录管理与文件复制、步骤记录
-│   └── admet_analyzer.py            # ADMET 描述符与 Lipinski 规则（简化模式回退）
+│   ├── docking_engine.py            # AutoDock Vina batch docking + Meeko/RDKit preprocessing
+│   ├── molecule_2d_generator.py     # 2D visualization (Top-N≤1000; docking priority, ligand fallback)
+│   ├── visualization_3d.py          # 3D visualization (single molecules/complexes/sites/dashboards/comprehensive reports)
+│   ├── result_manager.py            # Run-level directory management with file copying and step recording
+│   └── admet_analyzer.py            # ADMET descriptors and Lipinski rules (simplified mode fallback)
 └── results/
     └── run_YYYYMMDD_xxx/
-        ├── ligands/                 # 生成/优化产物 CSV（Phase2/3 自动复制到此）
+        ├── ligands/                 # Generation/optimization output CSV (Phase2/3 auto-copied here)
         ├── docking/                 # docking_results.csv
-        ├── visualization_2d/        # individual/、grids/、reports/
-        ├── visualization_3d/        # 单页可视化与综合报告 HTML
-        └── reports/                 # 其它分析报告
+        ├── visualization_2d/        # individual/, grids/, reports/
+        ├── visualization_3d/        # Single-page visualizations and comprehensive report HTML
+        └── reports/                 # Other analysis reports
 ```
 
-### 依赖与运行
-- **[环境]** Python 3.9+；建议安装 RDKit、py3Dmol、Plotly 与 Streamlit。
-- **[安装]** `pip install -r requirements.txt`
-- **[启动]** `python start_project.py`，浏览器访问 `http://localhost:8501`
-- **[注意]**
-  - 2D/3D 可视化在无对接结果时，会自动回退到当前/最新 run 的 `ligands/*.csv`
-  - 3D 可视化报告固定保存至当前 run 的 `visualization_3d/`
+### Dependencies & Execution
+- **[Environment]** Python 3.9+; recommended to install RDKit, py3Dmol, Plotly, and Streamlit.
+- **[Installation]** `pip install -r requirements.txt`
+- **[Launch]** `python start_project.py`, then access `http://localhost:8501` in browser
+- **[Notes]**
+  - 2D/3D visualization automatically falls back to current/latest run's `ligands/*.csv` when docking results are unavailable
+  - 3D visualization reports are always saved to current run's `visualization_3d/`
 
-### 示例可视化（来自一次示例运行）
+### Example Visualizations (From a Sample Run)
 
-> 注：以下示例图为仓库内现有文件，实际运行会在你的 `results/run_*/visualization_2d|3d/` 下生成对应图表与报告。
+> Note: The following example images are existing files in the repository. Actual runs will generate corresponding charts and reports in your `results/run_*/visualization_2d|3d/` directories.
 
-- **2D 分子网格图（Top-N）**
+- **2D Molecular Grid (Top-N)**
   ![2D Grid](results/run_20250918_008/visualization_2d/grids/Top_165_Molecules_grid.png)
 
-- **ADMET/评分示例图**
-  结合亲和力分布：
+- **ADMET/Scoring Example Plots**
+  Binding Affinity Distribution:
   ![Binding Affinity Distribution](experiment_report/binding_affinity_distribution.png)
 
-  Top-10 分子柱状：
+  Top-10 Molecules Bar Chart:
   ![Top 10 Molecules](experiment_report/top_10_molecules.png)
 
-  Lipinski 合规性：
+  Lipinski Compliance:
   ![Lipinski Compliance](experiment_report/lipinski_compliance.png)
 
-  ADMET 性质（示例）：
+  ADMET Properties (Example):
   ![ADMET Properties](experiment_report/admet_properties.png)
 
-- **3D 交互式仪表盘/报告**
-  生成 3D 报告后，将在对应 run 的 `visualization_3d/` 下生成：
-  - `interactive_dashboard.html`（交互式）
-  - `interactive_dashboard.png`（静态导出，需 `kaleido`）
-  - `comprehensive_3d_report.html`（综合报告）
+- **3D Interactive Dashboards/Reports**
+  After generating 3D reports, the following will be created in the corresponding run's `visualization_3d/`:
+  - `interactive_dashboard.html` (interactive)
+  - `interactive_dashboard.png` (static export, requires `kaleido`)
+  - `comprehensive_3d_report.html` (comprehensive report)
 
-> 若需静态 PNG 导出，请确保安装 `kaleido`（已加入 `requirements.txt`）。未安装时将自动跳过 PNG 导出，但不影响 HTML 报告生成。
+> For static PNG export, ensure `kaleido` is installed (already included in `requirements.txt`). If not installed, PNG export will be automatically skipped without affecting HTML report generation.
 
 ---
 
-**PRRSV深度学习抑制剂设计平台 - 让药物设计更智能**
+**PRRSV Deep Learning Inhibitor Design Platform - Making Drug Design Smarter**
