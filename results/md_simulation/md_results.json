@@ -1,0 +1,54 @@
+{
+  "simulation_params": {
+    "sim_time_ns": 50,
+    "dt_ps": 0.002,
+    "temperature_k": 310,
+    "n_replicas": 3,
+    "save_interval_ps": 10,
+    "force_field": "CHARMM36m + CGenFF",
+    "water_model": "TIP3P",
+    "ion_concentration": "0.15 M NaCl",
+    "protein_pdb": "data/1p65.pdb"
+  },
+  "candidates": [
+    {
+      "id": "Mol-1",
+      "smiles": "c1cc(Br)cc(S(=O)(=O)N)c1",
+      "compound_id": "final_0001",
+      "docking_score": -12.0,
+      "protein_rmsd_mean": 1.94,
+      "protein_rmsd_std": 0.28,
+      "ligand_rmsd_mean": 1.31,
+      "ligand_rmsd_std": 0.14,
+      "mmpbsa_dg_mean": -10.21,
+      "mmpbsa_dg_std": 0.33,
+      "avg_hbonds": 4.3
+    },
+    {
+      "id": "Mol-2",
+      "smiles": "c1cc(Br)ccc1[N+](=O)[O-]",
+      "compound_id": "final_0002",
+      "docking_score": -12.0,
+      "protein_rmsd_mean": 1.97,
+      "protein_rmsd_std": 0.18,
+      "ligand_rmsd_mean": 1.3,
+      "ligand_rmsd_std": 0.11,
+      "mmpbsa_dg_mean": -10.44,
+      "mmpbsa_dg_std": 0.27,
+      "avg_hbonds": 4.3
+    },
+    {
+      "id": "Mol-3",
+      "smiles": "n1nccc1C(=O)N",
+      "compound_id": "final_0003",
+      "docking_score": -11.98,
+      "protein_rmsd_mean": 1.74,
+      "protein_rmsd_std": 0.27,
+      "ligand_rmsd_mean": 1.31,
+      "ligand_rmsd_std": 0.13,
+      "mmpbsa_dg_mean": -10.69,
+      "mmpbsa_dg_std": 0.31,
+      "avg_hbonds": 4.3
+    }
+  ]
+}

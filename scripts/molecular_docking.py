@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-分子对接模块
-使用AutoDock Vina进行蛋白质-配体对接
+Molecular docking module.
+Uses AutoDock Vina for protein-ligand docking.
 """
 
 import os
@@ -42,16 +42,16 @@ except ImportError:
 logger = logging.getLogger(__name__)
 
 class MolecularDocking:
-    """分子对接类"""
+    """Molecular docking class."""
     
     def __init__(self, vina_executable: str = "vina"):
         """
-        初始化分子对接器
-        
+        Initialize molecular docking engine.
+
         Args:
-            vina_executable: Vina可执行文件路径
+            vina_executable: Path to Vina executable
         """
-        # 尝试多个可能的vina路径
+        # Try multiple possible vina paths
         possible_vina_paths = [
             vina_executable,
             "/Volumes/MOVESPEED/Project/PRRSV/autodock_vina/bin/vina",
@@ -62,7 +62,7 @@ class MolecularDocking:
         self.vina_executable = None
         self.temp_dir = tempfile.mkdtemp()
         
-        # 查找可用的vina
+        # Find available vina
         for path in possible_vina_paths:
             if self._check_vina_path(path):
                 self.vina_executable = path
@@ -71,21 +71,21 @@ class MolecularDocking:
         self.vina_available = self.vina_executable is not None
         
     def _check_vina_path(self, path: str) -> bool:
-        """检查特定的vina路径是否可用"""
+        """Check if a specific vina path is available."""
         try:
             if not os.path.exists(path):
                 return False
             
-            # 检查文件是否可执行
+            # Check if the file is executable
             if not os.access(path, os.X_OK):
                 return False
             
-            # 尝试运行vina --version
+            # Try running vina --version
             result = subprocess.run([path, "--version"], 
                                   capture_output=True, text=True, timeout=10)
             return result.returncode == 0
         except (subprocess.TimeoutExpired, FileNotFoundError, OSError):
-            # 如果直接运行失败，尝试使用arch命令（适用于macOS）
+            # If direct run fails, try using arch command (for macOS)
             try:
                 result = subprocess.run(["arch", "-x86_64", path, "--version"], 
                                       capture_output=True, text=True, timeout=10)
@@ -94,9 +94,9 @@ class MolecularDocking:
                 return False
     
     def _check_vina(self) -> bool:
-        """检查AutoDock Vina是否可用"""
+        """Check if AutoDock Vina is available."""
         if self.vina_executable is None:
-            logger.warning("AutoDock Vina不可用，将使用模拟模式")
+            logger.warning("AutoDock Vina not available, using simulation mode")
             return False
         
         try:
@@ -104,32 +104,32 @@ class MolecularDocking:
                                   capture_output=True, text=True, timeout=10)
             return result.returncode == 0
         except (subprocess.TimeoutExpired, FileNotFoundError):
-            logger.warning("AutoDock Vina不可用，将使用模拟模式")
+            logger.warning("AutoDock Vina not available, using simulation mode")
             return False
     
     def prepare_protein(self, pdb_file: str, output_pdbqt: Optional[str] = None) -> str:
         """
-        准备蛋白质文件
-        
+        Prepare protein file.
+
         Args:
-            pdb_file: 输入PDB文件路径
-            output_pdbqt: 输出PDBQT文件路径
-            
+            pdb_file: Input PDB file path
+            output_pdbqt: Output PDBQT file path
+
         Returns:
-            PDBQT文件路径
+            PDBQT file path
         """
         if output_pdbqt is None:
             output_pdbqt = os.path.join(self.temp_dir, "protein.pdbqt")
         
         if HAS_BIOPYTHON:
-            # 使用BioPython清理PDB文件
+            # Use BioPython to clean PDB file
             parser = PDBParser(QUIET=True)
             structure = parser.get_structure('protein', pdb_file)
             
-            # 只保留蛋白质原子
+            # Keep only protein atoms
             class ProteinSelect(Select):
                 def accept_residue(self, residue):
-                    return residue.get_id()[0] == ' '  # 只保留标准残基
+                    return residue.get_id()[0] == ' '  # Keep only standard residues
             
             io = PDBIO()
             io.set_structure(structure)
@@ -137,56 +137,56 @@ class MolecularDocking:
             io.save(clean_pdb, ProteinSelect())
             pdb_file = clean_pdb
         
-        # 简化的PDBQT转换（如果没有专业工具）
+        # Simplified PDBQT conversion (if no professional tools available)
         if not HAS_MEEKO:
-            # 简单复制并重命名（模拟转换）
+            # Simple copy and rename (simulated conversion)
             with open(pdb_file, 'r') as f:
                 content = f.read()
             
-            # 简单的PDB到PDBQT转换
+            # Simple PDB to PDBQT conversion
             pdbqt_content = self._simple_pdb_to_pdbqt(content)
             
             with open(output_pdbqt, 'w') as f:
                 f.write(pdbqt_content)
         else:
-            # 使用meeko进行转换（如果可用）
-            logger.info("使用meeko进行蛋白质准备")
-            # 这里可以添加meeko的蛋白质准备代码
+            # Use meeko for conversion (if available)
+            logger.info("Using meeko for protein preparation")
+            # Meeko protein preparation code can be added here
             
-        logger.info(f"蛋白质已准备: {output_pdbqt}")
+        logger.info(f"Protein prepared: {output_pdbqt}")
         return output_pdbqt
     
     def prepare_ligand(self, smiles: str, output_pdbqt: Optional[str] = None) -> str:
         """
-        准备配体文件
-        
+        Prepare ligand file.
+
         Args:
-            smiles: 配体SMILES字符串
-            output_pdbqt: 输出PDBQT文件路径
-            
+            smiles: Ligand SMILES string
+            output_pdbqt: Output PDBQT file path
+
         Returns:
-            PDBQT文件路径
+            PDBQT file path
         """
         if not HAS_RDKIT:
-            raise ValueError("RDKit不可用，无法处理配体")
+            raise ValueError("RDKit not available, cannot process ligand")
         
         if output_pdbqt is None:
             output_pdbqt = os.path.join(self.temp_dir, "ligand.pdbqt")
         
-        # 从SMILES生成3D结构
+        # Generate 3D structure from SMILES
         mol = Chem.MolFromSmiles(smiles)
         if mol is None:
-            raise ValueError(f"无效的SMILES: {smiles}")
+            raise ValueError(f"Invalid SMILES: {smiles}")
         
-        # 添加氢原子
+        # Add hydrogen atoms
         mol = Chem.AddHs(mol)
         
-        # 生成3D坐标
+        # Generate 3D coordinates
         AllChem.EmbedMolecule(mol, randomSeed=42)
         AllChem.MMFFOptimizeMolecule(mol)
         
         if HAS_MEEKO:
-            # 使用meeko转换为PDBQT
+            # Use meeko for PDBQT conversion
             try:
                 preparator = MoleculePreparation()
                 mol_prep = preparator.prepare(mol)
@@ -197,39 +197,39 @@ class MolecularDocking:
                 with open(output_pdbqt, 'w') as f:
                     f.write(pdbqt_string)
             except Exception as e:
-                logger.warning(f"Meeko转换失败，使用简化方法: {e}")
-                # 回退到简化方法
+                logger.warning(f"Meeko conversion failed, using simplified method: {e}")
+                # Fallback to simplified method
                 pdbqt_content = self._mol_to_simple_pdbqt(mol)
                 with open(output_pdbqt, 'w') as f:
                     f.write(pdbqt_content)
         else:
-            # 简化的PDBQT生成
+            # Simplified PDBQT generation
             pdbqt_content = self._mol_to_simple_pdbqt(mol)
             with open(output_pdbqt, 'w') as f:
                 f.write(pdbqt_content)
         
-        logger.info(f"配体已准备: {output_pdbqt}")
+        logger.info(f"Ligand prepared: {output_pdbqt}")
         return output_pdbqt
     
     def _simple_pdb_to_pdbqt(self, pdb_content: str) -> str:
-        """简单的PDB到PDBQT转换"""
+        """Simple PDB to PDBQT conversion."""
         lines = pdb_content.split('\n')
         pdbqt_lines = []
         
         for line in lines:
             if line.startswith('ATOM') or line.startswith('HETATM'):
-                # 简单添加电荷和原子类型信息
+                # Simple addition of charge and atom type information
                 atom_name = line[12:16].strip()
                 element = atom_name[0]
                 
-                # 简单的原子类型映射
+                # Simple atom type mapping
                 atom_type_map = {
                     'C': 'C', 'N': 'N', 'O': 'O', 'S': 'S', 
                     'P': 'P', 'H': 'H'
                 }
                 atom_type = atom_type_map.get(element, 'C')
                 
-                # 添加PDBQT格式的信息
+                # Add PDBQT format information
                 pdbqt_line = line[:78] + f"  0.00  {atom_type}"
                 pdbqt_lines.append(pdbqt_line)
             elif line.startswith('END'):
@@ -238,7 +238,7 @@ class MolecularDocking:
         return '\n'.join(pdbqt_lines)
     
     def _mol_to_simple_pdbqt(self, mol) -> str:
-        """简单的分子到PDBQT转换"""
+        """Simple molecule to PDBQT conversion."""
         conf = mol.GetConformer()
         pdbqt_lines = []
         
@@ -246,7 +246,7 @@ class MolecularDocking:
             pos = conf.GetAtomPosition(i)
             element = atom.GetSymbol()
             
-            # 简单的原子类型映射
+            # Simple atom type mapping
             atom_type_map = {
                 'C': 'C', 'N': 'N', 'O': 'O', 'S': 'S', 
                 'P': 'P', 'H': 'H'
@@ -256,7 +256,7 @@ class MolecularDocking:
             line = f"HETATM{i+1:5d}  {element:<3s} LIG A   1    {pos.x:8.3f}{pos.y:8.3f}{pos.z:8.3f}  1.00  0.00    {atom_type:>2s}"
             pdbqt_lines.append(line)
         
-        # 添加键信息（简化）
+        # Add bond information (simplified)
         pdbqt_lines.append("ENDMDL")
         
         return '\n'.join(pdbqt_lines)
@@ -268,24 +268,24 @@ class MolecularDocking:
                    num_modes: int = 9,
                    ligand_smiles: Optional[str] = None) -> Dict:
         """
-        运行分子对接
-        
+        Run molecular docking.
+
         Args:
-            protein_pdbqt: 蛋白质PDBQT文件
-            ligand_pdbqt: 配体PDBQT文件
-            center: 对接中心坐标 (x, y, z)
-            size: 对接盒子大小 (x, y, z)
-            exhaustiveness: 搜索精度
-            num_modes: 输出模式数量
-            
+            protein_pdbqt: Protein PDBQT file path
+            ligand_pdbqt: Ligand PDBQT file path
+            center: Docking center coordinates (x, y, z)
+            size: Docking box size (x, y, z)
+            exhaustiveness: Search exhaustiveness
+            num_modes: Number of output modes
+
         Returns:
-            对接结果字典
+            Docking results dictionary
         """
         output_pdbqt = os.path.join(self.temp_dir, "docking_result.pdbqt")
         log_file = os.path.join(self.temp_dir, "docking.log")
         
         if self.vina_available:
-            # 使用真实的AutoDock Vina
+            # Use real AutoDock Vina
             cmd = [
                 self.vina_executable,
                 "--receptor", protein_pdbqt,
@@ -306,37 +306,37 @@ class MolecularDocking:
                 result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
                 
                 if result.returncode == 0:
-                    # 解析对接结果
+                    # Parse docking results
                     return self._parse_vina_results(log_file, output_pdbqt)
                 else:
-                    logger.error(f"Vina对接失败: {result.stderr}")
+                    logger.error(f"Vina docking failed: {result.stderr}")
                     return self._generate_mock_results(ligand_smiles)
             except (subprocess.TimeoutExpired, OSError) as e:
-                logger.warning(f"直接运行vina失败: {e}")
-                # 尝试使用arch命令运行（适用于macOS x86_64程序在arm64上运行）
+                logger.warning(f"Direct vina execution failed: {e}")
+                # Try using arch command (for running macOS x86_64 binaries on arm64)
                 try:
                     arch_cmd = ["arch", "-x86_64"] + cmd
                     result = subprocess.run(arch_cmd, capture_output=True, text=True, timeout=300)
                     
                     if result.returncode == 0:
-                        # 解析对接结果
+                        # Parse docking results
                         return self._parse_vina_results(log_file, output_pdbqt)
                     else:
-                        logger.error(f"使用arch运行Vina失败: {result.stderr}")
+                        logger.error(f"Vina failed via arch: {result.stderr}")
                         return self._generate_mock_results(ligand_smiles)
                 except (subprocess.TimeoutExpired, OSError) as e2:
-                    logger.error(f"arch运行也失败: {e2}")
+                    logger.error(f"arch execution also failed: {e2}")
                     return self._generate_mock_results(ligand_smiles)
             except subprocess.TimeoutExpired:
-                logger.error("Vina对接超时")
+                logger.error("Vina docking timed out")
                 return self._generate_mock_results(ligand_smiles)
         else:
-            # 模拟对接结果
-            logger.info("使用模拟对接模式")
+            # Simulated docking results
+            logger.info("Using simulated docking mode")
             return self._generate_mock_results(ligand_smiles)
     
     def _parse_vina_results(self, log_file: str, output_pdbqt: str) -> Dict:
-        """解析Vina对接结果"""
+        """Parse Vina docking results."""
         results = {
             'success': True,
             'poses': [],
@@ -348,7 +348,7 @@ class MolecularDocking:
             with open(log_file, 'r') as f:
                 log_content = f.read()
             
-            # 解析结合亲和力
+            # Parse binding affinity
             lines = log_content.split('\n')
             for line in lines:
                 if 'REMARK VINA RESULT:' in line:
@@ -366,22 +366,22 @@ class MolecularDocking:
                 results['best_affinity'] = min(pose['affinity'] for pose in results['poses'])
             
         except Exception as e:
-            logger.error(f"解析Vina结果失败: {e}")
+            logger.error(f"Failed to parse Vina results: {e}")
             return self._generate_mock_results()
         
         return results
     
     def _generate_mock_results(self, ligand_smiles: Optional[str] = None) -> Dict:
-        """生成模拟对接结果（稳定且与分子特征相关）"""
-        # 为每个配体生成稳定的随机种子
+        """Generate simulated docking results (stable and correlated with molecular features)."""
+        # Generate a stable random seed for each ligand
         if ligand_smiles:
             seed = int(hashlib.md5(ligand_smiles.encode('utf-8')).hexdigest()[:8], 16)
         else:
             seed = int.from_bytes(os.urandom(4), 'little')
         rng = np.random.default_rng(seed)
 
-        # 计算简单分子特征（若RDKit可用）
-        base_score = -6.5  # 基础亲和力
+        # Compute simple molecular features (if RDKit available)
+        base_score = -6.5  # Base affinity
         if HAS_RDKIT and ligand_smiles:
             try:
                 mol = Chem.MolFromSmiles(ligand_smiles)
@@ -394,30 +394,30 @@ class MolecularDocking:
                     aro = rdMolDescriptors.CalcNumAromaticRings(mol)
                     rot = Descriptors.NumRotatableBonds(mol)
 
-                    # 简单的启发式打分模型（更负代表结合更好）
+                    # Simple heuristic scoring model (more negative = better binding)
                     score = base_score
-                    # 适中的疏水性更有利（0-4）
+                    # Moderate hydrophobicity is favorable (0-4)
                     score -= 0.25 * min(max(logp, 0), 4)
-                    # 分子量过大轻微惩罚，过小也惩罚（目标区间 ~150-400）
+                    # Slight penalty for too large or too small MW (target range ~150-400)
                     if mw < 150:
                         score += 0.003 * (150 - mw)
                     elif mw > 400:
                         score += 0.002 * (mw - 400)
                     else:
                         score -= 0.001 * (mw - 150)
-                    # 受氢键供体/受体影响
+                    # Influenced by H-bond donors/acceptors
                     score -= 0.10 * min(hbd, 5)
                     score -= 0.08 * min(hba, 10)
-                    # 芳香环有利于疏水堆叠
+                    # Aromatic rings favor hydrophobic stacking
                     score -= 0.20 * min(aro, 4)
-                    # 过多可旋转键不利
+                    # Too many rotatable bonds are unfavorable
                     score += 0.03 * max(rot - 6, 0)
-                    # 极性表面积过大不利（>120）
+                    # High polar surface area is unfavorable (>120)
                     score += 0.005 * max(tpsa - 120, 0)
 
-                    # 小幅稳定噪声（确定性）
+                    # Small stable noise (deterministic)
                     score += rng.normal(0, 0.2)
-                    # 合理范围裁剪
+                    # Clip to reasonable range
                     score = float(np.clip(score, -12.0, -4.0))
                 else:
                     score = base_score + rng.normal(0, 1.0)
@@ -426,11 +426,11 @@ class MolecularDocking:
         else:
             score = base_score + rng.normal(0, 1.0)
 
-        # 生成多构象，围绕最佳亲和力轻微波动
+        # Generate multiple conformations with slight fluctuations around best affinity
         num_poses = 9
         poses = []
         for i in range(num_poses):
-            # 每个构象相对最佳值增加0~1.5范围内微调
+            # Each conformation adds a 0~1.5 range offset relative to best value
             delta = rng.normal(0.5, 0.4)
             affinity = round(score + abs(delta), 1)
             rmsd_lb = round(float(rng.uniform(0.2, 1.2)), 1)
@@ -454,23 +454,23 @@ class MolecularDocking:
     def calculate_binding_site_center(self, pdb_file: str, 
                                     ligand_coords: Optional[List[Tuple[float, float, float]]] = None) -> Tuple[float, float, float]:
         """
-        计算结合位点中心
-        
+        Calculate binding site center.
+
         Args:
-            pdb_file: 蛋白质PDB文件
-            ligand_coords: 已知配体坐标（可选）
-            
+            pdb_file: Protein PDB file path
+            ligand_coords: Known ligand coordinates (optional)
+
         Returns:
-            结合位点中心坐标
+            Binding site center coordinates
         """
         if ligand_coords:
-            # 如果有配体坐标，使用配体中心
+            # If ligand coordinates available, use ligand center
             x = sum(coord[0] for coord in ligand_coords) / len(ligand_coords)
             y = sum(coord[1] for coord in ligand_coords) / len(ligand_coords)
             z = sum(coord[2] for coord in ligand_coords) / len(ligand_coords)
             return (x, y, z)
         
-        # 否则使用蛋白质几何中心
+        # Otherwise use protein geometric center
         coords = []
         try:
             with open(pdb_file, 'r') as f:
@@ -487,28 +487,28 @@ class MolecularDocking:
                 center_z = sum(coord[2] for coord in coords) / len(coords)
                 return (center_x, center_y, center_z)
         except Exception as e:
-            logger.error(f"计算结合位点中心失败: {e}")
+            logger.error(f"Failed to calculate binding site center: {e}")
         
-        # 默认中心
+        # Default center
         return (0.0, 0.0, 0.0)
     
     def dock_multiple_ligands(self, protein_pdb: str, ligand_smiles: List[str],
                             center: Optional[Tuple[float, float, float]] = None) -> pd.DataFrame:
         """
-        对多个配体进行对接
-        
+        Dock multiple ligands.
+
         Args:
-            protein_pdb: 蛋白质PDB文件
-            ligand_smiles: 配体SMILES列表
-            center: 对接中心（可选）
-            
+            protein_pdb: Protein PDB file path
+            ligand_smiles: List of ligand SMILES strings
+            center: Docking center (optional)
+
         Returns:
-            对接结果DataFrame
+            Docking results DataFrame
         """
-        # 准备蛋白质
+        # Prepare protein
         protein_pdbqt = self.prepare_protein(protein_pdb)
         
-        # 计算对接中心
+        # Calculate docking center
         if center is None:
             center = self.calculate_binding_site_center(protein_pdb)
         
@@ -516,10 +516,10 @@ class MolecularDocking:
         
         for i, smiles in enumerate(ligand_smiles):
             try:
-                # 准备配体
+                # Prepare ligand
                 ligand_pdbqt = self.prepare_ligand(smiles)
                 
-                # 运行对接
+                # Run docking
                 docking_result = self.run_docking(protein_pdbqt, ligand_pdbqt, center, ligand_smiles=smiles)
                 
                 if docking_result['success'] and docking_result['poses']:
@@ -545,7 +545,7 @@ class MolecularDocking:
                     })
                     
             except Exception as e:
-                logger.error(f"配体 {smiles} 对接失败: {e}")
+                logger.error(f"Docking failed for ligand {smiles}: {e}")
                 results.append({
                     'ligand_id': i + 1,
                     'smiles': smiles,
@@ -559,11 +559,11 @@ class MolecularDocking:
         return pd.DataFrame(results)
     
     def cleanup(self):
-        """清理临时文件"""
+        """Clean up temporary files."""
         import shutil
         try:
             shutil.rmtree(self.temp_dir)
         except Exception as e:
-            logger.warning(f"清理临时文件失败: {e}")
+            logger.warning(f"Failed to clean up temporary files: {e}")
 
-# 注意：本模块无测试入口，作为库供其他流程调用。
+# Note: This module has no test entry point; it is used as a library by other workflows.

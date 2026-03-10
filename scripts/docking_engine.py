@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # type: ignore
 """
-PRRSV病毒衣壳蛋白抑制剂分子对接引擎
-支持AutoDock Vina批量对接和结果分析
+PRRSV Nucleocapsid Protein Inhibitor Molecular Docking Engine.
+Supports AutoDock Vina batch docking and result analysis.
 """
 
 import os
@@ -16,7 +16,7 @@ from typing import List, Dict, Tuple, Optional
 import logging
 from pathlib import Path
 
-# 添加项目根目录到路径
+# Add project root directory to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 try:
     from .config import VINA_CONFIG, PROTEIN_FILES, RESULTS_DIR, OUTPUT_FILES
@@ -25,11 +25,11 @@ except ImportError:
     from config import VINA_CONFIG, PROTEIN_FILES, RESULTS_DIR, OUTPUT_FILES
     from pdbqt_library import PDBQTLibrary
 
-# 设置日志
+# Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# RDKit导入处理
+# RDKit import handling
 RDKIT_AVAILABLE = False
 try:
     from rdkit import Chem
@@ -37,13 +37,13 @@ try:
     from meeko import MoleculePreparation
     RDKIT_AVAILABLE = True
     MEEKO_AVAILABLE = True
-    logger.info("RDKit和Meeko已成功导入，将使用完整分子对接功能")
+    logger.info("RDKit and Meeko imported successfully, full docking functionality available")
 except ImportError as e:
-    logger.warning(f"RDKit或Meeko不可用，将使用简化模式: {e}")
-    logger.info("如需完整功能，请安装RDKit和Meeko: pip install rdkit-pypi meeko")
+    logger.warning(f"RDKit or Meeko not available, using simplified mode: {e}")
+    logger.info("For full functionality, install RDKit and Meeko: pip install rdkit-pypi meeko")
     RDKIT_AVAILABLE = False
     MEEKO_AVAILABLE = False
-    # 创建虚拟模块避免属性错误
+    # Create mock modules to avoid attribute errors
     class MockChem:
         @staticmethod
         def MolFromSmiles(smiles): return None
@@ -60,132 +60,132 @@ except ImportError as e:
     AllChem = MockAllChem
 
 class DockingEngine:
-    """分子对接引擎类"""
+    """Molecular docking engine class."""
     
     def __init__(self):
-        """初始化对接引擎"""
+        """Initialize docking engine."""
         self.vina_exe = VINA_CONFIG["vina_exe"]
-        self.vina_config = VINA_CONFIG.copy()  # 添加vina_config属性
+        self.vina_config = VINA_CONFIG.copy()  # Add vina_config attribute
         self.results = []
 
-        # 初始化PDBQT库
+        # Initialize PDBQT library
         self.pdbqt_library = PDBQTLibrary()
 
         self.ensure_directories()
-        # 兼容：若配置提供的是命令名而非绝对路径，则在 PATH 中解析
+        # Compatibility: resolve command name via PATH if not an absolute path
         if not os.path.exists(self.vina_exe):
             found = shutil.which(self.vina_exe)
             if found:
                 self.vina_exe = found
         
     def ensure_directories(self):
-        """确保必要的目录存在"""
+        """Ensure necessary directories exist."""
         os.makedirs(RESULTS_DIR, exist_ok=True)
         os.makedirs(os.path.join(RESULTS_DIR, "docking_results"), exist_ok=True)
         os.makedirs(os.path.join(RESULTS_DIR, "ligand_pdbqt"), exist_ok=True)
         
     def convert_smiles_to_pdbqt(self, smiles: str, output_file: str) -> bool:
-        """将SMILES转换为PDBQT格式，使用Meeko工具"""
+        """Convert SMILES to PDBQT format using Meeko."""
         try:
-            # 检查RDKit和Meeko是否可用
+            # Check if RDKit and Meeko are available
             if not RDKIT_AVAILABLE or not MEEKO_AVAILABLE:
-                logger.error("RDKit或Meeko不可用，无法转换SMILES到PDBQT")
+                logger.error("RDKit or Meeko not available, cannot convert SMILES to PDBQT")
                 return False
 
-            # 预处理SMILES：处理多片段分子
+            # Preprocess SMILES: handle multi-fragment molecules
             processed_smiles = self._preprocess_smiles(smiles)
             if processed_smiles is None:
-                logger.error(f"SMILES预处理失败: {smiles}")
+                logger.error(f"SMILES preprocessing failed: {smiles}")
                 return False
 
-            # 从SMILES创建分子
+            # Create molecule from SMILES
             mol = Chem.MolFromSmiles(processed_smiles)
             if mol is None:
-                logger.error(f"无法从SMILES创建分子: {processed_smiles}")
+                logger.error(f"Failed to create molecule from SMILES: {processed_smiles}")
                 return False
 
-            # 检查分子片段数量
+            # Check number of molecular fragments
             fragments = Chem.GetMolFrags(mol, asMols=True)
             if len(fragments) > 1:
-                logger.error(f"分子包含{len(fragments)}个片段，Meeko要求单一分子")
+                logger.error(f"Molecule contains {len(fragments)} fragments, Meeko requires a single molecule")
                 return False
 
-            # 添加氢原子
+            # Add hydrogen atoms
             mol = Chem.AddHs(mol)
 
-            # 生成3D构象 - 使用更稳健的方法
+            # Generate 3D conformer - use more robust method
             try:
                 success = self._generate_3d_conformer_robust(mol, processed_smiles)
                 if not success:
-                    logger.error(f"无法为分子生成3D构象: {processed_smiles}")
+                    logger.error(f"Cannot generate 3D conformer for molecule: {processed_smiles}")
                     return False
 
             except Exception as e:
-                logger.error(f"3D构象生成失败: {e}")
+                logger.error(f"3D conformer generation failed: {e}")
                 return False
 
-            # 清理分子对象以避免HasQuery问题
+            # Clean molecule object to avoid HasQuery issues
             mol_clean = self._clean_molecule_for_meeko(mol)
             if mol_clean is None:
-                logger.error("分子清理失败")
+                logger.error("Molecule cleaning failed")
                 return False
 
-            # 使用Meeko准备分子
+            # Prepare molecule using Meeko
             preparator = MoleculePreparation()
             preparator.prepare(mol_clean)
 
-            # 获取PDBQT字符串
+            # Get PDBQT string
             pdbqt_string = preparator.write_pdbqt_string()
 
-            # 保存文件
+            # Save file
             with open(output_file, 'w') as f:
                 f.write(pdbqt_string)
 
-            logger.info(f"成功转换SMILES到PDBQT: {output_file}")
+            logger.info(f"Converted SMILES to PDBQT: {output_file}")
             return True
 
         except Exception as e:
-            logger.error(f"转换SMILES时出错: {e}")
+            logger.error(f"Error converting SMILES: {e}")
             return False
 
     def convert_smiles_to_pdbqt_from_library(self, smiles: str, output_file: str) -> bool:
-        """使用预生成PDBQT库转换SMILES - 直接复制成功的测试文件"""
+        """Use pre-generated PDBQT library to convert SMILES - directly copy tested files."""
         try:
-            # 直接复制我们已经测试成功的文件
+            # Directly copy our successfully tested file
             test_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "test_ligand.pdbqt")
 
-            # 确保输出目录存在
+            # Ensure output directory exists
             os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
-            # 复制文件内容
+            # Copy file contents
             import shutil
             shutil.copy2(test_file, output_file)
 
-            logger.info(f"复制成功的测试PDBQT文件到: {output_file}")
+            logger.info(f"Copied tested PDBQT file to: {output_file}")
             return True
 
         except Exception as e:
-            logger.error(f"复制PDBQT文件时出错: {e}")
+            logger.error(f"Error copying PDBQT file: {e}")
             return False
 
     def _calculate_similarity_score(self, smiles1: str, smiles2: str) -> float:
-        """计算两个SMILES的相似性评分"""
+        """Calculate similarity score between two SMILES strings."""
         try:
-            # 简单的相似性评分
+            # Simple similarity scoring
             score = 0.0
 
-            # 长度相似性
+            # Length similarity
             len_diff = abs(len(smiles1) - len(smiles2))
             len_score = max(0, 1.0 - len_diff / max(len(smiles1), len(smiles2)))
             score += len_score * 0.3
 
-            # 字符相似性
+            # Character similarity
             common_chars = set(smiles1) & set(smiles2)
             all_chars = set(smiles1) | set(smiles2)
             char_score = len(common_chars) / len(all_chars) if all_chars else 0
             score += char_score * 0.4
 
-            # 子串相似性
+            # Substring similarity
             substr_score = 0
             for i in range(min(len(smiles1), len(smiles2))):
                 if smiles1[i] == smiles2[i]:
@@ -198,93 +198,93 @@ class DockingEngine:
             return score
 
         except Exception as e:
-            logger.debug(f"计算相似性评分时出错: {e}")
+            logger.debug(f"Error calculating similarity score: {e}")
             return 0.0
 
     def _preprocess_smiles(self, smiles: str) -> Optional[str]:
-        """预处理SMILES，处理多片段分子"""
+        """Preprocess SMILES, handle multi-fragment molecules."""
         try:
-            # 如果SMILES包含点号，选择最大的片段
+            # If SMILES contains dots, select the largest fragment
             if '.' in smiles:
                 fragments = smiles.split('.')
-                # 选择最长的片段作为主要分子
+                # Select the longest fragment as the main molecule
                 main_fragment = max(fragments, key=len)
-                logger.info(f"检测到多片段分子，选择最大片段: {main_fragment}")
+                logger.info(f"Multi-fragment molecule detected, selecting largest fragment: {main_fragment}")
                 return main_fragment
             return smiles
         except Exception as e:
-            logger.error(f"SMILES预处理失败: {e}")
+            logger.error(f"SMILES preprocessing failed: {e}")
             return None
 
     def _clean_molecule_for_meeko(self, mol):
-        """清理分子对象以避免Meeko兼容性问题"""
+        """Clean molecule object to avoid Meeko compatibility issues."""
         try:
-            # 将分子转换为SMILES再转换回来，这样可以清除查询原子等问题
+            # Convert molecule to SMILES and back to clear query atoms and other issues
             smiles = Chem.MolToSmiles(mol)
             clean_mol = Chem.MolFromSmiles(smiles)
             if clean_mol is None:
                 return None
 
-            # 重新添加氢原子
+            # Re-add hydrogen atoms
             clean_mol = Chem.AddHs(clean_mol)
 
-            # 重新生成3D构象
+            # Re-generate 3D conformer
             success = self._generate_3d_conformer_robust(clean_mol, smiles)
             if not success:
-                logger.error("清理后的分子无法生成3D构象")
+                logger.error("Cleaned molecule failed to generate 3D conformer")
                 return None
 
             return clean_mol
         except Exception as e:
-            logger.error(f"分子清理失败: {e}")
+            logger.error(f"Molecule cleaning failed: {e}")
             return None
 
     def _generate_3d_conformer_robust(self, mol, smiles: str) -> bool:
-        """稳健的3D构象生成方法"""
+        """Robust 3D conformer generation method."""
         try:
-            # 方法1：标准EmbedMolecule
+            # Method 1: Standard EmbedMolecule
             result = AllChem.EmbedMolecule(mol, randomSeed=42)
             if result == 0:
-                logger.debug("标准EmbedMolecule成功")
+                logger.debug("Standard EmbedMolecule succeeded")
                 self._optimize_conformer(mol)
                 return True
 
-            # 方法2：使用随机坐标
+            # Method 2: Use random coordinates
             result = AllChem.EmbedMolecule(mol, useRandomCoords=True, randomSeed=42)
             if result == 0:
-                logger.debug("随机坐标EmbedMolecule成功")
+                logger.debug("Random coordinates EmbedMolecule succeeded")
                 self._optimize_conformer(mol)
                 return True
 
-            # 方法3：使用ETKDGv3方法
+            # Method 3: Use ETKDGv3 method
             try:
                 params = AllChem.ETKDGv3()
                 params.randomSeed = 42
                 result = AllChem.EmbedMolecule(mol, params)
                 if result == 0:
-                    logger.debug("ETKDGv3方法成功")
+                    logger.debug("ETKDGv3 method succeeded")
                     self._optimize_conformer(mol)
                     return True
             except:
                 pass
 
-            # 方法4：使用距离几何方法
+            # Method 4: Use distance geometry method
             try:
                 result = AllChem.EmbedMolecule(mol, useExpTorsionAnglePrefs=False, useBasicKnowledge=False)
                 if result == 0:
-                    logger.debug("距离几何方法成功")
+                    logger.debug("Distance geometry method succeeded")
                     self._optimize_conformer(mol)
                     return True
             except:
                 pass
 
-            # 方法5：强制生成简单坐标
+            # Method 5: Force-generate simple coordinates
             try:
                 conf = Chem.Conformer(mol.GetNumAtoms())
                 import random
                 random.seed(42)
 
-                # 为每个原子生成随机坐标
+                # Generate random coordinates for each atom
                 for i in range(mol.GetNumAtoms()):
                     x = random.uniform(-5, 5)
                     y = random.uniform(-5, 5)
@@ -292,40 +292,40 @@ class DockingEngine:
                     conf.SetAtomPosition(i, (x, y, z))
 
                 mol.AddConformer(conf)
-                logger.debug("强制坐标生成成功")
+                logger.debug("Forced coordinate generation succeeded")
                 self._optimize_conformer(mol)
                 return True
             except Exception as e:
-                logger.debug(f"强制坐标生成失败: {e}")
+                logger.debug(f"Forced coordinate generation failed: {e}")
 
-            logger.error(f"所有3D构象生成方法都失败: {smiles}")
+            logger.error(f"All 3D conformer generation methods failed: {smiles}")
             return False
 
         except Exception as e:
-            logger.error(f"3D构象生成异常: {e}")
+            logger.error(f"3D conformer generation exception: {e}")
             return False
 
     def _optimize_conformer(self, mol):
-        """优化分子构象"""
+        """Optimize molecular conformer."""
         try:
-            # 尝试MMFF优化
+            # Try MMFF optimization
             if AllChem.MMFFHasAllMoleculeParams(mol):
                 AllChem.MMFFOptimizeMolecule(mol)
-                logger.debug("MMFF优化成功")
+                logger.debug("MMFF optimization succeeded")
             else:
-                # 使用UFF优化
+                # Use UFF optimization
                 AllChem.UFFOptimizeMolecule(mol)
-                logger.debug("UFF优化成功")
+                logger.debug("UFF optimization succeeded")
         except Exception as e:
-            logger.debug(f"分子优化失败: {e}")
+            logger.debug(f"Molecule optimization failed: {e}")
 
     def clean_pdbqt_file(self, input_file: str, output_file: str) -> bool:
-        """清理PDBQT文件格式"""
+        """Clean PDBQT file format."""
         try:
             with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out:
                 for line in f_in:
                     if line.startswith(('ATOM', 'HETATM')):
-                        # 清理ATOM/HETATM行
+                        # Clean ATOM/HETATM lines
                         parts = line.split()
                         if len(parts) >= 11:
                             atom_type = parts[0]
@@ -340,33 +340,33 @@ class DockingEngine:
                             charge = parts[-2]
                             element = parts[-1]
                             
-                            # 重构符合Vina要求的行
+                            # Reconstruct line conforming to Vina requirements
                             cleaned_line = f"{atom_type:6s}{atom_num:>5s} {atom_name:<4s}{res_name:>3s} {chain}{res_num:>4s}    {x:>8s}{y:>8s}{z:>8s}{charge:>8s}{element:>3s}\n"
                             f_out.write(cleaned_line)
                     else:
                         f_out.write(line)
             return True
         except Exception as e:
-            logger.error(f"清理PDBQT文件时出错: {e}")
+            logger.error(f"Error cleaning PDBQT file: {e}")
             return False
     
     def run_single_docking(self, receptor_file: str, ligand_file: str, 
                           output_file: str, ligand_name: str = "ligand") -> Dict:
-        """运行单个分子对接"""
+        """Run single molecular docking."""
         try:
-            # 验证输入文件
+            # Validate input files
             if not os.path.exists(receptor_file):
-                raise FileNotFoundError(f"受体文件不存在: {receptor_file}")
+                raise FileNotFoundError(f"Receptor file not found: {receptor_file}")
             if not os.path.exists(ligand_file):
-                raise FileNotFoundError(f"配体文件不存在: {ligand_file}")
-            # 支持 PATH 内命令名
+                raise FileNotFoundError(f"Ligand file not found: {ligand_file}")
+            # Support command name in PATH
             if not (os.path.exists(self.vina_exe) or shutil.which(self.vina_exe)):
-                raise FileNotFoundError(f"Vina可执行文件不存在或不可用: {self.vina_exe}")
+                raise FileNotFoundError(f"Vina executable not found or unavailable: {self.vina_exe}")
             
-            # 直接使用原始配体文件，不进行清理
+            # Use original ligand file directly, no cleaning
             temp_ligand = ligand_file
             
-            # 构建Vina命令
+            # Build Vina command
             cmd = [
                 self.vina_exe,
                 "--receptor", receptor_file,
@@ -383,17 +383,17 @@ class DockingEngine:
                 "--energy_range", str(self.vina_config["energy_range"])
             ]
             
-            logger.info(f"执行对接命令: {' '.join(cmd)}")
+            logger.info(f"Executing docking command: {' '.join(cmd)}")
             
-            # 运行对接
+            # Run docking
             result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
             
-            # 清理临时文件
+            # Clean up temporary files
             if os.path.exists(temp_ligand):
                 os.unlink(temp_ligand)
             
             if result.returncode == 0:
-                # 解析对接结果
+                # Parse docking results
                 docking_scores = self._parse_docking_output(output_file)
                 
                 return {
@@ -406,18 +406,18 @@ class DockingEngine:
             else:
                 return {
                     "success": False,
-                    "error": f"对接失败: {result.stderr}",
+                    "error": f"Docking failed: {result.stderr}",
                     "returncode": result.returncode
                 }
                 
         except subprocess.TimeoutExpired:
-            return {"success": False, "error": "对接超时"}
+            return {"success": False, "error": "Docking timed out"}
         except Exception as e:
-            logger.error(f"对接过程中出错: {e}")
+            logger.error(f"Error during docking: {e}")
             return {"success": False, "error": str(e)}
     
     def _parse_docking_output(self, output_file: str) -> List[float]:
-        """从输出PDBQT文件解析结合能分数"""
+        """Parse binding energy scores from output PDBQT file."""
         scores = []
         try:
             if os.path.exists(output_file):
@@ -429,18 +429,18 @@ class DockingEngine:
                                 score = float(parts[3])
                                 scores.append(score)
             else:
-                logger.warning(f"对接输出文件不存在: {output_file}")
+                logger.warning(f"Docking output file not found: {output_file}")
         except Exception as e:
-            logger.error(f"解析对接输出时出错: {e}")
+            logger.error(f"Error parsing docking output: {e}")
         return scores
     
     def batch_docking(self, ligands_data: List[Dict], receptor_file: Optional[str] = None,
                      output_dir: Optional[str] = None, docking_params: Optional[Dict] = None) -> pd.DataFrame:
-        """批量分子对接"""
+        """Batch molecular docking."""
         if receptor_file is None:
             receptor_file = PROTEIN_FILES["virus_protein"]
 
-        # 使用结果管理器获取当前运行目录
+        # Use result manager to get current run directory
         try:
             from .result_manager import result_manager
             current_run_dir = result_manager.get_current_run_dir()
@@ -453,13 +453,13 @@ class DockingEngine:
             if output_dir is None:
                 output_dir = RESULTS_DIR
 
-        # 设置对接参数
+        # Set docking parameters
         if docking_params:
-            # 更新对接配置
+            # Update docking configuration
             for key, value in docking_params.items():
                 setattr(self, key, value)
 
-        logger.info(f"开始批量对接 {len(ligands_data)} 个配体")
+        logger.info(f"Starting batch docking of {len(ligands_data)} ligands")
 
         results = []
 
@@ -468,20 +468,20 @@ class DockingEngine:
                 smiles = ligand_data["smiles"]
                 ligand_name = f"ligand_{i+1}"
 
-                logger.info(f"处理配体 {i+1}/{len(ligands_data)}: {smiles[:50]}...")
+                logger.info(f"Processing ligand {i+1}/{len(ligands_data)}: {smiles[:50]}...")
 
-                # 转换SMILES到PDBQT - 优先使用预生成库
+                # Convert SMILES to PDBQT - prefer pre-generated library
                 ligand_pdbqt = os.path.join(output_dir, "ligand_pdbqt", f"{ligand_name}.pdbqt")
                 os.makedirs(os.path.dirname(ligand_pdbqt), exist_ok=True)
 
-                # 首先尝试使用预生成PDBQT库
+                # First try using pre-generated PDBQT library
                 if not self.convert_smiles_to_pdbqt_from_library(smiles, ligand_pdbqt):
-                    # 如果失败，尝试使用Meeko
+                    # If failed, try using Meeko
                     if not self.convert_smiles_to_pdbqt(smiles, ligand_pdbqt):
-                        logger.warning(f"配体 {ligand_name} 转换失败，跳过")
+                    logger.warning(f"Ligand {ligand_name} conversion failed, skipping")
                         continue
                 
-                # 运行对接
+                # Run docking
                 output_file = os.path.join(output_dir, "docking_results", f"{ligand_name}_docked.pdbqt")
                 os.makedirs(os.path.dirname(output_file), exist_ok=True)
                 docking_result = self.run_single_docking(
@@ -489,7 +489,7 @@ class DockingEngine:
                 )
                 
                 if docking_result["success"]:
-                    # 获取最佳结合能
+                    # Get best binding energy
                     best_score = min(docking_result["scores"]) if docking_result["scores"] else float('inf')
                     
                     result_data = {
@@ -498,40 +498,40 @@ class DockingEngine:
                         "binding_affinity": best_score,
                         "all_scores": docking_result["scores"],
                         "output_file": output_file,
-                        **ligand_data  # 包含原始配体数据
+                        **ligand_data  # Include original ligand data
                     }
                     results.append(result_data)
                     
-                    logger.info(f"配体 {ligand_name} 对接完成，最佳结合能: {best_score:.2f} kcal/mol")
+                    logger.info(f"Ligand {ligand_name} docking complete, best binding energy: {best_score:.2f} kcal/mol")
                 else:
-                    logger.warning(f"配体 {ligand_name} 对接失败: {docking_result.get('error', '未知错误')}")
+                    logger.warning(f"Ligand {ligand_name} docking failed: {docking_result.get('error', 'unknown error')}")
                     
             except Exception as e:
-                logger.error(f"处理配体 {i+1} 时出错: {e}")
+                logger.error(f"Error processing ligand {i+1}: {e}")
                 continue
         
-        # 创建结果DataFrame并保存
+        # Create results DataFrame and save
         if results:
             df = pd.DataFrame(results)
             df = df.sort_values('binding_affinity')
 
-            # 保存对接结果到当前运行目录
+            # Save docking results to current run directory
             results_file = os.path.join(output_dir, "docking_results.csv")
             df.to_csv(results_file, index=False)
-            logger.info(f"对接结果已保存到: {results_file}")
+            logger.info(f"Docking results saved to: {results_file}")
 
-            # 分析并保存分析报告
+            # Analyze and save analysis report
             analysis = self.analyze_docking_results(df)
             self.save_docking_analysis(analysis, output_dir)
 
-            logger.info(f"批量对接完成，成功对接 {len(results)} 个配体")
+            logger.info(f"Batch docking complete, {len(results)} ligands docked successfully")
             return df
         else:
-            logger.warning("没有成功的对接结果")
+            logger.warning("No successful docking results")
             return pd.DataFrame()
     
     def analyze_docking_results(self, results_df: pd.DataFrame) -> Dict:
-        """分析对接结果"""
+        """Analyze docking results."""
         if results_df.empty:
             return {}
         
@@ -553,42 +553,42 @@ class DockingEngine:
         return analysis
     
     def save_docking_analysis(self, analysis: Dict, output_dir: str):
-        """保存对接分析报告"""
+        """Save docking analysis report."""
         try:
-            # 保存分析报告
+            # Save analysis report
             analysis_file = os.path.join(output_dir, "binding_analysis.txt")
             with open(analysis_file, 'w', encoding='utf-8') as f:
-                f.write("PRRSV病毒衣壳蛋白抑制剂对接分析报告\n")
+                f.write("PRRSV Nucleocapsid Protein Inhibitor Docking Analysis Report\n")
                 f.write("=" * 50 + "\n\n")
                 
-                f.write(f"总配体数量: {analysis['total_ligands']}\n")
-                f.write(f"成功对接数量: {analysis['successful_docking']}\n")
-                f.write(f"最佳结合能: {analysis['best_binding_energy']:.2f} kcal/mol\n")
-                f.write(f"平均结合能: {analysis['average_binding_energy']:.2f} kcal/mol\n")
-                f.write(f"结合能标准差: {analysis['binding_energy_std']:.2f}\n\n")
+                f.write(f"Total Ligands: {analysis['total_ligands']}\n")
+                f.write(f"Successful Docking: {analysis['successful_docking']}\n")
+                f.write(f"Best Binding Energy: {analysis['best_binding_energy']:.2f} kcal/mol\n")
+                f.write(f"Average Binding Energy: {analysis['average_binding_energy']:.2f} kcal/mol\n")
+                f.write(f"Binding Energy Std Dev: {analysis['binding_energy_std']:.2f}\n\n")
                 
-                f.write("结合能分布:\n")
-                f.write(f"  优秀 (< -7.0 kcal/mol): {analysis['binding_energy_distribution']['excellent']}\n")
-                f.write(f"  良好 (-7.0 到 -5.5 kcal/mol): {analysis['binding_energy_distribution']['good']}\n")
-                f.write(f"  中等 (-5.5 到 -4.0 kcal/mol): {analysis['binding_energy_distribution']['moderate']}\n")
-                f.write(f"  较差 (>= -4.0 kcal/mol): {analysis['binding_energy_distribution']['poor']}\n\n")
+                f.write("Binding Energy Distribution:\n")
+                f.write(f"  Excellent (< -7.0 kcal/mol): {analysis['binding_energy_distribution']['excellent']}\n")
+                f.write(f"  Good (-7.0 to -5.5 kcal/mol): {analysis['binding_energy_distribution']['good']}\n")
+                f.write(f"  Moderate (-5.5 to -4.0 kcal/mol): {analysis['binding_energy_distribution']['moderate']}\n")
+                f.write(f"  Poor (>= -4.0 kcal/mol): {analysis['binding_energy_distribution']['poor']}\n\n")
                 
-                f.write("前10个最佳配体:\n")
+                f.write("Top 10 Best Ligands:\n")
                 for i, ligand in enumerate(analysis['top_10_ligands'], 1):
                     f.write(f"{i}. {ligand['compound_id']}: {ligand['binding_affinity']:.2f} kcal/mol\n")
                     f.write(f"   SMILES: {ligand['smiles']}\n")
-                    f.write(f"   分子量: {ligand.get('molecular_weight', 'N/A')}\n")
+                    f.write(f"   Molecular Weight: {ligand.get('molecular_weight', 'N/A')}\n")
                     f.write(f"   LogP: {ligand.get('logp', 'N/A')}\n\n")
             
-            logger.info(f"分析报告已保存到: {analysis_file}")
+            logger.info(f"Analysis report saved to: {analysis_file}")
 
         except Exception as e:
-            logger.error(f"保存对接分析时出错: {e}")
+            logger.error(f"Error saving docking analysis: {e}")
 
     def save_docking_results(self, results_df: pd.DataFrame, analysis: Dict):
-        """保存对接结果 - 兼容旧接口"""
+        """Save docking results - backward compatible interface."""
         try:
-            # 使用结果管理器获取当前运行目录
+            # Use result manager to get current run directory
             try:
                 from .result_manager import result_manager
                 current_run_dir = result_manager.get_current_run_dir()
@@ -600,42 +600,42 @@ class DockingEngine:
             except ImportError:
                 output_dir = RESULTS_DIR
 
-            # 保存详细结果
+            # Save detailed results
             results_file = os.path.join(output_dir, "docking_results.csv")
             results_df.to_csv(results_file, index=False)
-            logger.info(f"对接结果已保存到: {results_file}")
+            logger.info(f"Docking results saved to: {results_file}")
 
-            # 保存分析报告
+            # Save analysis report
             self.save_docking_analysis(analysis, output_dir)
 
         except Exception as e:
-            logger.error(f"保存对接结果时出错: {e}")
+            logger.error(f"Error saving docking results: {e}")
 
 def main():
-    """主函数"""
-    # 测试对接引擎
+    """Main function."""
+    # Test docking engine
     engine = DockingEngine()
     
-    # 创建测试配体
+    # Create test ligands
     test_ligands = [
         {"smiles": "c1ccc(cc1)O", "molecular_weight": 94.11, "logp": 1.46},
         {"smiles": "c1ccc(cc1)N", "molecular_weight": 93.13, "logp": 0.96},
         {"smiles": "c1ccc(cc1)C(=O)O", "molecular_weight": 122.12, "logp": 1.40},
     ]
     
-    # 运行批量对接
+    # Run batch docking
     results = engine.batch_docking(test_ligands)
     
     if not results.empty:
-        # 分析结果
+        # Analyze results
         analysis = engine.analyze_docking_results(results)
         engine.save_docking_results(results, analysis)
         
-        print("对接完成！")
-        print(f"成功对接 {len(results)} 个配体")
-        print(f"最佳结合能: {analysis['best_binding_energy']:.2f} kcal/mol")
+        print("Docking complete!")
+        print(f"Successfully docked {len(results)} ligands")
+        print(f"Best binding energy: {analysis['best_binding_energy']:.2f} kcal/mol")
     else:
-        print("对接失败，请检查配置和输入文件")
+        print("Docking failed, please check configuration and input files")
 
 if __name__ == "__main__":
     main() 

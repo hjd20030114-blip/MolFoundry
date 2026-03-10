@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # type: ignore
 """
-PRRSV病毒衣壳蛋白抑制剂ADMET分析模块
+ADMET analysis module for PRRSV nucleocapsid protein inhibitors.
 """
 
 import os
@@ -11,18 +11,18 @@ import numpy as np
 from typing import List, Dict, Optional
 import logging
 
-# 添加项目根目录到路径
+# Add project root directory to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 try:
     from .config import ADMET_CRITERIA, RESULTS_DIR, OUTPUT_FILES
 except ImportError:
     from config import ADMET_CRITERIA, RESULTS_DIR, OUTPUT_FILES
 
-# 设置日志
+# Setup logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# RDKit导入处理
+# RDKit import handling
 RDKIT_AVAILABLE = False
 PAINS_CATALOG = None
 try:
@@ -31,18 +31,18 @@ try:
     from rdkit.Chem import QED
     from rdkit.Chem import FilterCatalog
     RDKIT_AVAILABLE = True
-    # 初始化PAINS筛查目录
+    # Initialize PAINS filter catalog
     try:
         _params = FilterCatalog.FilterCatalogParams()
         _params.AddCatalog(FilterCatalog.FilterCatalogParams.FilterCatalogs.PAINS)
         PAINS_CATALOG = FilterCatalog.FilterCatalog(_params)
     except Exception:
         PAINS_CATALOG = None
-    logger.info("RDKit已成功导入，将使用完整ADMET分析功能")
+    logger.info("RDKit successfully imported, full ADMET analysis enabled")
 except ImportError:
-    logger.warning("RDKit不可用，将使用简化模式进行ADMET分析")
-    logger.info("如需完整功能，请安装RDKit: pip install rdkit-pypi")
-    # 创建虚拟的Chem和Descriptors模块以避免错误
+    logger.warning("RDKit not available, using simplified ADMET analysis mode")
+    logger.info("For full functionality, install RDKit: pip install rdkit-pypi")
+    # Create mock Chem and Descriptors modules to avoid errors
     class MockChem:
         @staticmethod
         def MolFromSmiles(smiles):
@@ -70,19 +70,19 @@ except ImportError:
     Descriptors = MockDescriptors
 
 class ADMETAnalyzer:
-    """ADMET分析器类"""
+    """ADMET analyzer class."""
     
     def __init__(self):
-        """初始化ADMET分析器"""
+        """Initialize ADMET analyzer."""
         self.results = []
         self.ensure_directories()
         
     def ensure_directories(self):
-        """确保必要的目录存在"""
+        """Ensure required directories exist."""
         os.makedirs(RESULTS_DIR, exist_ok=True)
         
     def calculate_admet_properties(self, smiles: str) -> Optional[Dict]:
-        """计算单个分子的ADMET性质"""
+        """Calculate ADMET properties for a single molecule."""
         if not RDKIT_AVAILABLE:
             return self._calculate_simple_properties(smiles)
             
@@ -91,11 +91,11 @@ class ADMETAnalyzer:
             if mol is None:
                 return None
             
-            # 验证分子
+            # Validate molecule
             if not self._is_valid_molecule(mol):
                 return None
             
-            # 计算基本性质
+            # Calculate basic properties
             properties = {
                 "molecular_weight": Descriptors.MolWt(mol),
                 "logp": Descriptors.MolLogP(mol),
@@ -108,21 +108,21 @@ class ADMETAnalyzer:
                 "canonical_smiles": Chem.MolToSmiles(mol, isomericSmiles=True),
             }
             
-            # 添加额外的药物性质
+            # Add additional drug-like properties
             try:
                 properties["molar_refractivity"] = Descriptors.MolMR(mol)
                 properties["heavy_atom_count"] = Descriptors.HeavyAtomCount(mol)
                 properties["heteroatom_count"] = Descriptors.NumHeteroatoms(mol)
                 properties["fraction_csp3"] = Descriptors.FractionCsp3(mol)
-                # SlogP_VSA1 为基于SlogP分箱的VSA片段之一，避免误导命名
+                # SlogP_VSA1: one of the VSA fragments binned by SlogP
                 properties["slogp_vsa1"] = Descriptors.SlogP_VSA1(mol)
-                # QED（药物相似性评分）
+                # QED (Quantitative Estimate of Drug-likeness)
                 try:
                     properties["qed"] = float(QED.qed(mol))
                 except Exception:
                     properties["qed"] = np.nan
             except:
-                # 如果某些描述符不可用，使用默认值
+                # If some descriptors are unavailable, use default values
                 properties["molar_refractivity"] = 0.0
                 properties["heavy_atom_count"] = 0
                 properties["heteroatom_count"] = 0
@@ -130,7 +130,7 @@ class ADMETAnalyzer:
                 properties["slogp_vsa1"] = 0.0
                 properties["qed"] = np.nan
             
-            # Lipinski规则检查
+            # Lipinski rule-of-five check
             lipinski_violations = self._check_lipinski_rules(mol)
             properties["lipinski_compliant"] = lipinski_violations <= 1
             properties["lipinski_violations"] = lipinski_violations
@@ -139,7 +139,7 @@ class ADMETAnalyzer:
             except Exception:
                 properties["lipinski_violation_details"] = ""
 
-            # Veber/Egan 规则
+            # Veber/Egan rules
             try:
                 properties["veber_compliant"] = (properties["tpsa"] <= 140) and (properties["rotatable_bonds"] <= 10)
                 properties["egan_compliant"] = (properties["logp"] <= 5.88) and (properties["tpsa"] <= 131)
@@ -147,7 +147,7 @@ class ADMETAnalyzer:
                 properties["veber_compliant"] = False
                 properties["egan_compliant"] = False
 
-            # 溶解度预测（ESOL近似公式）
+            # Solubility prediction (ESOL approximation formula)
             try:
                 ap = 0.0
                 try:
@@ -162,33 +162,33 @@ class ADMETAnalyzer:
                 rb = properties.get("rotatable_bonds", 0)
                 logS = 0.16 - 0.63 * float(logp) - 0.0062 * float(mw) + 0.066 * float(rb) + 0.74 * float(ap)
                 properties["predicted_logS"] = float(logS)
-                # 分类（越大越易溶）
+                # Classification (higher = more soluble)
                 if logS > 0.5:
-                    sol_class = "极易溶"
+                    sol_class = "Highly Soluble"
                 elif logS > 0.0:
-                    sol_class = "易溶"
+                    sol_class = "Soluble"
                 elif logS > -2.0:
-                    sol_class = "中等溶解度"
+                    sol_class = "Moderately Soluble"
                 elif logS > -4.0:
-                    sol_class = "低溶解度"
+                    sol_class = "Poorly Soluble"
                 else:
-                    sol_class = "极低溶解度"
+                    sol_class = "Insoluble"
                 properties["solubility_class"] = sol_class
             except Exception:
                 properties["predicted_logS"] = 0.0
-                properties["solubility_class"] = "未知"
+                properties["solubility_class"] = "Unknown"
 
-            # 毒性结构警示（简单SMARTS筛查）
+            # Toxicity structural alerts (simple SMARTS screening)
             try:
                 alerts = []
                 patterns = {
-                    "硝基": "[N+](=O)[O-]",
-                    "偶氮": "N=N",
-                    "烯酮(Michael受体)": "C=CC(=O)",
-                    "烷基卤化物": "[CX4][Cl,Br,I]",
-                    "环氧": "C1OC1",
-                    "仲胺-芳胺": "[a][N;H1]",
-                    "硫脲": "NC(=S)N"
+                    "Nitro": "[N+](=O)[O-]",
+                    "Azo": "N=N",
+                    "Enone (Michael acceptor)": "C=CC(=O)",
+                    "Alkyl halide": "[CX4][Cl,Br,I]",
+                    "Epoxide": "C1OC1",
+                    "Secondary/aromatic amine": "[a][N;H1]",
+                    "Thiourea": "NC(=S)N"
                 }
                 for tag, smarts in patterns.items():
                     try:
@@ -197,7 +197,7 @@ class ADMETAnalyzer:
                             alerts.append(tag)
                     except Exception:
                         continue
-                # PAINS 筛查
+        # PAINS screening
                 pains_alerts = []
                 if PAINS_CATALOG is not None:
                     try:
@@ -206,44 +206,44 @@ class ADMETAnalyzer:
                             pains_alerts.append(m.GetDescription())
                     except Exception:
                         pass
-                risk_level = "低"
+                risk_level = "Low"
                 total_alerts = len(alerts) + len(pains_alerts)
                 if total_alerts >= 3:
-                    risk_level = "高"
+                    risk_level = "High"
                 elif total_alerts >= 1:
-                    risk_level = "中"
+                    risk_level = "Medium"
                 properties["toxicity_risk_level"] = risk_level
                 properties["toxicity_alerts_count"] = total_alerts
                 properties["toxicity_alerts"] = ",".join(alerts + pains_alerts)
             except Exception:
-                properties["toxicity_risk_level"] = "未知"
+                properties["toxicity_risk_level"] = "Unknown"
                 properties["toxicity_alerts_count"] = 0
                 properties["toxicity_alerts"] = ""
             
             return properties
             
         except Exception as e:
-            logger.error(f"计算ADMET性质时出错: {e}")
+            logger.error(f"Error calculating ADMET properties: {e}")
             return None
     
     def _is_valid_molecule(self, mol) -> bool:
-        """验证分子是否有效"""
+        """Validate whether the molecule is valid."""
         try:
             if mol is None:
                 return False
             
-            # 检查分子是否可以被清理
+            # Check if the molecule can be sanitized
             mol_clean = Chem.MolFromSmiles(Chem.MolToSmiles(mol))
             if mol_clean is None:
                 return False
             
-            # 放宽分子大小限制
+            # Relaxed molecule size limits
             if mol_clean.GetNumAtoms() < 3 or mol_clean.GetNumAtoms() > 150:
                 return False
             
-            # 简化价态检查，避免弃用警告
+            # Simplified valence check to avoid deprecation warnings
             try:
-                # 尝试计算分子性质，如果失败说明分子无效
+                # Try computing molecular properties; failure indicates invalid molecule
                 Descriptors.MolWt(mol_clean)
                 return True
             except:
@@ -253,9 +253,9 @@ class ADMETAnalyzer:
             return False
     
     def _calculate_simple_properties(self, smiles: str) -> Optional[Dict]:
-        """简化模式下的性质计算"""
+        """Property calculation in simplified mode."""
         try:
-            # 基础计算
+            # Basic calculations
             properties = {
                 "molecular_weight": self._estimate_molecular_weight(smiles),
                 "logp": self._estimate_logp(smiles),
@@ -265,38 +265,38 @@ class ADMETAnalyzer:
                 "rings": self._count_rings(smiles),
                 "aromatic_rings": self._count_aromatic_rings(smiles),
                 "tpsa": self._estimate_tpsa(smiles),
-                "lipinski_compliant": True,  # 简化模式默认符合
+                "lipinski_compliant": True,  # Simplified mode assumes compliant
                 "canonical_smiles": smiles,
                 "qed": np.nan,
             }
 
-            # 溶解度预测（使用估算的理化性质）
+            # Solubility prediction (using estimated physicochemical properties)
             try:
                 mw = properties["molecular_weight"]
                 logp = properties["logp"]
                 rb = properties["rotatable_bonds"]
-                # 简易芳香比例近似
+                # Approximate aromatic fraction
                 aromatic_atoms_approx = smiles.count('c')
                 heavy_approx = sum(smiles.count(x) for x in ['C','N','O','S','F']) + smiles.count('Cl')
                 ap = float(aromatic_atoms_approx) / float(heavy_approx) if heavy_approx > 0 else 0.0
                 logS = 0.16 - 0.63 * float(logp) - 0.0062 * float(mw) + 0.066 * float(rb) + 0.74 * float(ap)
                 properties["predicted_logS"] = float(logS)
                 if logS > 0.5:
-                    sol_class = "极易溶"
+                    sol_class = "Highly Soluble"
                 elif logS > 0.0:
-                    sol_class = "易溶"
+                    sol_class = "Soluble"
                 elif logS > -2.0:
-                    sol_class = "中等溶解度"
+                    sol_class = "Moderately Soluble"
                 elif logS > -4.0:
-                    sol_class = "低溶解度"
+                    sol_class = "Poorly Soluble"
                 else:
-                    sol_class = "极低溶解度"
+                    sol_class = "Insoluble"
                 properties["solubility_class"] = sol_class
             except Exception:
                 properties["predicted_logS"] = 0.0
-                properties["solubility_class"] = "未知"
+                properties["solubility_class"] = "Unknown"
 
-            # Veber/Egan 规则（基于估算值）
+            # Veber/Egan rules (based on estimated values)
             try:
                 properties["veber_compliant"] = (properties["tpsa"] <= 140) and (properties["rotatable_bonds"] <= 10)
                 properties["egan_compliant"] = (properties["logp"] <= 5.88) and (properties["tpsa"] <= 131)
@@ -304,55 +304,55 @@ class ADMETAnalyzer:
                 properties["veber_compliant"] = False
                 properties["egan_compliant"] = False
 
-            # 毒性结构警示（字符串启发式）
+            # Toxicity structural alerts (string heuristics)
             try:
                 alerts = []
                 checks = {
-                    "硝基": "[N+](=O)[O-]",
-                    "偶氮": "N=N",
-                    "烯酮(Michael受体)": "C=CC(=O)",
-                    "烷基卤化物_Cl": "CCl",
-                    "烷基卤化物_Br": "CBr",
-                    "烷基卤化物_I": "CI",
-                    "环氧": "C1OC1",
+                    "Nitro": "[N+](=O)[O-]",
+                    "Azo": "N=N",
+                    "Enone (Michael acceptor)": "C=CC(=O)",
+                    "Alkyl halide_Cl": "CCl",
+                    "Alkyl halide_Br": "CBr",
+                    "Alkyl halide_I": "CI",
+                    "Epoxide": "C1OC1",
                 }
                 for tag, key in checks.items():
                     if key in smiles:
                         alerts.append(tag)
-                risk_level = "低"
+                risk_level = "Low"
                 if len(alerts) >= 3:
-                    risk_level = "高"
+                    risk_level = "High"
                 elif len(alerts) >= 1:
-                    risk_level = "中"
+                    risk_level = "Medium"
                 properties["toxicity_risk_level"] = risk_level
                 properties["toxicity_alerts_count"] = len(alerts)
                 properties["toxicity_alerts"] = ",".join(alerts)
             except Exception:
-                properties["toxicity_risk_level"] = "未知"
+                properties["toxicity_risk_level"] = "Unknown"
                 properties["toxicity_alerts_count"] = 0
                 properties["toxicity_alerts"] = ""
             return properties
             
         except Exception as e:
-            logger.error(f"简化性质计算时出错: {e}")
+            logger.error(f"Error in simplified property calculation: {e}")
             return None
     
     def _estimate_molecular_weight(self, smiles: str) -> float:
-        """估算分子量"""
+        """Estimate molecular weight."""
         atomic_masses = {'C': 12.01, 'H': 1.01, 'N': 14.01, 'O': 16.00, 'S': 32.07, 'F': 19.00, 'Cl': 35.45}
         total_mass = sum(atomic_masses.get(atom, 0) * smiles.count(atom) for atom in atomic_masses)
         return total_mass
     
     def _estimate_logp(self, smiles: str) -> float:
-        """估算LogP值"""
+        """Estimate LogP value."""
         logp = 0.0
-        # 芳香环、烷基增加疏水性
+        # Aromatic rings, alkyl groups increase hydrophobicity
         logp += smiles.count('c1ccccc1') * 1.8
         logp += smiles.count('C') * 0.02
-        # 含氧、含氮降低疏水性
+        # Oxygen, nitrogen decrease hydrophobicity
         logp -= smiles.count('O') * 0.8
         logp -= smiles.count('N') * 0.5
-        # 含硫/卤素略增
+        # Sulfur/halogens slightly increase
         logp += smiles.count('S') * 0.3
         logp += smiles.count('F') * 0.2
         logp += smiles.count('Cl') * 0.4
@@ -361,7 +361,7 @@ class ADMETAnalyzer:
         return float(logp)
 
     def _lipinski_violation_details(self, mol) -> List[str]:
-        """返回违反的Lipinski条目"""
+        """Return violated Lipinski criteria."""
         details = []
         try:
             if Descriptors.MolWt(mol) > 500: details.append('MW>500')
@@ -373,27 +373,27 @@ class ADMETAnalyzer:
         return details
     
     def _count_hydrogen_bond_donors(self, smiles: str) -> int:
-        """计算氢键供体数"""
+        """Count hydrogen bond donors."""
         return smiles.count('O') + smiles.count('N') + smiles.count('S')
     
     def _count_hydrogen_bond_acceptors(self, smiles: str) -> int:
-        """计算氢键受体数"""
+        """Count hydrogen bond acceptors."""
         return smiles.count('O') + smiles.count('N') + smiles.count('S')
     
     def _count_rotatable_bonds(self, smiles: str) -> int:
-        """计算可旋转键数"""
+        """Count rotatable bonds."""
         return smiles.count('C') // 4
     
     def _count_rings(self, smiles: str) -> int:
-        """计算环数"""
+        """Count rings."""
         return smiles.count('1') // 2
     
     def _count_aromatic_rings(self, smiles: str) -> int:
-        """计算芳香环数"""
+        """Count aromatic rings."""
         return smiles.count('c1ccccc1')
     
     def _estimate_tpsa(self, smiles: str) -> float:
-        """估算拓扑极性表面积"""
+        """Estimate topological polar surface area."""
         tpsa = 0.0
         tpsa += smiles.count('O') * 20.0
         tpsa += smiles.count('N') * 17.0
@@ -401,7 +401,7 @@ class ADMETAnalyzer:
         return tpsa
     
     def _check_lipinski_rules(self, mol) -> int:
-        """检查Lipinski规则"""
+        """Check Lipinski rule-of-five."""
         violations = 0
         if Descriptors.MolWt(mol) > 500: violations += 1
         if Descriptors.MolLogP(mol) > 5: violations += 1
@@ -410,8 +410,8 @@ class ADMETAnalyzer:
         return violations
     
     def batch_admet_analysis(self, ligands_data: List[Dict]) -> pd.DataFrame:
-        """批量ADMET分析"""
-        logger.info(f"开始ADMET分析 {len(ligands_data)} 个配体...")
+        """Batch ADMET analysis."""
+        logger.info(f"Starting ADMET analysis for {len(ligands_data)} ligands...")
         
         results = []
         for i, ligand_data in enumerate(ligands_data):
@@ -429,24 +429,24 @@ class ADMETAnalyzer:
                     results.append(result_data)
                     
             except Exception as e:
-                logger.error(f"分析配体 {i+1} 时出错: {e}")
+                logger.error(f"Error analyzing ligand {i+1}: {e}")
                 continue
         
         if results:
             df = pd.DataFrame(results)
-            logger.info(f"ADMET分析完成，成功分析 {len(results)} 个配体")
+            logger.info(f"ADMET analysis complete, successfully analyzed {len(results)} ligands")
             return df
         else:
-            logger.warning("没有成功的ADMET分析结果")
+            logger.warning("No successful ADMET analysis results")
             return pd.DataFrame()
     
     def save_admet_results(self, results_df: pd.DataFrame, report: Dict):
-        """保存ADMET分析结果"""
+        """Save ADMET analysis results."""
         try:
             results_file = os.path.join(RESULTS_DIR, OUTPUT_FILES["admet_results"])
             results_df.to_csv(results_file, index=False)
-            logger.info(f"ADMET结果已保存到: {results_file}")
+            logger.info(f"ADMET results saved to: {results_file}")
         except Exception as e:
-            logger.error(f"保存ADMET结果时出错: {e}")
+            logger.error(f"Error saving ADMET results: {e}")
 
-# 注意：本模块无测试入口，作为库供其他流程调用。
+# Note: This module has no test entry point; it is used as a library by other workflows.
