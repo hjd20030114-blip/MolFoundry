@@ -1,0 +1,1368 @@
+2025-09-23 16:58:22,744 - __main__ - INFO - ==================================================
+2025-09-23 16:58:22,744 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-23 16:58:22,744 - __main__ - INFO - ==================================================
+2025-09-23 16:58:22,744 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-23 16:58:22,744 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 64, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 10000, 'learning_rate': '1e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 100}, 'validation': {'frequency': 100, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 100, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-23 16:58:22,747 - __main__ - ERROR - ✗ 导入模块失败: No module named 'torch_geometric'
+2025-09-23 16:58:22,747 - __main__ - INFO - 请检查deep_learning模块路径和依赖
+2025-09-23 17:06:56,486 - __main__ - INFO - ==================================================
+2025-09-23 17:06:56,486 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-23 17:06:56,486 - __main__ - INFO - ==================================================
+2025-09-23 17:06:56,486 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-23 17:06:56,486 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 10000, 'learning_rate': '1e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 100}, 'validation': {'frequency': 100, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 100, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-23 17:06:56,487 - __main__ - ERROR - ✗ 导入模块失败: No module named 'torch_geometric'
+2025-09-23 17:06:56,487 - __main__ - INFO - 请检查deep_learning模块路径和依赖
+2025-09-23 17:08:10,327 - __main__ - INFO - ==================================================
+2025-09-23 17:08:10,327 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-23 17:08:10,327 - __main__ - INFO - ==================================================
+2025-09-23 17:08:10,327 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-23 17:08:10,327 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 10000, 'learning_rate': '1e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 100}, 'validation': {'frequency': 100, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 100, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-23 17:08:12,824 - matplotlib.font_manager - INFO - Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Can not load face (unknown file format; error code 0x2)
+2025-09-23 17:08:12,852 - matplotlib.font_manager - INFO - generated new fontManager
+2025-09-23 17:08:13,284 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-23 17:08:13,284 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-23 17:08:13,284 - __main__ - INFO - 创建数据集...
+2025-09-23 17:08:13,531 - __main__ - ERROR - ✗ 训练过程中出错: 未在 /home/hjd/PRRSV/HJD/data/P-L 下找到任何 P-L 条目
+2025-09-25 18:19:47,465 - __main__ - INFO - ==================================================
+2025-09-25 18:19:47,465 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-25 18:19:47,465 - __main__ - INFO - ==================================================
+2025-09-25 18:19:47,465 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-25 18:19:47,465 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 10000, 'learning_rate': '1e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 100}, 'validation': {'frequency': 100, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 100, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-25 18:19:49,536 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-25 18:19:49,536 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-25 18:19:49,536 - __main__ - INFO - 创建数据集...
+2025-09-25 18:19:51,066 - __main__ - INFO - ✓ 训练数据集大小: 30458
+2025-09-25 18:19:51,066 - __main__ - INFO - ✓ 验证数据集大小: 3806
+2025-09-25 18:19:51,066 - __main__ - INFO - ✓ 测试数据集大小: 3810
+2025-09-25 18:19:51,066 - __main__ - INFO - ✓ 训练批次数: 118
+2025-09-25 18:19:51,066 - __main__ - INFO - ✓ 验证批次数: 15
+2025-09-25 18:19:51,066 - __main__ - ERROR - ✗ 训练过程中出错: __init__() got an unexpected keyword argument 'input_dim'
+2025-09-25 20:48:04,505 - __main__ - INFO - ==================================================
+2025-09-25 20:48:04,505 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-25 20:48:04,505 - __main__ - INFO - ==================================================
+2025-09-25 20:48:04,505 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-25 20:48:04,506 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 10000, 'learning_rate': '1e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 100}, 'validation': {'frequency': 100, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 100, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-25 20:48:05,995 - MDAnalysis.coordinates.AMBER - WARNING - netCDF4 is not available. Writing AMBER ncdf files will be slow.
+2025-09-25 20:48:06,658 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-25 20:48:06,658 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-25 20:48:06,658 - __main__ - INFO - 创建数据集...
+2025-09-25 20:48:08,177 - __main__ - INFO - ✓ 训练数据集大小: 30458
+2025-09-25 20:48:08,177 - __main__ - INFO - ✓ 验证数据集大小: 3806
+2025-09-25 20:48:08,178 - __main__ - INFO - ✓ 测试数据集大小: 3810
+2025-09-25 20:48:08,178 - __main__ - INFO - ✓ 训练批次数: 118
+2025-09-25 20:48:08,178 - __main__ - INFO - ✓ 验证批次数: 15
+2025-09-25 20:48:08,178 - __main__ - INFO - 创建模型: pl_pair_classifier
+2025-09-25 20:48:08,189 - __main__ - INFO - ✓ 模型参数数量: 1,186,817
+2025-09-25 20:48:08,189 - __main__ - ERROR - ✗ 训练过程中出错: __init__() got an unexpected keyword argument 'save_frequency'
+2025-09-25 20:55:46,897 - __main__ - INFO - ==================================================
+2025-09-25 20:55:46,897 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-25 20:55:46,897 - __main__ - INFO - ==================================================
+2025-09-25 20:55:46,897 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-25 20:55:46,897 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 10000, 'learning_rate': '1e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 100}, 'validation': {'frequency': 100, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 100, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-25 20:55:48,360 - MDAnalysis.coordinates.AMBER - WARNING - netCDF4 is not available. Writing AMBER ncdf files will be slow.
+2025-09-25 20:55:49,024 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-25 20:55:49,024 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-25 20:55:49,024 - __main__ - INFO - 创建数据集...
+2025-09-25 20:55:50,548 - __main__ - INFO - ✓ 训练数据集大小: 30458
+2025-09-25 20:55:50,548 - __main__ - INFO - ✓ 验证数据集大小: 3806
+2025-09-25 20:55:50,548 - __main__ - INFO - ✓ 测试数据集大小: 3810
+2025-09-25 20:55:50,548 - __main__ - INFO - ✓ 训练批次数: 118
+2025-09-25 20:55:50,548 - __main__ - INFO - ✓ 验证批次数: 15
+2025-09-25 20:55:50,548 - __main__ - INFO - 创建模型: pl_pair_classifier
+2025-09-25 20:55:50,559 - __main__ - INFO - ✓ 模型参数数量: 1,186,817
+2025-09-25 20:55:50,559 - __main__ - INFO - 创建训练器...
+2025-09-25 20:55:50,560 - __main__ - ERROR - ✗ 训练过程中出错: '<=' not supported between instances of 'float' and 'str'
+2025-09-25 20:59:37,454 - __main__ - INFO - ==================================================
+2025-09-25 20:59:37,454 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-25 20:59:37,454 - __main__ - INFO - ==================================================
+2025-09-25 20:59:37,454 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-25 20:59:37,454 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 10000, 'learning_rate': '1e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 100}, 'validation': {'frequency': 100, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 100, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-25 20:59:38,917 - MDAnalysis.coordinates.AMBER - WARNING - netCDF4 is not available. Writing AMBER ncdf files will be slow.
+2025-09-25 20:59:39,579 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-25 20:59:39,579 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-25 20:59:39,579 - __main__ - INFO - 创建数据集...
+2025-09-25 20:59:41,101 - __main__ - INFO - ✓ 训练数据集大小: 30458
+2025-09-25 20:59:41,101 - __main__ - INFO - ✓ 验证数据集大小: 3806
+2025-09-25 20:59:41,101 - __main__ - INFO - ✓ 测试数据集大小: 3810
+2025-09-25 20:59:41,101 - __main__ - INFO - ✓ 训练批次数: 118
+2025-09-25 20:59:41,101 - __main__ - INFO - ✓ 验证批次数: 15
+2025-09-25 20:59:41,101 - __main__ - INFO - 创建模型: pl_pair_classifier
+2025-09-25 20:59:41,112 - __main__ - INFO - ✓ 模型参数数量: 1,186,817
+2025-09-25 20:59:41,112 - __main__ - INFO - 创建训练器...
+2025-09-25 20:59:41,113 - deep_learning.training.trainer - INFO - Trainer initialized with device: cpu
+2025-09-25 20:59:41,113 - deep_learning.training.trainer - INFO - Model parameters: 1,186,817
+2025-09-25 20:59:41,113 - __main__ - INFO - ✓ 训练器创建完成
+2025-09-25 20:59:41,113 - __main__ - INFO - ==================================================
+2025-09-25 20:59:41,113 - __main__ - INFO - 开始训练...
+2025-09-25 20:59:41,113 - __main__ - INFO - ==================================================
+2025-09-25 20:59:41,113 - deep_learning.training.trainer - INFO - Starting training...
+2025-09-25 20:59:42,801 - __main__ - ERROR - ✗ 训练过程中出错: Cannot compute loss: missing required keys
+2025-09-25 21:03:31,150 - __main__ - INFO - ==================================================
+2025-09-25 21:03:31,150 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-25 21:03:31,150 - __main__ - INFO - ==================================================
+2025-09-25 21:03:31,150 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-25 21:03:31,150 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 10000, 'learning_rate': '1e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 100}, 'validation': {'frequency': 100, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 100, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-25 21:03:32,640 - MDAnalysis.coordinates.AMBER - WARNING - netCDF4 is not available. Writing AMBER ncdf files will be slow.
+2025-09-25 21:03:33,306 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-25 21:03:33,306 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-25 21:03:33,306 - __main__ - INFO - 创建数据集...
+2025-09-25 21:03:34,829 - __main__ - INFO - ✓ 训练数据集大小: 30458
+2025-09-25 21:03:34,829 - __main__ - INFO - ✓ 验证数据集大小: 3806
+2025-09-25 21:03:34,829 - __main__ - INFO - ✓ 测试数据集大小: 3810
+2025-09-25 21:03:34,830 - __main__ - INFO - ✓ 训练批次数: 118
+2025-09-25 21:03:34,830 - __main__ - INFO - ✓ 验证批次数: 15
+2025-09-25 21:03:34,830 - __main__ - INFO - 创建模型: pl_pair_classifier
+2025-09-25 21:03:34,841 - __main__ - INFO - ✓ 模型参数数量: 1,186,817
+2025-09-25 21:03:34,841 - __main__ - INFO - 创建训练器...
+2025-09-25 21:03:34,841 - deep_learning.training.trainer - INFO - Trainer initialized with device: cpu
+2025-09-25 21:03:34,841 - deep_learning.training.trainer - INFO - Model parameters: 1,186,817
+2025-09-25 21:03:34,842 - __main__ - INFO - ✓ 训练器创建完成
+2025-09-25 21:03:34,842 - __main__ - INFO - ==================================================
+2025-09-25 21:03:34,842 - __main__ - INFO - 开始训练...
+2025-09-25 21:03:34,842 - __main__ - INFO - ==================================================
+2025-09-25 21:03:34,842 - deep_learning.training.trainer - INFO - Starting training...
+2025-09-25 21:03:46,201 - deep_learning.training.callbacks - ERROR - 训练器引用未设置
+2025-09-25 21:03:46,202 - deep_learning.training.trainer - INFO - Epoch   0: Train Loss: 5.5815, Val Loss: 0.7481, LR: 1.00e-04
+2025-09-25 21:03:55,483 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:03:55,483 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:03:55,484 - deep_learning.training.trainer - INFO - Epoch   1: Train Loss: 1.3775, LR: 1.00e-04
+2025-09-25 21:04:04,578 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:04:04,578 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:04:04,579 - deep_learning.training.trainer - INFO - Epoch   2: Train Loss: 0.7096, LR: 1.00e-04
+2025-09-25 21:04:13,783 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:04:13,783 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:04:13,783 - deep_learning.training.trainer - INFO - Epoch   3: Train Loss: 0.6963, LR: 1.00e-04
+2025-09-25 21:04:22,767 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:04:22,768 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:04:22,768 - deep_learning.training.trainer - INFO - Epoch   4: Train Loss: 0.6951, LR: 1.00e-04
+2025-09-25 21:04:31,986 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:04:31,986 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:04:31,986 - deep_learning.training.trainer - INFO - Epoch   5: Train Loss: 0.6942, LR: 1.00e-04
+2025-09-25 21:04:40,757 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:04:40,758 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:04:40,758 - deep_learning.training.trainer - INFO - Epoch   6: Train Loss: 0.6938, LR: 1.00e-04
+2025-09-25 21:04:49,969 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:04:49,969 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:04:49,969 - deep_learning.training.trainer - INFO - Epoch   7: Train Loss: 0.6935, LR: 1.00e-04
+2025-09-25 21:04:58,693 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:04:58,693 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:04:58,693 - deep_learning.training.trainer - INFO - Epoch   8: Train Loss: 0.6935, LR: 1.00e-04
+2025-09-25 21:05:07,551 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:05:07,552 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:05:07,552 - deep_learning.training.trainer - INFO - Epoch   9: Train Loss: 0.6938, LR: 1.00e-04
+2025-09-25 21:05:16,641 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:05:16,642 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:05:16,642 - deep_learning.training.trainer - INFO - Epoch  10: Train Loss: 0.6934, LR: 1.00e-04
+2025-09-25 21:05:25,595 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:05:25,596 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:05:25,596 - deep_learning.training.trainer - INFO - Epoch  11: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:05:34,331 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:05:34,332 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:05:34,332 - deep_learning.training.trainer - INFO - Epoch  12: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:05:43,431 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:05:43,431 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:05:43,431 - deep_learning.training.trainer - INFO - Epoch  13: Train Loss: 0.6935, LR: 1.00e-04
+2025-09-25 21:05:52,265 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:05:52,266 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:05:52,266 - deep_learning.training.trainer - INFO - Epoch  14: Train Loss: 0.6934, LR: 1.00e-04
+2025-09-25 21:06:01,183 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:06:01,183 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:06:01,183 - deep_learning.training.trainer - INFO - Epoch  15: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:06:10,202 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:06:10,202 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:06:10,202 - deep_learning.training.trainer - INFO - Epoch  16: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:06:19,561 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:06:19,561 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:06:19,561 - deep_learning.training.trainer - INFO - Epoch  17: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:06:23,752 - deep_learning.training.trainer - INFO - Training interrupted by user
+2025-09-25 21:06:23,794 - deep_learning.training.trainer - INFO - Training completed
+2025-09-25 21:06:23,794 - __main__ - INFO - ==================================================
+2025-09-25 21:06:23,794 - __main__ - INFO - 训练完成!
+2025-09-25 21:06:23,794 - __main__ - INFO - ==================================================
+2025-09-25 21:06:23,794 - __main__ - INFO - 在测试集上评估...
+2025-09-25 21:06:25,065 - __main__ - ERROR - ✗ 训练过程中出错: forward() got an unexpected keyword argument 'y'
+2025-09-25 21:10:23,071 - __main__ - INFO - ==================================================
+2025-09-25 21:10:23,071 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-25 21:10:23,071 - __main__ - INFO - ==================================================
+2025-09-25 21:10:23,071 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-25 21:10:23,071 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 10000, 'learning_rate': '1e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 100}, 'validation': {'frequency': 100, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 100, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-25 21:10:24,539 - MDAnalysis.coordinates.AMBER - WARNING - netCDF4 is not available. Writing AMBER ncdf files will be slow.
+2025-09-25 21:10:25,205 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-25 21:10:25,205 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-25 21:10:25,205 - __main__ - INFO - 创建数据集...
+2025-09-25 21:10:26,735 - __main__ - INFO - ✓ 训练数据集大小: 30458
+2025-09-25 21:10:26,735 - __main__ - INFO - ✓ 验证数据集大小: 3806
+2025-09-25 21:10:26,735 - __main__ - INFO - ✓ 测试数据集大小: 3810
+2025-09-25 21:10:26,735 - __main__ - INFO - ✓ 训练批次数: 118
+2025-09-25 21:10:26,735 - __main__ - INFO - ✓ 验证批次数: 15
+2025-09-25 21:10:26,735 - __main__ - INFO - 创建模型: pl_pair_classifier
+2025-09-25 21:10:26,746 - __main__ - INFO - ✓ 模型参数数量: 1,186,817
+2025-09-25 21:10:26,746 - __main__ - INFO - 创建训练器...
+2025-09-25 21:10:26,747 - deep_learning.training.trainer - INFO - Trainer initialized with device: cpu
+2025-09-25 21:10:26,747 - deep_learning.training.trainer - INFO - Model parameters: 1,186,817
+2025-09-25 21:10:26,747 - __main__ - INFO - ✓ 训练器创建完成
+2025-09-25 21:10:26,747 - __main__ - INFO - ==================================================
+2025-09-25 21:10:26,747 - __main__ - INFO - 开始训练...
+2025-09-25 21:10:26,747 - __main__ - INFO - ==================================================
+2025-09-25 21:10:26,747 - deep_learning.training.trainer - INFO - Starting training...
+2025-09-25 21:10:37,995 - deep_learning.training.callbacks - ERROR - 训练器引用未设置
+2025-09-25 21:10:37,996 - deep_learning.training.trainer - INFO - Epoch   0: Train Loss: 5.6571, Val Loss: 1.7287, LR: 1.00e-04
+2025-09-25 21:10:39,416 - deep_learning.training.trainer - INFO - Training interrupted by user
+2025-09-25 21:10:39,417 - deep_learning.training.trainer - INFO - Training completed
+2025-09-25 21:10:39,417 - __main__ - INFO - ==================================================
+2025-09-25 21:10:39,418 - __main__ - INFO - 训练完成!
+2025-09-25 21:10:39,418 - __main__ - INFO - ==================================================
+2025-09-25 21:10:39,418 - __main__ - INFO - 在测试集上评估...
+2025-09-25 21:10:40,638 - __main__ - ERROR - ✗ 训练过程中出错: forward() got an unexpected keyword argument 'y'
+2025-09-25 21:14:19,908 - __main__ - INFO - ==================================================
+2025-09-25 21:14:19,909 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-25 21:14:19,909 - __main__ - INFO - ==================================================
+2025-09-25 21:14:19,909 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-25 21:14:19,909 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 10000, 'learning_rate': '1e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 100}, 'validation': {'frequency': 100, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 100, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-25 21:14:21,401 - MDAnalysis.coordinates.AMBER - WARNING - netCDF4 is not available. Writing AMBER ncdf files will be slow.
+2025-09-25 21:14:22,064 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-25 21:14:22,064 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-25 21:14:22,064 - __main__ - INFO - 创建数据集...
+2025-09-25 21:14:23,583 - __main__ - INFO - ✓ 训练数据集大小: 30458
+2025-09-25 21:14:23,583 - __main__ - INFO - ✓ 验证数据集大小: 3806
+2025-09-25 21:14:23,583 - __main__ - INFO - ✓ 测试数据集大小: 3810
+2025-09-25 21:14:23,584 - __main__ - INFO - ✓ 训练批次数: 118
+2025-09-25 21:14:23,584 - __main__ - INFO - ✓ 验证批次数: 15
+2025-09-25 21:14:23,584 - __main__ - INFO - 创建模型: pl_pair_classifier
+2025-09-25 21:14:23,595 - __main__ - INFO - ✓ 模型参数数量: 1,186,817
+2025-09-25 21:14:23,595 - __main__ - INFO - 创建训练器...
+2025-09-25 21:14:23,596 - deep_learning.training.trainer - INFO - Trainer initialized with device: cpu
+2025-09-25 21:14:23,596 - deep_learning.training.trainer - INFO - Model parameters: 1,186,817
+2025-09-25 21:14:23,596 - __main__ - INFO - ✓ 训练器创建完成
+2025-09-25 21:14:23,596 - __main__ - INFO - ==================================================
+2025-09-25 21:14:23,596 - __main__ - INFO - 开始训练...
+2025-09-25 21:14:23,596 - __main__ - INFO - ==================================================
+2025-09-25 21:14:23,596 - deep_learning.training.trainer - INFO - Starting training...
+2025-09-25 21:14:34,870 - deep_learning.training.callbacks - ERROR - 训练器引用未设置
+2025-09-25 21:14:34,870 - deep_learning.training.trainer - INFO - Epoch   0: Train Loss: 6.3879, Val Loss: 0.7217, LR: 1.00e-04
+2025-09-25 21:14:43,985 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:14:43,985 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:14:43,986 - deep_learning.training.trainer - INFO - Epoch   1: Train Loss: 1.4679, LR: 1.00e-04
+2025-09-25 21:14:53,647 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:14:53,648 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:14:53,648 - deep_learning.training.trainer - INFO - Epoch   2: Train Loss: 0.7150, LR: 1.00e-04
+2025-09-25 21:15:03,245 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:15:03,246 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:15:03,246 - deep_learning.training.trainer - INFO - Epoch   3: Train Loss: 0.6979, LR: 1.00e-04
+2025-09-25 21:15:12,265 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:15:12,265 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:15:12,265 - deep_learning.training.trainer - INFO - Epoch   4: Train Loss: 0.6943, LR: 1.00e-04
+2025-09-25 21:15:21,347 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:15:21,348 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:15:21,348 - deep_learning.training.trainer - INFO - Epoch   5: Train Loss: 0.6938, LR: 1.00e-04
+2025-09-25 21:15:30,411 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:15:30,412 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:15:30,412 - deep_learning.training.trainer - INFO - Epoch   6: Train Loss: 0.6949, LR: 1.00e-04
+2025-09-25 21:15:39,119 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:15:39,119 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:15:39,119 - deep_learning.training.trainer - INFO - Epoch   7: Train Loss: 0.6939, LR: 1.00e-04
+2025-09-25 21:15:48,317 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:15:48,317 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:15:48,317 - deep_learning.training.trainer - INFO - Epoch   8: Train Loss: 0.6935, LR: 1.00e-04
+2025-09-25 21:15:57,388 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:15:57,388 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:15:57,389 - deep_learning.training.trainer - INFO - Epoch   9: Train Loss: 0.6934, LR: 1.00e-04
+2025-09-25 21:16:06,610 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:16:06,611 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:16:06,611 - deep_learning.training.trainer - INFO - Epoch  10: Train Loss: 0.6937, LR: 1.00e-04
+2025-09-25 21:16:15,668 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:16:15,668 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:16:15,668 - deep_learning.training.trainer - INFO - Epoch  11: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:16:24,548 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:16:24,548 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:16:24,549 - deep_learning.training.trainer - INFO - Epoch  12: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:16:33,686 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:16:33,686 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:16:33,686 - deep_learning.training.trainer - INFO - Epoch  13: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:16:42,622 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:16:42,623 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:16:42,623 - deep_learning.training.trainer - INFO - Epoch  14: Train Loss: 0.6937, LR: 1.00e-04
+2025-09-25 21:16:51,763 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:16:51,764 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:16:51,764 - deep_learning.training.trainer - INFO - Epoch  15: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:17:01,336 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:17:01,336 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:17:01,336 - deep_learning.training.trainer - INFO - Epoch  16: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:17:10,297 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:17:10,297 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:17:10,297 - deep_learning.training.trainer - INFO - Epoch  17: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:17:19,335 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:17:19,336 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:17:19,336 - deep_learning.training.trainer - INFO - Epoch  18: Train Loss: 0.6935, LR: 1.00e-04
+2025-09-25 21:17:28,708 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:17:28,708 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:17:28,708 - deep_learning.training.trainer - INFO - Epoch  19: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:17:38,380 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:17:38,380 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:17:38,380 - deep_learning.training.trainer - INFO - Epoch  20: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:17:47,505 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:17:47,505 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:17:47,505 - deep_learning.training.trainer - INFO - Epoch  21: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:17:56,588 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:17:56,588 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:17:56,589 - deep_learning.training.trainer - INFO - Epoch  22: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:18:05,932 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:18:05,933 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:18:05,933 - deep_learning.training.trainer - INFO - Epoch  23: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:18:14,911 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:18:14,911 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:18:14,912 - deep_learning.training.trainer - INFO - Epoch  24: Train Loss: 0.6935, LR: 1.00e-04
+2025-09-25 21:18:23,725 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:18:23,725 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:18:23,726 - deep_learning.training.trainer - INFO - Epoch  25: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:18:32,829 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:18:32,830 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:18:32,830 - deep_learning.training.trainer - INFO - Epoch  26: Train Loss: 0.6934, LR: 1.00e-04
+2025-09-25 21:18:41,868 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:18:41,868 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:18:41,868 - deep_learning.training.trainer - INFO - Epoch  27: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:18:50,844 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:18:50,844 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:18:50,844 - deep_learning.training.trainer - INFO - Epoch  28: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:18:59,862 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:18:59,863 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:18:59,863 - deep_learning.training.trainer - INFO - Epoch  29: Train Loss: 0.6936, LR: 1.00e-04
+2025-09-25 21:19:09,319 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:19:09,319 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:19:09,319 - deep_learning.training.trainer - INFO - Epoch  30: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:19:18,400 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:19:18,401 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:19:18,401 - deep_learning.training.trainer - INFO - Epoch  31: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:19:27,718 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:19:27,719 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:19:27,719 - deep_learning.training.trainer - INFO - Epoch  32: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:19:37,476 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:19:37,476 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:19:37,477 - deep_learning.training.trainer - INFO - Epoch  33: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:19:46,980 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:19:46,981 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:19:46,981 - deep_learning.training.trainer - INFO - Epoch  34: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:19:56,141 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:19:56,142 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:19:56,142 - deep_learning.training.trainer - INFO - Epoch  35: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:20:05,268 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:20:05,269 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:20:05,269 - deep_learning.training.trainer - INFO - Epoch  36: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:20:14,695 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:20:14,695 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:20:14,696 - deep_learning.training.trainer - INFO - Epoch  37: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:20:23,918 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:20:23,918 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:20:23,918 - deep_learning.training.trainer - INFO - Epoch  38: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:20:33,036 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:20:33,037 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:20:33,037 - deep_learning.training.trainer - INFO - Epoch  39: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:20:42,162 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:20:42,163 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:20:42,163 - deep_learning.training.trainer - INFO - Epoch  40: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:20:51,198 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:20:51,199 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:20:51,199 - deep_learning.training.trainer - INFO - Epoch  41: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:21:00,447 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:21:00,448 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:21:00,448 - deep_learning.training.trainer - INFO - Epoch  42: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:21:09,909 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:21:09,909 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:21:09,909 - deep_learning.training.trainer - INFO - Epoch  43: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:21:19,503 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:21:19,503 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:21:19,503 - deep_learning.training.trainer - INFO - Epoch  44: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:21:28,665 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:21:28,665 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:21:28,665 - deep_learning.training.trainer - INFO - Epoch  45: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:21:37,383 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:21:37,383 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:21:37,383 - deep_learning.training.trainer - INFO - Epoch  46: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:21:46,355 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:21:46,356 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:21:46,356 - deep_learning.training.trainer - INFO - Epoch  47: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:21:55,734 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:21:55,734 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:21:55,735 - deep_learning.training.trainer - INFO - Epoch  48: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:22:04,943 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:22:04,943 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:22:04,943 - deep_learning.training.trainer - INFO - Epoch  49: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:22:14,086 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:22:14,086 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:22:14,087 - deep_learning.training.trainer - INFO - Epoch  50: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:22:23,713 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:22:23,713 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:22:23,714 - deep_learning.training.trainer - INFO - Epoch  51: Train Loss: 0.6930, LR: 1.00e-04
+2025-09-25 21:22:32,824 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:22:32,825 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:22:32,825 - deep_learning.training.trainer - INFO - Epoch  52: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:22:42,087 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:22:42,088 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:22:42,088 - deep_learning.training.trainer - INFO - Epoch  53: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:22:51,289 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:22:51,290 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:22:51,290 - deep_learning.training.trainer - INFO - Epoch  54: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:23:01,010 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:23:01,010 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:23:01,011 - deep_learning.training.trainer - INFO - Epoch  55: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:23:10,186 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:23:10,186 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:23:10,186 - deep_learning.training.trainer - INFO - Epoch  56: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:23:19,140 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:23:19,141 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:23:19,141 - deep_learning.training.trainer - INFO - Epoch  57: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:23:21,695 - deep_learning.training.trainer - INFO - Training interrupted by user
+2025-09-25 21:23:21,697 - deep_learning.training.trainer - INFO - Training completed
+2025-09-25 21:23:21,697 - __main__ - INFO - ==================================================
+2025-09-25 21:23:21,697 - __main__ - INFO - 训练完成!
+2025-09-25 21:23:21,697 - __main__ - INFO - ==================================================
+2025-09-25 21:23:21,697 - __main__ - INFO - 在测试集上评估...
+2025-09-25 21:23:23,072 - __main__ - ERROR - ✗ 训练过程中出错: forward() got an unexpected keyword argument 'y'
+2025-09-25 21:23:29,334 - __main__ - INFO - ==================================================
+2025-09-25 21:23:29,334 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-25 21:23:29,334 - __main__ - INFO - ==================================================
+2025-09-25 21:23:29,334 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-25 21:23:29,334 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 10000, 'learning_rate': '1e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 100}, 'validation': {'frequency': 100, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 100, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-25 21:23:30,869 - MDAnalysis.coordinates.AMBER - WARNING - netCDF4 is not available. Writing AMBER ncdf files will be slow.
+2025-09-25 21:23:31,527 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-25 21:23:31,528 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-25 21:23:31,528 - __main__ - INFO - 创建数据集...
+2025-09-25 21:23:33,030 - __main__ - INFO - ✓ 训练数据集大小: 30458
+2025-09-25 21:23:33,030 - __main__ - INFO - ✓ 验证数据集大小: 3806
+2025-09-25 21:23:33,030 - __main__ - INFO - ✓ 测试数据集大小: 3810
+2025-09-25 21:23:33,030 - __main__ - INFO - ✓ 训练批次数: 118
+2025-09-25 21:23:33,030 - __main__ - INFO - ✓ 验证批次数: 15
+2025-09-25 21:23:33,030 - __main__ - INFO - 创建模型: pl_pair_classifier
+2025-09-25 21:23:33,041 - __main__ - INFO - ✓ 模型参数数量: 1,186,817
+2025-09-25 21:23:33,041 - __main__ - INFO - 创建训练器...
+2025-09-25 21:23:33,042 - deep_learning.training.trainer - INFO - Trainer initialized with device: cpu
+2025-09-25 21:23:33,042 - deep_learning.training.trainer - INFO - Model parameters: 1,186,817
+2025-09-25 21:23:33,042 - __main__ - INFO - ✓ 训练器创建完成
+2025-09-25 21:23:33,042 - __main__ - INFO - ==================================================
+2025-09-25 21:23:33,042 - __main__ - INFO - 开始训练...
+2025-09-25 21:23:33,042 - __main__ - INFO - ==================================================
+2025-09-25 21:23:33,042 - deep_learning.training.trainer - INFO - Starting training...
+2025-09-25 21:23:44,331 - deep_learning.training.callbacks - ERROR - 训练器引用未设置
+2025-09-25 21:23:44,331 - deep_learning.training.trainer - INFO - Epoch   0: Train Loss: 4.8229, Val Loss: 0.8759, LR: 1.00e-04
+2025-09-25 21:23:53,692 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:23:53,693 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:23:53,693 - deep_learning.training.trainer - INFO - Epoch   1: Train Loss: 1.0517, LR: 1.00e-04
+2025-09-25 21:24:03,330 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:24:03,331 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:24:03,331 - deep_learning.training.trainer - INFO - Epoch   2: Train Loss: 0.7057, LR: 1.00e-04
+2025-09-25 21:24:12,483 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:24:12,484 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:24:12,484 - deep_learning.training.trainer - INFO - Epoch   3: Train Loss: 0.6964, LR: 1.00e-04
+2025-09-25 21:24:21,824 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:24:21,824 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:24:21,824 - deep_learning.training.trainer - INFO - Epoch   4: Train Loss: 0.6952, LR: 1.00e-04
+2025-09-25 21:24:30,915 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:24:30,915 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:24:30,915 - deep_learning.training.trainer - INFO - Epoch   5: Train Loss: 0.6946, LR: 1.00e-04
+2025-09-25 21:24:39,900 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:24:39,901 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:24:39,901 - deep_learning.training.trainer - INFO - Epoch   6: Train Loss: 0.6944, LR: 1.00e-04
+2025-09-25 21:24:49,059 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:24:49,059 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:24:49,059 - deep_learning.training.trainer - INFO - Epoch   7: Train Loss: 0.6940, LR: 1.00e-04
+2025-09-25 21:24:57,900 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:24:57,900 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:24:57,900 - deep_learning.training.trainer - INFO - Epoch   8: Train Loss: 0.6936, LR: 1.00e-04
+2025-09-25 21:25:07,155 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:25:07,155 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:25:07,155 - deep_learning.training.trainer - INFO - Epoch   9: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:25:16,090 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:25:16,091 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:25:16,091 - deep_learning.training.trainer - INFO - Epoch  10: Train Loss: 0.6934, LR: 1.00e-04
+2025-09-25 21:25:25,522 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:25:25,523 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:25:25,523 - deep_learning.training.trainer - INFO - Epoch  11: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:25:34,469 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:25:34,470 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:25:34,470 - deep_learning.training.trainer - INFO - Epoch  12: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:25:43,548 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:25:43,548 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:25:43,548 - deep_learning.training.trainer - INFO - Epoch  13: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:25:52,353 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:25:52,353 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:25:52,353 - deep_learning.training.trainer - INFO - Epoch  14: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:26:01,272 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:26:01,272 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:26:01,272 - deep_learning.training.trainer - INFO - Epoch  15: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:26:10,180 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:26:10,181 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:26:10,181 - deep_learning.training.trainer - INFO - Epoch  16: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:26:19,102 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:26:19,103 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:26:19,103 - deep_learning.training.trainer - INFO - Epoch  17: Train Loss: 0.6934, LR: 1.00e-04
+2025-09-25 21:26:28,171 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:26:28,172 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:26:28,172 - deep_learning.training.trainer - INFO - Epoch  18: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:26:37,308 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:26:37,308 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:26:37,309 - deep_learning.training.trainer - INFO - Epoch  19: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:26:46,486 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:26:46,487 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:26:46,487 - deep_learning.training.trainer - INFO - Epoch  20: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:26:55,111 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:26:55,111 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:26:55,111 - deep_learning.training.trainer - INFO - Epoch  21: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:27:04,657 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:27:04,657 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:27:04,658 - deep_learning.training.trainer - INFO - Epoch  22: Train Loss: 0.6936, LR: 1.00e-04
+2025-09-25 21:27:14,226 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:27:14,226 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:27:14,227 - deep_learning.training.trainer - INFO - Epoch  23: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:27:23,635 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:27:23,636 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:27:23,636 - deep_learning.training.trainer - INFO - Epoch  24: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:27:33,374 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:27:33,374 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:27:33,374 - deep_learning.training.trainer - INFO - Epoch  25: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:27:42,464 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:27:42,464 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:27:42,465 - deep_learning.training.trainer - INFO - Epoch  26: Train Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:27:51,927 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:27:51,928 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:27:51,928 - deep_learning.training.trainer - INFO - Epoch  27: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:28:01,247 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:28:01,247 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:28:01,248 - deep_learning.training.trainer - INFO - Epoch  28: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:28:10,262 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:28:10,262 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:28:10,263 - deep_learning.training.trainer - INFO - Epoch  29: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:28:19,349 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:28:19,349 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:28:19,349 - deep_learning.training.trainer - INFO - Epoch  30: Train Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:28:28,208 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:28:28,208 - deep_learning.training.callbacks - WARNING - 监控指标 val_loss 不存在于日志中
+2025-09-25 21:28:28,208 - deep_learning.training.trainer - INFO - Epoch  31: Train Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:28:29,539 - deep_learning.training.trainer - INFO - Training interrupted by user
+2025-09-25 21:28:29,580 - deep_learning.training.trainer - INFO - Training completed
+2025-09-25 21:28:29,580 - __main__ - INFO - ==================================================
+2025-09-25 21:28:29,580 - __main__ - INFO - 训练完成!
+2025-09-25 21:28:29,580 - __main__ - INFO - ==================================================
+2025-09-25 21:28:29,580 - __main__ - INFO - 在测试集上评估...
+2025-09-25 21:28:30,870 - __main__ - ERROR - ✗ 训练过程中出错: forward() got an unexpected keyword argument 'y'
+2025-09-25 21:28:37,854 - __main__ - INFO - ==================================================
+2025-09-25 21:28:37,854 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-25 21:28:37,854 - __main__ - INFO - ==================================================
+2025-09-25 21:28:37,854 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-25 21:28:37,854 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 10000, 'learning_rate': '1e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 100}, 'validation': {'frequency': 100, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 100, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-25 21:28:39,350 - MDAnalysis.coordinates.AMBER - WARNING - netCDF4 is not available. Writing AMBER ncdf files will be slow.
+2025-09-25 21:28:40,012 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-25 21:28:40,012 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-25 21:28:40,012 - __main__ - INFO - 创建数据集...
+2025-09-25 21:28:41,514 - __main__ - INFO - ✓ 训练数据集大小: 30458
+2025-09-25 21:28:41,515 - __main__ - INFO - ✓ 验证数据集大小: 3806
+2025-09-25 21:28:41,515 - __main__ - INFO - ✓ 测试数据集大小: 3810
+2025-09-25 21:28:41,515 - __main__ - INFO - ✓ 训练批次数: 118
+2025-09-25 21:28:41,515 - __main__ - INFO - ✓ 验证批次数: 15
+2025-09-25 21:28:41,515 - __main__ - INFO - 创建模型: pl_pair_classifier
+2025-09-25 21:28:41,526 - __main__ - INFO - ✓ 模型参数数量: 1,186,817
+2025-09-25 21:28:41,526 - __main__ - INFO - 创建训练器...
+2025-09-25 21:28:41,527 - deep_learning.training.trainer - INFO - Trainer initialized with device: cpu
+2025-09-25 21:28:41,527 - deep_learning.training.trainer - INFO - Model parameters: 1,186,817
+2025-09-25 21:28:41,527 - __main__ - INFO - ✓ 训练器创建完成
+2025-09-25 21:28:41,527 - __main__ - INFO - ==================================================
+2025-09-25 21:28:41,527 - __main__ - INFO - 开始训练...
+2025-09-25 21:28:41,527 - __main__ - INFO - ==================================================
+2025-09-25 21:28:41,527 - deep_learning.training.trainer - INFO - Starting training...
+2025-09-25 21:28:52,753 - deep_learning.training.callbacks - ERROR - 训练器引用未设置
+2025-09-25 21:28:52,754 - deep_learning.training.trainer - INFO - Epoch   0: Train Loss: 5.3592, Val Loss: 0.8057, LR: 1.00e-04
+2025-09-25 21:29:03,793 - deep_learning.training.callbacks - ERROR - 训练器引用未设置
+2025-09-25 21:29:03,793 - deep_learning.training.trainer - INFO - Epoch   1: Train Loss: 1.2500, Val Loss: 0.6966, LR: 1.00e-04
+2025-09-25 21:29:14,788 - deep_learning.training.callbacks - ERROR - 训练器引用未设置
+2025-09-25 21:29:14,788 - deep_learning.training.trainer - INFO - Epoch   2: Train Loss: 0.7105, Val Loss: 0.6933, LR: 1.00e-04
+2025-09-25 21:29:25,512 - deep_learning.training.callbacks - ERROR - 训练器引用未设置
+2025-09-25 21:29:25,512 - deep_learning.training.trainer - INFO - Epoch   3: Train Loss: 0.6973, Val Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:29:36,422 - deep_learning.training.callbacks - ERROR - 训练器引用未设置
+2025-09-25 21:29:36,422 - deep_learning.training.trainer - INFO - Epoch   4: Train Loss: 0.6953, Val Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:29:46,718 - deep_learning.training.callbacks - ERROR - 训练器引用未设置
+2025-09-25 21:29:46,718 - deep_learning.training.trainer - INFO - Epoch   5: Train Loss: 0.6946, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:29:57,931 - deep_learning.training.trainer - INFO - Epoch   6: Train Loss: 0.6944, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:30:08,831 - deep_learning.training.trainer - INFO - Epoch   7: Train Loss: 0.6942, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:30:19,689 - deep_learning.training.trainer - INFO - Epoch   8: Train Loss: 0.6935, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:30:30,477 - deep_learning.training.callbacks - ERROR - 训练器引用未设置
+2025-09-25 21:30:30,478 - deep_learning.training.trainer - INFO - Epoch   9: Train Loss: 0.6934, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:30:40,981 - deep_learning.training.trainer - INFO - Epoch  10: Train Loss: 0.6936, Val Loss: 0.6932, LR: 1.00e-04
+2025-09-25 21:30:51,645 - deep_learning.training.trainer - INFO - Epoch  11: Train Loss: 0.6935, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:31:02,330 - deep_learning.training.trainer - INFO - Epoch  12: Train Loss: 0.6934, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:31:12,927 - deep_learning.training.trainer - INFO - Epoch  13: Train Loss: 0.6936, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:31:23,337 - deep_learning.training.trainer - INFO - Epoch  14: Train Loss: 0.6934, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:31:34,022 - deep_learning.training.trainer - INFO - Epoch  15: Train Loss: 0.6934, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:31:44,710 - deep_learning.training.trainer - INFO - Epoch  16: Train Loss: 0.6934, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:31:55,803 - deep_learning.training.trainer - INFO - Epoch  17: Train Loss: 0.6935, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:32:07,199 - deep_learning.training.trainer - INFO - Epoch  18: Train Loss: 0.6933, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:32:17,953 - deep_learning.training.trainer - INFO - Epoch  19: Train Loss: 0.6934, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:32:28,648 - deep_learning.training.trainer - INFO - Epoch  20: Train Loss: 0.6930, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:32:39,633 - deep_learning.training.trainer - INFO - Epoch  21: Train Loss: 0.6932, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:32:50,146 - deep_learning.training.trainer - INFO - Epoch  22: Train Loss: 0.6931, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:33:00,903 - deep_learning.training.trainer - INFO - Epoch  23: Train Loss: 0.6932, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:33:11,661 - deep_learning.training.trainer - INFO - Epoch  24: Train Loss: 0.6932, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:33:22,988 - deep_learning.training.trainer - INFO - Epoch  25: Train Loss: 0.6931, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:33:33,869 - deep_learning.training.trainer - INFO - Epoch  26: Train Loss: 0.6933, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:33:45,022 - deep_learning.training.trainer - INFO - Epoch  27: Train Loss: 0.6932, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:33:56,091 - deep_learning.training.trainer - INFO - Epoch  28: Train Loss: 0.6931, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:34:06,955 - deep_learning.training.trainer - INFO - Epoch  29: Train Loss: 0.6932, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-25 21:34:06,956 - deep_learning.training.trainer - INFO - Early stopping at epoch 29
+2025-09-25 21:34:06,956 - deep_learning.training.callbacks - INFO - 在第 30 个epoch早停
+2025-09-25 21:34:06,956 - deep_learning.training.trainer - INFO - Training completed
+2025-09-25 21:34:06,956 - __main__ - INFO - ==================================================
+2025-09-25 21:34:06,957 - __main__ - INFO - 训练完成!
+2025-09-25 21:34:06,957 - __main__ - INFO - ==================================================
+2025-09-25 21:34:06,957 - __main__ - INFO - 在测试集上评估...
+2025-09-25 21:34:08,430 - __main__ - ERROR - ✗ 训练过程中出错: forward() got an unexpected keyword argument 'y'
+2025-09-27 08:32:38,008 - __main__ - INFO - ==================================================
+2025-09-27 08:32:38,008 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-27 08:32:38,008 - __main__ - INFO - ==================================================
+2025-09-27 08:32:38,008 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-27 08:32:38,008 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 10000, 'learning_rate': '1e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 100}, 'validation': {'frequency': 100, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 100, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-27 08:32:39,332 - MDAnalysis.coordinates.AMBER - WARNING - netCDF4 is not available. Writing AMBER ncdf files will be slow.
+2025-09-27 08:32:40,028 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-27 08:32:40,028 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-27 08:32:40,028 - __main__ - INFO - 创建数据集...
+2025-09-27 08:32:43,281 - __main__ - INFO - ✓ 训练数据集大小: 30462
+2025-09-27 08:32:43,281 - __main__ - INFO - ✓ 验证数据集大小: 3806
+2025-09-27 08:32:43,281 - __main__ - INFO - ✓ 测试数据集大小: 3806
+2025-09-27 08:32:43,281 - __main__ - INFO - ✓ 训练批次数: 118
+2025-09-27 08:32:43,281 - __main__ - INFO - ✓ 验证批次数: 15
+2025-09-27 08:32:43,282 - __main__ - INFO - 创建模型: pl_pair_classifier
+2025-09-27 08:32:43,293 - __main__ - INFO - ✓ 模型参数数量: 1,186,817
+2025-09-27 08:32:43,293 - __main__ - INFO - 创建训练器...
+2025-09-27 08:32:43,293 - deep_learning.training.trainer - INFO - Trainer initialized with device: cpu
+2025-09-27 08:32:43,293 - deep_learning.training.trainer - INFO - Model parameters: 1,186,817
+2025-09-27 08:32:43,293 - __main__ - INFO - ✓ 训练器创建完成
+2025-09-27 08:32:43,294 - __main__ - INFO - ==================================================
+2025-09-27 08:32:43,294 - __main__ - INFO - 开始训练...
+2025-09-27 08:32:43,294 - __main__ - INFO - ==================================================
+2025-09-27 08:32:43,294 - deep_learning.training.trainer - INFO - Starting training...
+2025-09-27 08:32:54,445 - __main__ - ERROR - ✗ 训练过程中出错: str.format() got multiple values for keyword argument 'epoch'
+2025-09-27 08:47:57,074 - __main__ - INFO - ==================================================
+2025-09-27 08:47:57,074 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-27 08:47:57,074 - __main__ - INFO - ==================================================
+2025-09-27 08:47:57,074 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-27 08:47:57,074 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 10000, 'learning_rate': '1e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 100}, 'validation': {'frequency': 100, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 100, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-27 08:47:58,574 - MDAnalysis.coordinates.AMBER - WARNING - netCDF4 is not available. Writing AMBER ncdf files will be slow.
+2025-09-27 08:47:59,245 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-27 08:47:59,246 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-27 08:47:59,246 - __main__ - INFO - 创建数据集...
+2025-09-27 08:48:00,725 - __main__ - INFO - ✓ 训练数据集大小: 30462
+2025-09-27 08:48:00,725 - __main__ - INFO - ✓ 验证数据集大小: 3806
+2025-09-27 08:48:00,725 - __main__ - INFO - ✓ 测试数据集大小: 3806
+2025-09-27 08:48:00,725 - __main__ - INFO - ✓ 训练批次数: 118
+2025-09-27 08:48:00,726 - __main__ - INFO - ✓ 验证批次数: 15
+2025-09-27 08:48:00,726 - __main__ - INFO - 创建模型: pl_pair_classifier
+2025-09-27 08:48:00,737 - __main__ - INFO - ✓ 模型参数数量: 1,186,817
+2025-09-27 08:48:00,737 - __main__ - INFO - 创建训练器...
+2025-09-27 08:48:00,737 - deep_learning.training.trainer - INFO - Trainer initialized with device: cpu
+2025-09-27 08:48:00,738 - deep_learning.training.trainer - INFO - Model parameters: 1,186,817
+2025-09-27 08:48:00,738 - __main__ - INFO - ✓ 训练器创建完成
+2025-09-27 08:48:00,738 - __main__ - INFO - ==================================================
+2025-09-27 08:48:00,738 - __main__ - INFO - 开始训练...
+2025-09-27 08:48:00,738 - __main__ - INFO - ==================================================
+2025-09-27 08:48:00,738 - deep_learning.training.trainer - INFO - Starting training...
+2025-09-27 08:48:11,939 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_0.pth
+2025-09-27 08:48:11,939 - deep_learning.training.trainer - INFO - Epoch   0: Train Loss: 5.3202, Val Loss: 0.8259, LR: 1.00e-04
+2025-09-27 08:48:22,820 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_1.pth
+2025-09-27 08:48:22,820 - deep_learning.training.trainer - INFO - Epoch   1: Train Loss: 1.2557, Val Loss: 0.6935, LR: 1.00e-04
+2025-09-27 08:48:33,603 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_2.pth
+2025-09-27 08:48:33,604 - deep_learning.training.trainer - INFO - Epoch   2: Train Loss: 0.7111, Val Loss: 0.6933, LR: 1.00e-04
+2025-09-27 08:48:44,407 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_3.pth
+2025-09-27 08:48:44,407 - deep_learning.training.trainer - INFO - Epoch   3: Train Loss: 0.6977, Val Loss: 0.6932, LR: 1.00e-04
+2025-09-27 08:48:55,558 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_4.pth
+2025-09-27 08:48:55,558 - deep_learning.training.trainer - INFO - Epoch   4: Train Loss: 0.6956, Val Loss: 0.6932, LR: 1.00e-04
+2025-09-27 08:49:06,257 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_5.pth
+2025-09-27 08:49:06,257 - deep_learning.training.trainer - INFO - Epoch   5: Train Loss: 0.6945, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:49:17,023 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_6.pth
+2025-09-27 08:49:17,023 - deep_learning.training.trainer - INFO - Epoch   6: Train Loss: 0.6940, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:49:27,712 - deep_learning.training.trainer - INFO - Epoch   7: Train Loss: 0.6940, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:49:38,565 - deep_learning.training.trainer - INFO - Epoch   8: Train Loss: 0.6937, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:49:48,785 - deep_learning.training.trainer - INFO - Epoch   9: Train Loss: 0.6935, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:49:59,968 - deep_learning.training.trainer - INFO - Epoch  10: Train Loss: 0.6931, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:50:11,531 - deep_learning.training.trainer - INFO - Epoch  11: Train Loss: 0.6937, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:50:22,649 - deep_learning.training.trainer - INFO - Epoch  12: Train Loss: 0.6933, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:50:33,516 - deep_learning.training.trainer - INFO - Epoch  13: Train Loss: 0.6934, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:50:44,781 - deep_learning.training.trainer - INFO - Epoch  14: Train Loss: 0.6936, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:50:55,426 - deep_learning.training.trainer - INFO - Epoch  15: Train Loss: 0.6932, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:51:07,159 - deep_learning.training.trainer - INFO - Epoch  16: Train Loss: 0.6934, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:51:17,891 - deep_learning.training.trainer - INFO - Epoch  17: Train Loss: 0.6932, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:51:28,411 - deep_learning.training.trainer - INFO - Epoch  18: Train Loss: 0.6932, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:51:39,582 - deep_learning.training.trainer - INFO - Epoch  19: Train Loss: 0.6933, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:51:50,461 - deep_learning.training.trainer - INFO - Epoch  20: Train Loss: 0.6933, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:52:00,952 - deep_learning.training.trainer - INFO - Epoch  21: Train Loss: 0.6934, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:52:12,015 - deep_learning.training.trainer - INFO - Epoch  22: Train Loss: 0.6932, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:52:23,087 - deep_learning.training.callbacks - INFO - 恢复最佳权重
+2025-09-27 08:52:23,088 - deep_learning.training.trainer - INFO - Epoch  23: Train Loss: 0.6933, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:52:33,906 - deep_learning.training.callbacks - INFO - 恢复最佳权重
+2025-09-27 08:52:33,908 - deep_learning.training.trainer - INFO - Epoch  24: Train Loss: 0.6933, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:52:44,529 - deep_learning.training.callbacks - INFO - 恢复最佳权重
+2025-09-27 08:52:44,530 - deep_learning.training.trainer - INFO - Epoch  25: Train Loss: 0.6933, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:52:55,334 - deep_learning.training.callbacks - INFO - 恢复最佳权重
+2025-09-27 08:52:55,336 - deep_learning.training.trainer - INFO - Epoch  26: Train Loss: 0.6932, Val Loss: 0.6931, LR: 1.00e-04
+2025-09-27 08:52:55,336 - deep_learning.training.trainer - INFO - Early stopping at epoch 26
+2025-09-27 08:52:55,336 - deep_learning.training.callbacks - INFO - 在第 27 个epoch早停
+2025-09-27 08:52:55,336 - deep_learning.training.trainer - INFO - Training completed
+2025-09-27 08:52:55,336 - __main__ - INFO - ==================================================
+2025-09-27 08:52:55,336 - __main__ - INFO - 训练完成!
+2025-09-27 08:52:55,336 - __main__ - INFO - ==================================================
+2025-09-27 08:52:55,337 - __main__ - INFO - 在测试集上评估...
+2025-09-27 08:52:56,581 - __main__ - ERROR - ✗ 训练过程中出错: forward() got an unexpected keyword argument 'y'
+2025-09-27 09:36:47,190 - __main__ - INFO - ==================================================
+2025-09-27 09:36:47,190 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-27 09:36:47,190 - __main__ - INFO - ==================================================
+2025-09-27 09:36:47,190 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-27 09:36:47,190 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 200, 'learning_rate': '3e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 10}, 'validation': {'frequency': 1, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 10, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-27 09:36:48,677 - MDAnalysis.coordinates.AMBER - WARNING - netCDF4 is not available. Writing AMBER ncdf files will be slow.
+2025-09-27 09:36:49,349 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-27 09:36:49,349 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-27 09:36:49,349 - __main__ - INFO - 创建数据集...
+2025-09-27 09:37:24,805 - __main__ - INFO - ✓ 训练数据集大小: 30196
+2025-09-27 09:37:24,805 - __main__ - INFO - ✓ 验证数据集大小: 3772
+2025-09-27 09:37:24,805 - __main__ - INFO - ✓ 测试数据集大小: 3786
+2025-09-27 09:37:24,805 - __main__ - INFO - ✓ 训练批次数: 117
+2025-09-27 09:37:24,805 - __main__ - INFO - ✓ 验证批次数: 15
+2025-09-27 09:37:24,805 - __main__ - INFO - 创建模型: pl_pair_classifier
+2025-09-27 09:37:24,816 - __main__ - INFO - ✓ 模型参数数量: 1,188,353
+2025-09-27 09:37:24,817 - __main__ - INFO - 创建训练器...
+2025-09-27 09:37:24,817 - deep_learning.training.trainer - INFO - Trainer initialized with device: cpu
+2025-09-27 09:37:24,817 - deep_learning.training.trainer - INFO - Model parameters: 1,188,353
+2025-09-27 09:37:24,817 - __main__ - INFO - ✓ 训练器创建完成
+2025-09-27 09:37:24,817 - __main__ - INFO - ==================================================
+2025-09-27 09:37:24,817 - __main__ - INFO - 开始训练...
+2025-09-27 09:37:24,817 - __main__ - INFO - ==================================================
+2025-09-27 09:37:24,817 - deep_learning.training.trainer - INFO - Starting training...
+2025-09-27 09:37:28,894 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_0.pth
+2025-09-27 09:37:28,894 - deep_learning.training.trainer - INFO - Epoch   0: Train Loss: 0.7885, Val Loss: 0.7121, LR: 5.700000e-05
+2025-09-27 09:37:32,759 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_1.pth
+2025-09-27 09:37:32,760 - deep_learning.training.trainer - INFO - Epoch   1: Train Loss: 0.7482, Val Loss: 0.6841, LR: 8.400000e-05
+2025-09-27 09:37:36,716 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_2.pth
+2025-09-27 09:37:36,716 - deep_learning.training.trainer - INFO - Epoch   2: Train Loss: 0.7196, Val Loss: 0.6608, LR: 1.110000e-04
+2025-09-27 09:37:40,616 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_3.pth
+2025-09-27 09:37:40,617 - deep_learning.training.trainer - INFO - Epoch   3: Train Loss: 0.6882, Val Loss: 0.6404, LR: 1.380000e-04
+2025-09-27 09:37:44,556 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_4.pth
+2025-09-27 09:37:44,557 - deep_learning.training.trainer - INFO - Epoch   4: Train Loss: 0.6636, Val Loss: 0.6208, LR: 1.650000e-04
+2025-09-27 09:37:48,687 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_5.pth
+2025-09-27 09:37:48,687 - deep_learning.training.trainer - INFO - Epoch   5: Train Loss: 0.6345, Val Loss: 0.6038, LR: 1.920000e-04
+2025-09-27 09:37:52,863 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_6.pth
+2025-09-27 09:37:52,864 - deep_learning.training.trainer - INFO - Epoch   6: Train Loss: 0.6044, Val Loss: 0.5868, LR: 2.190000e-04
+2025-09-27 09:37:56,675 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_7.pth
+2025-09-27 09:37:56,675 - deep_learning.training.trainer - INFO - Epoch   7: Train Loss: 0.5750, Val Loss: 0.5736, LR: 2.460000e-04
+2025-09-27 09:38:01,115 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_8.pth
+2025-09-27 09:38:01,115 - deep_learning.training.trainer - INFO - Epoch   8: Train Loss: 0.5434, Val Loss: 0.5602, LR: 2.730000e-04
+2025-09-27 09:38:05,776 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_9.pth
+2025-09-27 09:38:05,776 - deep_learning.training.trainer - INFO - Epoch   9: Train Loss: 0.5127, Val Loss: 0.5480, LR: 3.000000e-04
+2025-09-27 09:38:09,616 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_10.pth
+2025-09-27 09:38:09,616 - deep_learning.training.trainer - INFO - Epoch  10: Train Loss: 0.4811, Val Loss: 0.5467, LR: 2.999795e-04
+2025-09-27 09:38:14,241 - deep_learning.training.callbacks - INFO - 保存模型检查点: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_11.pth
+2025-09-27 09:38:14,241 - deep_learning.training.trainer - INFO - Epoch  11: Train Loss: 0.4480, Val Loss: 0.5310, LR: 2.999180e-04
+2025-09-27 09:38:18,399 - deep_learning.training.trainer - INFO - Epoch  12: Train Loss: 0.4121, Val Loss: 0.5357, LR: 2.998155e-04
+2025-09-27 09:38:22,273 - deep_learning.training.trainer - INFO - Epoch  13: Train Loss: 0.3817, Val Loss: 0.5352, LR: 2.996720e-04
+2025-09-27 09:38:26,187 - deep_learning.training.trainer - INFO - Epoch  14: Train Loss: 0.3492, Val Loss: 0.5424, LR: 2.994877e-04
+2025-09-27 09:38:30,339 - deep_learning.training.trainer - INFO - Epoch  15: Train Loss: 0.3237, Val Loss: 0.5387, LR: 2.992624e-04
+2025-09-27 09:38:34,466 - deep_learning.training.trainer - INFO - Epoch  16: Train Loss: 0.2989, Val Loss: 0.5509, LR: 2.989964e-04
+2025-09-27 09:38:38,474 - deep_learning.training.trainer - INFO - Epoch  17: Train Loss: 0.2766, Val Loss: 0.5547, LR: 2.986896e-04
+2025-09-27 09:38:42,794 - deep_learning.training.trainer - INFO - Epoch  18: Train Loss: 0.2548, Val Loss: 0.5641, LR: 2.983422e-04
+2025-09-27 09:38:47,703 - deep_learning.training.trainer - INFO - Epoch  19: Train Loss: 0.2338, Val Loss: 0.5734, LR: 2.979542e-04
+2025-09-27 09:38:52,447 - deep_learning.training.trainer - INFO - Epoch  20: Train Loss: 0.2196, Val Loss: 0.5811, LR: 2.975258e-04
+2025-09-27 09:38:56,559 - deep_learning.training.trainer - INFO - Epoch  21: Train Loss: 0.2036, Val Loss: 0.5957, LR: 2.970570e-04
+2025-09-27 09:39:00,415 - deep_learning.training.trainer - INFO - Epoch  22: Train Loss: 0.1892, Val Loss: 0.5987, LR: 2.965480e-04
+2025-09-27 09:39:04,447 - deep_learning.training.trainer - INFO - Epoch  23: Train Loss: 0.1774, Val Loss: 0.6145, LR: 2.959990e-04
+2025-09-27 09:39:08,509 - deep_learning.training.trainer - INFO - Epoch  24: Train Loss: 0.1666, Val Loss: 0.6385, LR: 2.954100e-04
+2025-09-27 09:39:12,403 - deep_learning.training.trainer - INFO - Epoch  25: Train Loss: 0.1569, Val Loss: 0.6437, LR: 2.947813e-04
+2025-09-27 09:39:16,298 - deep_learning.training.trainer - INFO - Epoch  26: Train Loss: 0.1446, Val Loss: 0.6478, LR: 2.941131e-04
+2025-09-27 09:39:20,339 - deep_learning.training.trainer - INFO - Epoch  27: Train Loss: 0.1438, Val Loss: 0.6612, LR: 2.934054e-04
+2025-09-27 09:39:23,996 - deep_learning.training.trainer - INFO - Epoch  28: Train Loss: 0.1322, Val Loss: 0.6710, LR: 2.926585e-04
+2025-09-27 09:39:27,604 - deep_learning.training.trainer - INFO - Epoch  29: Train Loss: 0.1257, Val Loss: 0.6914, LR: 2.918726e-04
+2025-09-27 09:39:31,715 - deep_learning.training.trainer - INFO - Epoch  30: Train Loss: 0.1176, Val Loss: 0.6919, LR: 2.910479e-04
+2025-09-27 09:39:35,489 - deep_learning.training.callbacks - INFO - 恢复最佳权重
+2025-09-27 09:39:35,490 - deep_learning.training.trainer - INFO - Epoch  31: Train Loss: 0.1174, Val Loss: 0.7021, LR: 2.901847e-04
+2025-09-27 09:39:35,491 - deep_learning.training.trainer - INFO - Early stopping at epoch 31
+2025-09-27 09:39:35,491 - deep_learning.training.callbacks - INFO - 在第 32 个epoch早停
+2025-09-27 09:39:35,491 - deep_learning.training.trainer - INFO - Training completed
+2025-09-27 09:39:35,491 - __main__ - INFO - ==================================================
+2025-09-27 09:39:35,491 - __main__ - INFO - 训练完成!
+2025-09-27 09:39:35,491 - __main__ - INFO - ==================================================
+2025-09-27 09:39:35,491 - __main__ - INFO - 在测试集上评估...
+2025-09-27 09:39:36,618 - __main__ - ERROR - ✗ 训练过程中出错: forward() got an unexpected keyword argument 'y'
+2025-09-27 10:35:08,992 - __main__ - INFO - ==================================================
+2025-09-27 10:35:08,992 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-27 10:35:08,992 - __main__ - INFO - ==================================================
+2025-09-27 10:35:08,992 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-27 10:35:08,992 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 200, 'learning_rate': '3e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 10}, 'validation': {'frequency': 1, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 10, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-27 10:35:09,985 - __main__ - ERROR - ✗ 训练过程中出错: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
+2025-09-27 10:41:38,168 - __main__ - INFO - ==================================================
+2025-09-27 10:41:38,168 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-27 10:41:38,168 - __main__ - INFO - ==================================================
+2025-09-27 10:41:38,168 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-27 10:41:38,168 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 512, 'num_layers': 3, 'dropout': 0.2, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 200, 'learning_rate': '3e-4', 'weight_decay': '1e-5', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 10}, 'validation': {'frequency': 1, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 10, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-27 10:41:40,105 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-27 10:41:40,105 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-27 10:41:40,105 - __main__ - INFO - 创建数据集...
+2025-09-27 10:42:15,972 - __main__ - INFO - ✓ 训练数据集大小: 30196
+2025-09-27 10:42:15,972 - __main__ - INFO - ✓ 验证数据集大小: 3772
+2025-09-27 10:42:15,972 - __main__ - INFO - ✓ 测试数据集大小: 3786
+2025-09-27 10:42:15,973 - __main__ - INFO - ✓ 训练批次数: 117
+2025-09-27 10:42:15,973 - __main__ - INFO - ✓ 验证批次数: 15
+2025-09-27 10:42:15,973 - __main__ - INFO - 创建模型: pl_pair_classifier
+2025-09-27 10:42:15,984 - __main__ - INFO - ✓ 模型参数数量: 1,188,353
+2025-09-27 10:42:15,984 - __main__ - INFO - 创建训练器...
+2025-09-27 10:42:15,984 - deep_learning.training.trainer - INFO - Trainer initialized with device: cpu
+2025-09-27 10:42:15,984 - deep_learning.training.trainer - INFO - Model parameters: 1,188,353
+2025-09-27 10:42:15,984 - __main__ - INFO - ✓ 训练器创建完成
+2025-09-27 10:42:15,984 - __main__ - INFO - ==================================================
+2025-09-27 10:42:15,984 - __main__ - INFO - 开始训练...
+2025-09-27 10:42:15,984 - __main__ - INFO - ==================================================
+2025-09-27 10:42:15,984 - deep_learning.training.trainer - INFO - Starting training...
+2025-09-27 10:42:56,578 - deep_learning.training.trainer - INFO - Epoch   0: Train Loss: 0.7782, Val Loss: 0.7175, LR: 5.700000e-05
+2025-09-27 10:43:37,755 - deep_learning.training.trainer - INFO - Epoch   1: Train Loss: 0.7454, Val Loss: 0.6888, LR: 8.400000e-05
+2025-09-27 10:44:18,615 - deep_learning.training.trainer - INFO - Epoch   2: Train Loss: 0.7165, Val Loss: 0.6665, LR: 1.110000e-04
+2025-09-27 10:44:59,251 - deep_learning.training.trainer - INFO - Epoch   3: Train Loss: 0.6851, Val Loss: 0.6466, LR: 1.380000e-04
+2025-09-27 10:45:40,399 - deep_learning.training.trainer - INFO - Epoch   4: Train Loss: 0.6596, Val Loss: 0.6265, LR: 1.650000e-04
+2025-09-27 10:46:21,555 - deep_learning.training.trainer - INFO - Epoch   5: Train Loss: 0.6358, Val Loss: 0.6083, LR: 1.920000e-04
+2025-09-27 10:47:02,568 - deep_learning.training.trainer - INFO - Epoch   6: Train Loss: 0.6061, Val Loss: 0.5924, LR: 2.190000e-04
+2025-09-27 10:47:43,908 - deep_learning.training.trainer - INFO - Epoch   7: Train Loss: 0.5793, Val Loss: 0.5777, LR: 2.460000e-04
+2025-09-27 10:48:24,192 - deep_learning.training.trainer - INFO - Epoch   8: Train Loss: 0.5481, Val Loss: 0.5623, LR: 2.730000e-04
+2025-09-27 10:49:05,179 - deep_learning.training.trainer - INFO - Epoch   9: Train Loss: 0.5171, Val Loss: 0.5532, LR: 3.000000e-04
+2025-09-27 10:49:45,278 - deep_learning.training.trainer - INFO - Epoch  10: Train Loss: 0.4862, Val Loss: 0.5458, LR: 2.999795e-04
+2025-09-27 10:50:25,829 - deep_learning.training.trainer - INFO - Epoch  11: Train Loss: 0.4519, Val Loss: 0.5317, LR: 2.999180e-04
+2025-09-27 10:51:05,713 - deep_learning.training.trainer - INFO - Epoch  12: Train Loss: 0.4174, Val Loss: 0.5274, LR: 2.998155e-04
+2025-09-27 10:51:46,384 - deep_learning.training.trainer - INFO - Epoch  13: Train Loss: 0.3826, Val Loss: 0.5272, LR: 2.996720e-04
+2025-09-27 10:52:27,163 - deep_learning.training.trainer - INFO - Epoch  14: Train Loss: 0.3543, Val Loss: 0.5297, LR: 2.994877e-04
+2025-09-27 10:53:07,897 - deep_learning.training.trainer - INFO - Epoch  15: Train Loss: 0.3268, Val Loss: 0.5324, LR: 2.992624e-04
+2025-09-27 10:53:48,537 - deep_learning.training.trainer - INFO - Epoch  16: Train Loss: 0.2990, Val Loss: 0.5343, LR: 2.989964e-04
+2025-09-27 10:54:29,058 - deep_learning.training.trainer - INFO - Epoch  17: Train Loss: 0.2773, Val Loss: 0.5431, LR: 2.986896e-04
+2025-09-27 10:55:10,087 - deep_learning.training.trainer - INFO - Epoch  18: Train Loss: 0.2587, Val Loss: 0.5498, LR: 2.983422e-04
+2025-09-27 10:55:51,149 - deep_learning.training.trainer - INFO - Epoch  19: Train Loss: 0.2384, Val Loss: 0.5604, LR: 2.979542e-04
+2025-09-27 10:56:31,112 - deep_learning.training.trainer - INFO - Epoch  20: Train Loss: 0.2215, Val Loss: 0.5667, LR: 2.975258e-04
+2025-09-27 10:57:11,675 - deep_learning.training.trainer - INFO - Epoch  21: Train Loss: 0.2044, Val Loss: 0.5865, LR: 2.970570e-04
+2025-09-27 10:57:51,869 - deep_learning.training.trainer - INFO - Epoch  22: Train Loss: 0.1886, Val Loss: 0.5844, LR: 2.965480e-04
+2025-09-27 10:58:32,804 - deep_learning.training.trainer - INFO - Epoch  23: Train Loss: 0.1761, Val Loss: 0.6043, LR: 2.959990e-04
+2025-09-27 10:59:14,142 - deep_learning.training.trainer - INFO - Epoch  24: Train Loss: 0.1665, Val Loss: 0.6131, LR: 2.954100e-04
+2025-09-27 10:59:55,376 - deep_learning.training.trainer - INFO - Epoch  25: Train Loss: 0.1601, Val Loss: 0.6284, LR: 2.947813e-04
+2025-09-27 11:00:36,831 - deep_learning.training.trainer - INFO - Epoch  26: Train Loss: 0.1497, Val Loss: 0.6373, LR: 2.941131e-04
+2025-09-27 11:01:18,349 - deep_learning.training.trainer - INFO - Epoch  27: Train Loss: 0.1415, Val Loss: 0.6481, LR: 2.934054e-04
+2025-09-27 11:01:58,910 - deep_learning.training.trainer - INFO - Epoch  28: Train Loss: 0.1321, Val Loss: 0.6589, LR: 2.926585e-04
+2025-09-27 11:02:39,590 - deep_learning.training.trainer - INFO - Epoch  29: Train Loss: 0.1259, Val Loss: 0.6600, LR: 2.918726e-04
+2025-09-27 11:03:20,435 - deep_learning.training.trainer - INFO - Epoch  30: Train Loss: 0.1179, Val Loss: 0.6776, LR: 2.910479e-04
+2025-09-27 11:04:01,070 - deep_learning.training.trainer - INFO - Epoch  31: Train Loss: 0.1154, Val Loss: 0.6870, LR: 2.901847e-04
+2025-09-27 11:04:41,405 - deep_learning.training.trainer - INFO - Epoch  32: Train Loss: 0.1052, Val Loss: 0.6902, LR: 2.892831e-04
+2025-09-27 11:05:21,568 - deep_learning.training.trainer - INFO - Epoch  33: Train Loss: 0.1085, Val Loss: 0.7077, LR: 2.883435e-04
+2025-09-27 11:06:02,256 - deep_learning.training.trainer - INFO - Epoch  34: Train Loss: 0.0995, Val Loss: 0.7079, LR: 2.873660e-04
+2025-09-27 11:06:42,573 - deep_learning.training.trainer - INFO - Epoch  35: Train Loss: 0.0947, Val Loss: 0.7267, LR: 2.863510e-04
+2025-09-27 11:07:23,272 - deep_learning.training.trainer - INFO - Epoch  36: Train Loss: 0.0943, Val Loss: 0.7424, LR: 2.852987e-04
+2025-09-27 11:08:04,009 - deep_learning.training.trainer - INFO - Epoch  37: Train Loss: 0.0884, Val Loss: 0.7379, LR: 2.842094e-04
+2025-09-27 11:08:45,501 - deep_learning.training.trainer - INFO - Epoch  38: Train Loss: 0.0864, Val Loss: 0.7384, LR: 2.830834e-04
+2025-09-27 11:09:25,837 - deep_learning.training.trainer - INFO - Epoch  39: Train Loss: 0.0798, Val Loss: 0.7642, LR: 2.819211e-04
+2025-09-27 11:10:06,342 - deep_learning.training.trainer - INFO - Epoch  40: Train Loss: 0.0818, Val Loss: 0.7733, LR: 2.807226e-04
+2025-09-27 11:10:46,840 - deep_learning.training.trainer - INFO - Epoch  41: Train Loss: 0.0777, Val Loss: 0.7834, LR: 2.794885e-04
+2025-09-27 11:11:28,175 - deep_learning.training.trainer - INFO - Epoch  42: Train Loss: 0.0735, Val Loss: 0.7949, LR: 2.782189e-04
+2025-09-27 11:12:08,613 - deep_learning.training.trainer - INFO - Epoch  43: Train Loss: 0.0697, Val Loss: 0.8091, LR: 2.769143e-04
+2025-09-27 11:12:49,675 - deep_learning.training.trainer - INFO - Epoch  44: Train Loss: 0.0684, Val Loss: 0.8186, LR: 2.755750e-04
+2025-09-27 11:13:29,388 - deep_learning.training.trainer - INFO - Epoch  45: Train Loss: 0.0678, Val Loss: 0.8214, LR: 2.742013e-04
+2025-09-27 11:14:09,804 - deep_learning.training.trainer - INFO - Epoch  46: Train Loss: 0.0640, Val Loss: 0.8093, LR: 2.727937e-04
+2025-09-27 11:14:51,564 - deep_learning.training.trainer - INFO - Epoch  47: Train Loss: 0.0597, Val Loss: 0.8189, LR: 2.713525e-04
+2025-09-27 11:15:31,231 - deep_learning.training.trainer - INFO - Epoch  48: Train Loss: 0.0603, Val Loss: 0.8383, LR: 2.698782e-04
+2025-09-27 11:16:11,560 - deep_learning.training.trainer - INFO - Epoch  49: Train Loss: 0.0576, Val Loss: 0.8360, LR: 2.683711e-04
+2025-09-27 11:16:51,768 - deep_learning.training.trainer - INFO - Epoch  50: Train Loss: 0.0576, Val Loss: 0.8447, LR: 2.668316e-04
+2025-09-27 11:17:32,666 - deep_learning.training.trainer - INFO - Epoch  51: Train Loss: 0.0537, Val Loss: 0.8586, LR: 2.652602e-04
+2025-09-27 11:18:12,975 - deep_learning.training.trainer - INFO - Epoch  52: Train Loss: 0.0527, Val Loss: 0.8761, LR: 2.636572e-04
+2025-09-27 11:18:54,101 - deep_learning.training.trainer - INFO - Epoch  53: Train Loss: 0.0518, Val Loss: 0.9016, LR: 2.620232e-04
+2025-09-27 11:19:34,981 - deep_learning.training.trainer - INFO - Epoch  54: Train Loss: 0.0513, Val Loss: 0.8910, LR: 2.603586e-04
+2025-09-27 11:20:15,876 - deep_learning.training.trainer - INFO - Epoch  55: Train Loss: 0.0483, Val Loss: 0.8816, LR: 2.586638e-04
+2025-09-27 11:20:56,607 - deep_learning.training.trainer - INFO - Epoch  56: Train Loss: 0.0475, Val Loss: 0.8979, LR: 2.569393e-04
+2025-09-27 11:21:36,704 - deep_learning.training.trainer - INFO - Epoch  57: Train Loss: 0.0458, Val Loss: 0.9149, LR: 2.551855e-04
+2025-09-27 11:22:16,416 - deep_learning.training.trainer - INFO - Epoch  58: Train Loss: 0.0497, Val Loss: 0.9348, LR: 2.534030e-04
+2025-09-27 11:22:57,469 - deep_learning.training.trainer - INFO - Epoch  59: Train Loss: 0.0442, Val Loss: 0.9284, LR: 2.515922e-04
+2025-09-27 11:23:37,718 - deep_learning.training.trainer - INFO - Epoch  60: Train Loss: 0.0453, Val Loss: 0.9429, LR: 2.497537e-04
+2025-09-27 11:24:19,064 - deep_learning.training.trainer - INFO - Epoch  61: Train Loss: 0.0437, Val Loss: 0.9356, LR: 2.478879e-04
+2025-09-27 11:25:00,172 - deep_learning.training.trainer - INFO - Epoch  62: Train Loss: 0.0443, Val Loss: 0.9507, LR: 2.459953e-04
+2025-09-27 11:25:40,681 - deep_learning.training.trainer - INFO - Epoch  63: Train Loss: 0.0395, Val Loss: 0.9612, LR: 2.440765e-04
+2025-09-27 11:26:21,196 - deep_learning.training.trainer - INFO - Epoch  64: Train Loss: 0.0400, Val Loss: 0.9756, LR: 2.421319e-04
+2025-09-27 11:27:01,522 - deep_learning.training.trainer - INFO - Epoch  65: Train Loss: 0.0399, Val Loss: 0.9845, LR: 2.401622e-04
+2025-09-27 11:27:41,660 - deep_learning.training.trainer - INFO - Epoch  66: Train Loss: 0.0377, Val Loss: 0.9700, LR: 2.381678e-04
+2025-09-27 11:28:23,029 - deep_learning.training.trainer - INFO - Epoch  67: Train Loss: 0.0375, Val Loss: 0.9703, LR: 2.361493e-04
+2025-09-27 11:29:03,661 - deep_learning.training.trainer - INFO - Epoch  68: Train Loss: 0.0368, Val Loss: 0.9489, LR: 2.341073e-04
+2025-09-27 11:29:44,123 - deep_learning.training.trainer - INFO - Epoch  69: Train Loss: 0.0346, Val Loss: 0.9739, LR: 2.320422e-04
+2025-09-27 11:30:25,231 - deep_learning.training.trainer - INFO - Epoch  70: Train Loss: 0.0349, Val Loss: 0.9942, LR: 2.299548e-04
+2025-09-27 11:31:06,527 - deep_learning.training.trainer - INFO - Epoch  71: Train Loss: 0.0351, Val Loss: 0.9933, LR: 2.278454e-04
+2025-09-27 11:31:46,884 - deep_learning.training.trainer - INFO - Epoch  72: Train Loss: 0.0328, Val Loss: 1.0021, LR: 2.257148e-04
+2025-09-27 11:32:27,255 - deep_learning.training.trainer - INFO - Epoch  73: Train Loss: 0.0317, Val Loss: 1.0072, LR: 2.235635e-04
+2025-09-27 11:33:08,437 - deep_learning.training.trainer - INFO - Epoch  74: Train Loss: 0.0313, Val Loss: 1.0059, LR: 2.213921e-04
+2025-09-27 11:33:49,704 - deep_learning.training.trainer - INFO - Epoch  75: Train Loss: 0.0294, Val Loss: 1.0267, LR: 2.192012e-04
+2025-09-27 11:34:30,322 - deep_learning.training.trainer - INFO - Epoch  76: Train Loss: 0.0307, Val Loss: 1.0406, LR: 2.169913e-04
+2025-09-27 11:35:11,029 - deep_learning.training.trainer - INFO - Epoch  77: Train Loss: 0.0308, Val Loss: 1.0397, LR: 2.147632e-04
+2025-09-27 11:35:52,099 - deep_learning.training.trainer - INFO - Epoch  78: Train Loss: 0.0312, Val Loss: 1.0618, LR: 2.125173e-04
+2025-09-27 11:36:32,906 - deep_learning.training.trainer - INFO - Epoch  79: Train Loss: 0.0289, Val Loss: 1.0311, LR: 2.102543e-04
+2025-09-27 11:37:14,269 - deep_learning.training.trainer - INFO - Epoch  80: Train Loss: 0.0282, Val Loss: 1.0437, LR: 2.079749e-04
+2025-09-27 11:37:55,218 - deep_learning.training.trainer - INFO - Epoch  81: Train Loss: 0.0296, Val Loss: 1.0588, LR: 2.056796e-04
+2025-09-27 11:38:36,457 - deep_learning.training.trainer - INFO - Epoch  82: Train Loss: 0.0288, Val Loss: 1.0591, LR: 2.033691e-04
+2025-09-27 11:39:16,034 - deep_learning.training.trainer - INFO - Epoch  83: Train Loss: 0.0278, Val Loss: 1.0595, LR: 2.010440e-04
+2025-09-27 11:39:56,893 - deep_learning.training.trainer - INFO - Epoch  84: Train Loss: 0.0246, Val Loss: 1.0597, LR: 1.987049e-04
+2025-09-27 11:40:37,821 - deep_learning.training.trainer - INFO - Epoch  85: Train Loss: 0.0256, Val Loss: 1.0665, LR: 1.963525e-04
+2025-09-27 11:41:17,646 - deep_learning.training.trainer - INFO - Epoch  86: Train Loss: 0.0256, Val Loss: 1.0575, LR: 1.939875e-04
+2025-09-27 11:41:57,978 - deep_learning.training.trainer - INFO - Epoch  87: Train Loss: 0.0253, Val Loss: 1.0736, LR: 1.916104e-04
+2025-09-27 11:42:38,689 - deep_learning.training.trainer - INFO - Epoch  88: Train Loss: 0.0242, Val Loss: 1.0670, LR: 1.892220e-04
+2025-09-27 11:43:19,412 - deep_learning.training.trainer - INFO - Epoch  89: Train Loss: 0.0230, Val Loss: 1.0798, LR: 1.868228e-04
+2025-09-27 11:44:00,241 - deep_learning.training.trainer - INFO - Epoch  90: Train Loss: 0.0215, Val Loss: 1.0861, LR: 1.844136e-04
+2025-09-27 11:44:40,733 - deep_learning.training.trainer - INFO - Epoch  91: Train Loss: 0.0217, Val Loss: 1.0808, LR: 1.819949e-04
+2025-09-27 11:45:21,920 - deep_learning.training.trainer - INFO - Epoch  92: Train Loss: 0.0213, Val Loss: 1.1028, LR: 1.795676e-04
+2025-09-27 11:46:01,702 - deep_learning.training.trainer - INFO - Epoch  93: Train Loss: 0.0212, Val Loss: 1.0991, LR: 1.771321e-04
+2025-09-27 11:46:41,975 - deep_learning.training.trainer - INFO - Epoch  94: Train Loss: 0.0193, Val Loss: 1.1154, LR: 1.746892e-04
+2025-09-27 11:47:23,494 - deep_learning.training.trainer - INFO - Epoch  95: Train Loss: 0.0205, Val Loss: 1.1315, LR: 1.722395e-04
+2025-09-27 11:48:04,011 - deep_learning.training.trainer - INFO - Epoch  96: Train Loss: 0.0208, Val Loss: 1.1062, LR: 1.697838e-04
+2025-09-27 11:48:45,341 - deep_learning.training.trainer - INFO - Epoch  97: Train Loss: 0.0221, Val Loss: 1.1135, LR: 1.673227e-04
+2025-09-27 11:49:26,275 - deep_learning.training.trainer - INFO - Epoch  98: Train Loss: 0.0201, Val Loss: 1.1303, LR: 1.648568e-04
+2025-09-27 11:50:06,400 - deep_learning.training.trainer - INFO - Epoch  99: Train Loss: 0.0177, Val Loss: 1.1392, LR: 1.623869e-04
+2025-09-27 11:50:46,273 - deep_learning.training.trainer - INFO - Epoch 100: Train Loss: 0.0191, Val Loss: 1.1268, LR: 1.599136e-04
+2025-09-27 11:51:26,549 - deep_learning.training.trainer - INFO - Epoch 101: Train Loss: 0.0180, Val Loss: 1.1508, LR: 1.574376e-04
+2025-09-27 11:52:06,092 - deep_learning.training.trainer - INFO - Epoch 102: Train Loss: 0.0156, Val Loss: 1.1595, LR: 1.549595e-04
+2025-09-27 11:52:46,330 - deep_learning.training.trainer - INFO - Epoch 103: Train Loss: 0.0186, Val Loss: 1.1749, LR: 1.524801e-04
+2025-09-27 11:53:26,527 - deep_learning.training.trainer - INFO - Epoch 104: Train Loss: 0.0168, Val Loss: 1.1758, LR: 1.500000e-04
+2025-09-27 11:54:07,223 - deep_learning.training.trainer - INFO - Epoch 105: Train Loss: 0.0179, Val Loss: 1.1687, LR: 1.475199e-04
+2025-09-27 11:54:48,169 - deep_learning.training.trainer - INFO - Epoch 106: Train Loss: 0.0177, Val Loss: 1.1707, LR: 1.450405e-04
+2025-09-27 11:55:29,454 - deep_learning.training.trainer - INFO - Epoch 107: Train Loss: 0.0166, Val Loss: 1.1605, LR: 1.425624e-04
+2025-09-27 11:56:08,590 - deep_learning.training.trainer - INFO - Epoch 108: Train Loss: 0.0146, Val Loss: 1.1711, LR: 1.400864e-04
+2025-09-27 11:56:49,666 - deep_learning.training.trainer - INFO - Epoch 109: Train Loss: 0.0184, Val Loss: 1.1542, LR: 1.376131e-04
+2025-09-27 11:57:30,558 - deep_learning.training.trainer - INFO - Epoch 110: Train Loss: 0.0156, Val Loss: 1.1517, LR: 1.351432e-04
+2025-09-27 11:58:11,420 - deep_learning.training.trainer - INFO - Epoch 111: Train Loss: 0.0170, Val Loss: 1.1657, LR: 1.326773e-04
+2025-09-27 11:58:51,039 - deep_learning.training.trainer - INFO - Epoch 112: Train Loss: 0.0139, Val Loss: 1.1565, LR: 1.302162e-04
+2025-09-27 11:59:31,373 - deep_learning.training.callbacks - INFO - 保存最佳快照: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_113.pth
+2025-09-27 11:59:31,373 - deep_learning.training.trainer - INFO - Epoch 113: Train Loss: 0.0148, Val Loss: 1.1685, LR: 1.277605e-04
+2025-09-27 12:00:11,670 - deep_learning.training.trainer - INFO - Epoch 114: Train Loss: 0.0145, Val Loss: 1.2062, LR: 1.253108e-04
+2025-09-27 12:00:52,118 - deep_learning.training.trainer - INFO - Epoch 115: Train Loss: 0.0146, Val Loss: 1.1904, LR: 1.228679e-04
+2025-09-27 12:01:31,954 - deep_learning.training.trainer - INFO - Epoch 116: Train Loss: 0.0130, Val Loss: 1.1941, LR: 1.204324e-04
+2025-09-27 12:02:12,072 - deep_learning.training.trainer - INFO - Epoch 117: Train Loss: 0.0138, Val Loss: 1.1934, LR: 1.180051e-04
+2025-09-27 12:02:52,860 - deep_learning.training.trainer - INFO - Epoch 118: Train Loss: 0.0126, Val Loss: 1.1918, LR: 1.155864e-04
+2025-09-27 12:03:34,367 - deep_learning.training.trainer - INFO - Epoch 119: Train Loss: 0.0136, Val Loss: 1.2246, LR: 1.131772e-04
+2025-09-27 12:04:15,000 - deep_learning.training.trainer - INFO - Epoch 120: Train Loss: 0.0135, Val Loss: 1.1987, LR: 1.107780e-04
+2025-09-27 12:04:55,359 - deep_learning.training.trainer - INFO - Epoch 121: Train Loss: 0.0125, Val Loss: 1.2027, LR: 1.083896e-04
+2025-09-27 12:05:36,105 - deep_learning.training.trainer - INFO - Epoch 122: Train Loss: 0.0113, Val Loss: 1.2113, LR: 1.060125e-04
+2025-09-27 12:06:16,769 - deep_learning.training.trainer - INFO - Epoch 123: Train Loss: 0.0120, Val Loss: 1.2131, LR: 1.036475e-04
+2025-09-27 12:06:56,930 - deep_learning.training.trainer - INFO - Epoch 124: Train Loss: 0.0106, Val Loss: 1.2054, LR: 1.012951e-04
+2025-09-27 12:07:37,730 - deep_learning.training.trainer - INFO - Epoch 125: Train Loss: 0.0109, Val Loss: 1.2120, LR: 9.895602e-05
+2025-09-27 12:08:18,254 - deep_learning.training.trainer - INFO - Epoch 126: Train Loss: 0.0101, Val Loss: 1.2163, LR: 9.663092e-05
+2025-09-27 12:08:58,130 - deep_learning.training.trainer - INFO - Epoch 127: Train Loss: 0.0105, Val Loss: 1.2083, LR: 9.432041e-05
+2025-09-27 12:09:37,041 - deep_learning.training.trainer - INFO - Epoch 128: Train Loss: 0.0116, Val Loss: 1.2155, LR: 9.202512e-05
+2025-09-27 12:10:16,486 - deep_learning.training.trainer - INFO - Epoch 129: Train Loss: 0.0118, Val Loss: 1.2200, LR: 8.974569e-05
+2025-09-27 12:10:55,825 - deep_learning.training.trainer - INFO - Epoch 130: Train Loss: 0.0107, Val Loss: 1.2386, LR: 8.748272e-05
+2025-09-27 12:11:36,033 - deep_learning.training.trainer - INFO - Epoch 131: Train Loss: 0.0099, Val Loss: 1.2226, LR: 8.523685e-05
+2025-09-27 12:12:16,585 - deep_learning.training.trainer - INFO - Epoch 132: Train Loss: 0.0110, Val Loss: 1.2405, LR: 8.300868e-05
+2025-09-27 12:12:56,944 - deep_learning.training.trainer - INFO - Epoch 133: Train Loss: 0.0104, Val Loss: 1.2500, LR: 8.079883e-05
+2025-09-27 12:13:37,756 - deep_learning.training.trainer - INFO - Epoch 134: Train Loss: 0.0095, Val Loss: 1.2510, LR: 7.860789e-05
+2025-09-27 12:14:17,504 - deep_learning.training.trainer - INFO - Epoch 135: Train Loss: 0.0083, Val Loss: 1.2484, LR: 7.643647e-05
+2025-09-27 12:14:58,107 - deep_learning.training.trainer - INFO - Epoch 136: Train Loss: 0.0089, Val Loss: 1.2577, LR: 7.428517e-05
+2025-09-27 12:15:38,943 - deep_learning.training.trainer - INFO - Epoch 137: Train Loss: 0.0087, Val Loss: 1.2522, LR: 7.215456e-05
+2025-09-27 12:16:19,925 - deep_learning.training.trainer - INFO - Epoch 138: Train Loss: 0.0083, Val Loss: 1.2507, LR: 7.004524e-05
+2025-09-27 12:16:59,514 - deep_learning.training.trainer - INFO - Epoch 139: Train Loss: 0.0081, Val Loss: 1.2564, LR: 6.795778e-05
+2025-09-27 12:17:39,014 - deep_learning.training.trainer - INFO - Epoch 140: Train Loss: 0.0093, Val Loss: 1.2521, LR: 6.589274e-05
+2025-09-27 12:18:20,381 - deep_learning.training.trainer - INFO - Epoch 141: Train Loss: 0.0083, Val Loss: 1.2533, LR: 6.385070e-05
+2025-09-27 12:19:01,140 - deep_learning.training.trainer - INFO - Epoch 142: Train Loss: 0.0078, Val Loss: 1.2344, LR: 6.183221e-05
+2025-09-27 12:19:41,792 - deep_learning.training.trainer - INFO - Epoch 143: Train Loss: 0.0071, Val Loss: 1.2472, LR: 5.983783e-05
+2025-09-27 12:20:22,058 - deep_learning.training.trainer - INFO - Epoch 144: Train Loss: 0.0088, Val Loss: 1.2482, LR: 5.786809e-05
+2025-09-27 12:21:03,395 - deep_learning.training.trainer - INFO - Epoch 145: Train Loss: 0.0079, Val Loss: 1.2496, LR: 5.592355e-05
+2025-09-27 12:21:42,721 - deep_learning.training.trainer - INFO - Epoch 146: Train Loss: 0.0069, Val Loss: 1.2569, LR: 5.400472e-05
+2025-09-27 12:22:22,734 - deep_learning.training.trainer - INFO - Epoch 147: Train Loss: 0.0076, Val Loss: 1.2455, LR: 5.211214e-05
+2025-09-27 12:23:04,164 - deep_learning.training.trainer - INFO - Epoch 148: Train Loss: 0.0083, Val Loss: 1.2522, LR: 5.024631e-05
+2025-09-27 12:23:44,188 - deep_learning.training.trainer - INFO - Epoch 149: Train Loss: 0.0074, Val Loss: 1.2763, LR: 4.840776e-05
+2025-09-27 12:24:24,788 - deep_learning.training.trainer - INFO - Epoch 150: Train Loss: 0.0071, Val Loss: 1.2709, LR: 4.659699e-05
+2025-09-27 12:25:05,522 - deep_learning.training.trainer - INFO - Epoch 151: Train Loss: 0.0064, Val Loss: 1.2726, LR: 4.481448e-05
+2025-09-27 12:25:46,481 - deep_learning.training.trainer - INFO - Epoch 152: Train Loss: 0.0066, Val Loss: 1.2647, LR: 4.306073e-05
+2025-09-27 12:26:27,801 - deep_learning.training.trainer - INFO - Epoch 153: Train Loss: 0.0071, Val Loss: 1.2777, LR: 4.133622e-05
+2025-09-27 12:27:07,936 - deep_learning.training.trainer - INFO - Epoch 154: Train Loss: 0.0072, Val Loss: 1.2786, LR: 3.964141e-05
+2025-09-27 12:27:47,136 - deep_learning.training.trainer - INFO - Epoch 155: Train Loss: 0.0065, Val Loss: 1.2900, LR: 3.797678e-05
+2025-09-27 12:28:28,155 - deep_learning.training.trainer - INFO - Epoch 156: Train Loss: 0.0062, Val Loss: 1.2689, LR: 3.634277e-05
+2025-09-27 12:29:07,652 - deep_learning.training.trainer - INFO - Epoch 157: Train Loss: 0.0063, Val Loss: 1.2740, LR: 3.473983e-05
+2025-09-27 12:29:49,745 - deep_learning.training.trainer - INFO - Epoch 158: Train Loss: 0.0064, Val Loss: 1.2721, LR: 3.316841e-05
+2025-09-27 12:30:30,875 - deep_learning.training.trainer - INFO - Epoch 159: Train Loss: 0.0060, Val Loss: 1.2738, LR: 3.162892e-05
+2025-09-27 12:31:10,237 - deep_learning.training.trainer - INFO - Epoch 160: Train Loss: 0.0059, Val Loss: 1.2783, LR: 3.012180e-05
+2025-09-27 12:31:50,675 - deep_learning.training.trainer - INFO - Epoch 161: Train Loss: 0.0058, Val Loss: 1.2815, LR: 2.864745e-05
+2025-09-27 12:32:32,137 - deep_learning.training.trainer - INFO - Epoch 162: Train Loss: 0.0060, Val Loss: 1.2713, LR: 2.720628e-05
+2025-09-27 12:33:13,741 - deep_learning.training.trainer - INFO - Epoch 163: Train Loss: 0.0056, Val Loss: 1.2863, LR: 2.579868e-05
+2025-09-27 12:33:53,703 - deep_learning.training.trainer - INFO - Epoch 164: Train Loss: 0.0063, Val Loss: 1.2811, LR: 2.442503e-05
+2025-09-27 12:34:34,640 - deep_learning.training.trainer - INFO - Epoch 165: Train Loss: 0.0056, Val Loss: 1.2830, LR: 2.308571e-05
+2025-09-27 12:35:16,152 - deep_learning.training.trainer - INFO - Epoch 166: Train Loss: 0.0062, Val Loss: 1.2924, LR: 2.178109e-05
+2025-09-27 12:35:56,527 - deep_learning.training.trainer - INFO - Epoch 167: Train Loss: 0.0054, Val Loss: 1.2819, LR: 2.051153e-05
+2025-09-27 12:36:36,944 - deep_learning.training.trainer - INFO - Epoch 168: Train Loss: 0.0061, Val Loss: 1.2957, LR: 1.927736e-05
+2025-09-27 12:37:16,927 - deep_learning.training.trainer - INFO - Epoch 169: Train Loss: 0.0051, Val Loss: 1.2956, LR: 1.807894e-05
+2025-09-27 12:37:56,229 - deep_learning.training.trainer - INFO - Epoch 170: Train Loss: 0.0052, Val Loss: 1.2944, LR: 1.691658e-05
+2025-09-27 12:38:36,003 - deep_learning.training.trainer - INFO - Epoch 171: Train Loss: 0.0050, Val Loss: 1.2884, LR: 1.579060e-05
+2025-09-27 12:39:15,343 - deep_learning.training.trainer - INFO - Epoch 172: Train Loss: 0.0060, Val Loss: 1.2842, LR: 1.470132e-05
+2025-09-27 12:39:54,755 - deep_learning.training.trainer - INFO - Epoch 173: Train Loss: 0.0056, Val Loss: 1.3060, LR: 1.364902e-05
+2025-09-27 12:40:34,460 - deep_learning.training.trainer - INFO - Epoch 174: Train Loss: 0.0064, Val Loss: 1.2904, LR: 1.263400e-05
+2025-09-27 12:41:15,059 - deep_learning.training.trainer - INFO - Epoch 175: Train Loss: 0.0048, Val Loss: 1.3007, LR: 1.165654e-05
+2025-09-27 12:41:54,857 - deep_learning.training.trainer - INFO - Epoch 176: Train Loss: 0.0051, Val Loss: 1.2971, LR: 1.071689e-05
+2025-09-27 12:42:35,221 - deep_learning.training.trainer - INFO - Epoch 177: Train Loss: 0.0056, Val Loss: 1.3051, LR: 9.815330e-06
+2025-09-27 12:43:15,407 - deep_learning.training.trainer - INFO - Epoch 178: Train Loss: 0.0051, Val Loss: 1.2990, LR: 8.952091e-06
+2025-09-27 12:43:56,083 - deep_learning.training.trainer - INFO - Epoch 179: Train Loss: 0.0053, Val Loss: 1.2853, LR: 8.127414e-06
+2025-09-27 12:44:37,086 - deep_learning.training.trainer - INFO - Epoch 180: Train Loss: 0.0053, Val Loss: 1.3124, LR: 7.341523e-06
+2025-09-27 12:45:18,273 - deep_learning.training.trainer - INFO - Epoch 181: Train Loss: 0.0051, Val Loss: 1.3030, LR: 6.594633e-06
+2025-09-27 12:45:58,599 - deep_learning.training.trainer - INFO - Epoch 182: Train Loss: 0.0048, Val Loss: 1.2914, LR: 5.886949e-06
+2025-09-27 12:46:37,804 - deep_learning.training.trainer - INFO - Epoch 183: Train Loss: 0.0045, Val Loss: 1.3140, LR: 5.218663e-06
+2025-09-27 12:47:18,192 - deep_learning.training.trainer - INFO - Epoch 184: Train Loss: 0.0054, Val Loss: 1.2891, LR: 4.589960e-06
+2025-09-27 12:47:59,656 - deep_learning.training.trainer - INFO - Epoch 185: Train Loss: 0.0053, Val Loss: 1.3060, LR: 4.001010e-06
+2025-09-27 12:48:40,027 - deep_learning.training.trainer - INFO - Epoch 186: Train Loss: 0.0047, Val Loss: 1.2956, LR: 3.451975e-06
+2025-09-27 12:49:20,857 - deep_learning.training.trainer - INFO - Epoch 187: Train Loss: 0.0050, Val Loss: 1.3112, LR: 2.943005e-06
+2025-09-27 12:50:01,918 - deep_learning.training.trainer - INFO - Epoch 188: Train Loss: 0.0050, Val Loss: 1.2936, LR: 2.474239e-06
+2025-09-27 12:50:42,161 - deep_learning.training.trainer - INFO - Epoch 189: Train Loss: 0.0053, Val Loss: 1.3020, LR: 2.045804e-06
+2025-09-27 12:51:22,797 - deep_learning.training.trainer - INFO - Epoch 190: Train Loss: 0.0051, Val Loss: 1.2993, LR: 1.657819e-06
+2025-09-27 12:52:02,940 - deep_learning.training.trainer - INFO - Epoch 191: Train Loss: 0.0048, Val Loss: 1.3061, LR: 1.310390e-06
+2025-09-27 12:52:42,975 - deep_learning.training.trainer - INFO - Epoch 192: Train Loss: 0.0051, Val Loss: 1.2901, LR: 1.003610e-06
+2025-09-27 12:53:24,212 - deep_learning.training.trainer - INFO - Epoch 193: Train Loss: 0.0045, Val Loss: 1.3168, LR: 7.375646e-07
+2025-09-27 12:54:04,568 - deep_learning.training.trainer - INFO - Epoch 194: Train Loss: 0.0050, Val Loss: 1.3041, LR: 5.123260e-07
+2025-09-27 12:54:43,589 - deep_learning.training.trainer - INFO - Epoch 195: Train Loss: 0.0048, Val Loss: 1.3087, LR: 3.279559e-07
+2025-09-27 12:55:23,806 - deep_learning.training.trainer - INFO - Epoch 196: Train Loss: 0.0049, Val Loss: 1.3015, LR: 1.845046e-07
+2025-09-27 12:56:03,174 - deep_learning.training.trainer - INFO - Epoch 197: Train Loss: 0.0051, Val Loss: 1.3160, LR: 8.201140e-08
+2025-09-27 12:56:42,518 - deep_learning.training.trainer - INFO - Epoch 198: Train Loss: 0.0055, Val Loss: 1.3195, LR: 2.050425e-08
+2025-09-27 12:57:23,060 - deep_learning.training.trainer - INFO - Epoch 199: Train Loss: 0.0049, Val Loss: 1.3087, LR: 0.000000e+00
+2025-09-27 12:57:23,082 - deep_learning.training.callbacks - INFO - 保存最终最佳模型: /home/hjd/PRRSV/HJD/logs/best_model.pth
+2025-09-27 12:57:23,082 - deep_learning.training.trainer - INFO - Training completed
+2025-09-27 12:57:23,082 - __main__ - INFO - ==================================================
+2025-09-27 12:57:23,083 - __main__ - INFO - 训练完成!
+2025-09-27 12:57:23,083 - __main__ - INFO - ==================================================
+2025-09-27 12:57:23,083 - __main__ - INFO - 在测试集上评估...
+2025-09-27 12:57:24,786 - __main__ - INFO - 测试结果: {'logit': array([[  6.5079036],
+       [ 11.387032 ],
+       [  7.059911 ],
+       ...,
+       [-48.447838 ],
+       [ 23.588417 ],
+       [  8.236301 ]], dtype=float32)}
+2025-09-27 12:57:24,794 - __main__ - INFO - ✓ 最终模型已保存: /home/hjd/PRRSV/HJD/logs/final_model.pth
+2025-09-27 16:49:56,684 - __main__ - INFO - ==================================================
+2025-09-27 16:49:56,684 - __main__ - INFO - 开始PRRSV抑制剂设计训练
+2025-09-27 16:49:56,684 - __main__ - INFO - ==================================================
+2025-09-27 16:49:56,684 - __main__ - INFO - 模型类型: pl_pair_classifier
+2025-09-27 16:49:56,684 - __main__ - INFO - 配置: {'model': {'name': 'pl_pair_classifier', 'hidden_dim': 1024, 'num_layers': 3, 'dropout': 0.3, 'activation': 'relu', 'use_batch_norm': True}, 'data': {'root_dir': '/home/hjd/PRRSV/HJD/data', 'pl_data_dir': '/home/hjd/PRRSV/HJD/data/P-L', 'batch_size': 256, 'num_workers': 8, 'negative_ratio': 1}, 'training': {'epochs': 300, 'learning_rate': '3e-4', 'weight_decay': '1e-4', 'gradient_clip': 1.0, 'optimizer': 'adamw', 'scheduler': 'cosine', 'warmup_epochs': 5, 'eta_min': '1e-6'}, 'validation': {'frequency': 1, 'early_stopping_patience': 20}, 'checkpoints': {'save_frequency': 10, 'save_best_only': True}, 'hardware': {'device': 'auto', 'mixed_precision': True, 'multi_gpu': True, 'gpus': [0, 1]}, 'logging': {'project_name': 'prrsv_inhibitor_design', 'experiment_name': 'pl_classifier_v1', 'log_dir': '/home/hjd/PRRSV/HJD/logs'}, 'task_weights': {'binding_classification': 1.0, 'binding_affinity': 0.5, 'interaction_fingerprint': 0.3}, 'augmentation': {'enabled': False, 'molecular_noise': 0.01, 'pocket_perturbation': 0.005}}
+2025-09-27 16:49:58,606 - __main__ - INFO - ✓ 成功导入所有训练模块
+2025-09-27 16:49:58,606 - __main__ - INFO - ✓ P-L数据目录: /home/hjd/PRRSV/HJD/data/P-L
+2025-09-27 16:49:58,606 - __main__ - INFO - 创建数据集...
+2025-09-27 16:50:34,386 - __main__ - INFO - ✓ 训练数据集大小: 30196
+2025-09-27 16:50:34,386 - __main__ - INFO - ✓ 验证数据集大小: 3772
+2025-09-27 16:50:34,386 - __main__ - INFO - ✓ 测试数据集大小: 3786
+2025-09-27 16:50:34,387 - __main__ - INFO - ✓ 训练批次数: 117
+2025-09-27 16:50:34,387 - __main__ - INFO - ✓ 验证批次数: 15
+2025-09-27 16:50:34,387 - __main__ - INFO - 创建模型: pl_pair_classifier
+2025-09-27 16:50:34,408 - __main__ - INFO - ✓ 模型参数数量: 2,638,849
+2025-09-27 16:50:34,408 - __main__ - INFO - 创建训练器...
+2025-09-27 16:50:34,409 - deep_learning.training.trainer - INFO - Trainer initialized with device: cpu
+2025-09-27 16:50:34,409 - deep_learning.training.trainer - INFO - Model parameters: 2,638,849
+2025-09-27 16:50:34,409 - __main__ - INFO - ✓ 训练器创建完成
+2025-09-27 16:50:34,409 - __main__ - INFO - ==================================================
+2025-09-27 16:50:34,409 - __main__ - INFO - 开始训练...
+2025-09-27 16:50:34,409 - __main__ - INFO - ==================================================
+2025-09-27 16:50:34,409 - deep_learning.training.trainer - INFO - Starting training...
+2025-09-27 16:51:23,962 - deep_learning.training.trainer - INFO - Epoch   0: Train Loss: 0.8005, Val Loss: 0.7068, LR: 8.400000e-05
+2025-09-27 16:52:13,354 - deep_learning.training.trainer - INFO - Epoch   1: Train Loss: 0.7611, Val Loss: 0.6683, LR: 1.380000e-04
+2025-09-27 16:53:03,017 - deep_learning.training.trainer - INFO - Epoch   2: Train Loss: 0.7233, Val Loss: 0.6379, LR: 1.920000e-04
+2025-09-27 16:53:52,740 - deep_learning.training.trainer - INFO - Epoch   3: Train Loss: 0.6858, Val Loss: 0.6209, LR: 2.460000e-04
+2025-09-27 16:54:42,590 - deep_learning.training.trainer - INFO - Epoch   4: Train Loss: 0.6449, Val Loss: 0.5971, LR: 3.000000e-04
+2025-09-27 16:55:32,093 - deep_learning.training.trainer - INFO - Epoch   5: Train Loss: 0.6079, Val Loss: 0.5812, LR: 2.999915e-04
+2025-09-27 16:56:21,649 - deep_learning.training.trainer - INFO - Epoch   6: Train Loss: 0.5669, Val Loss: 0.5609, LR: 2.999661e-04
+2025-09-27 16:57:10,992 - deep_learning.training.trainer - INFO - Epoch   7: Train Loss: 0.5211, Val Loss: 0.5500, LR: 2.999237e-04
+2025-09-27 16:58:00,141 - deep_learning.training.trainer - INFO - Epoch   8: Train Loss: 0.4783, Val Loss: 0.5406, LR: 2.998644e-04
+2025-09-27 16:58:49,297 - deep_learning.training.trainer - INFO - Epoch   9: Train Loss: 0.4474, Val Loss: 0.5344, LR: 2.997881e-04
+2025-09-27 16:59:38,270 - deep_learning.training.trainer - INFO - Epoch  10: Train Loss: 0.4054, Val Loss: 0.5297, LR: 2.996949e-04
+2025-09-27 17:00:27,330 - deep_learning.training.trainer - INFO - Epoch  11: Train Loss: 0.3729, Val Loss: 0.5347, LR: 2.995848e-04
+2025-09-27 17:01:16,685 - deep_learning.training.trainer - INFO - Epoch  12: Train Loss: 0.3390, Val Loss: 0.5411, LR: 2.994578e-04
+2025-09-27 17:02:05,874 - deep_learning.training.trainer - INFO - Epoch  13: Train Loss: 0.3123, Val Loss: 0.5443, LR: 2.993138e-04
+2025-09-27 17:02:55,895 - deep_learning.training.trainer - INFO - Epoch  14: Train Loss: 0.2875, Val Loss: 0.5572, LR: 2.991531e-04
+2025-09-27 17:03:45,367 - deep_learning.training.trainer - INFO - Epoch  15: Train Loss: 0.2623, Val Loss: 0.5738, LR: 2.989754e-04
+2025-09-27 17:04:34,864 - deep_learning.training.trainer - INFO - Epoch  16: Train Loss: 0.2401, Val Loss: 0.5805, LR: 2.987809e-04
+2025-09-27 17:05:24,873 - deep_learning.training.trainer - INFO - Epoch  17: Train Loss: 0.2234, Val Loss: 0.5858, LR: 2.985696e-04
+2025-09-27 17:06:14,174 - deep_learning.training.trainer - INFO - Epoch  18: Train Loss: 0.2093, Val Loss: 0.6110, LR: 2.983415e-04
+2025-09-27 17:07:03,719 - deep_learning.training.trainer - INFO - Epoch  19: Train Loss: 0.1938, Val Loss: 0.6216, LR: 2.980966e-04
+2025-09-27 17:07:53,618 - deep_learning.training.trainer - INFO - Epoch  20: Train Loss: 0.1775, Val Loss: 0.6376, LR: 2.978350e-04
+2025-09-27 17:08:43,376 - deep_learning.training.trainer - INFO - Epoch  21: Train Loss: 0.1668, Val Loss: 0.6348, LR: 2.975567e-04
+2025-09-27 17:09:33,215 - deep_learning.training.trainer - INFO - Epoch  22: Train Loss: 0.1588, Val Loss: 0.6486, LR: 2.972617e-04
+2025-09-27 17:10:22,394 - deep_learning.training.trainer - INFO - Epoch  23: Train Loss: 0.1456, Val Loss: 0.6805, LR: 2.969501e-04
+2025-09-27 17:11:12,257 - deep_learning.training.trainer - INFO - Epoch  24: Train Loss: 0.1382, Val Loss: 0.6712, LR: 2.966218e-04
+2025-09-27 17:12:01,975 - deep_learning.training.trainer - INFO - Epoch  25: Train Loss: 0.1283, Val Loss: 0.6990, LR: 2.962770e-04
+2025-09-27 17:12:50,575 - deep_learning.training.trainer - INFO - Epoch  26: Train Loss: 0.1237, Val Loss: 0.7043, LR: 2.959156e-04
+2025-09-27 17:13:39,741 - deep_learning.training.trainer - INFO - Epoch  27: Train Loss: 0.1144, Val Loss: 0.7129, LR: 2.955378e-04
+2025-09-27 17:14:29,883 - deep_learning.training.trainer - INFO - Epoch  28: Train Loss: 0.1122, Val Loss: 0.7225, LR: 2.951435e-04
+2025-09-27 17:15:20,245 - deep_learning.training.trainer - INFO - Epoch  29: Train Loss: 0.1041, Val Loss: 0.7366, LR: 2.947328e-04
+2025-09-27 17:16:10,240 - deep_learning.training.trainer - INFO - Epoch  30: Train Loss: 0.0987, Val Loss: 0.7410, LR: 2.943057e-04
+2025-09-27 17:16:59,636 - deep_learning.training.trainer - INFO - Epoch  31: Train Loss: 0.0968, Val Loss: 0.7648, LR: 2.938624e-04
+2025-09-27 17:17:49,113 - deep_learning.training.trainer - INFO - Epoch  32: Train Loss: 0.0927, Val Loss: 0.7735, LR: 2.934028e-04
+2025-09-27 17:18:38,666 - deep_learning.training.trainer - INFO - Epoch  33: Train Loss: 0.0915, Val Loss: 0.7781, LR: 2.929269e-04
+2025-09-27 17:19:28,296 - deep_learning.training.trainer - INFO - Epoch  34: Train Loss: 0.0883, Val Loss: 0.8084, LR: 2.924349e-04
+2025-09-27 17:20:17,410 - deep_learning.training.trainer - INFO - Epoch  35: Train Loss: 0.0832, Val Loss: 0.8192, LR: 2.919269e-04
+2025-09-27 17:21:07,111 - deep_learning.training.trainer - INFO - Epoch  36: Train Loss: 0.0833, Val Loss: 0.8251, LR: 2.914027e-04
+2025-09-27 17:21:56,975 - deep_learning.training.trainer - INFO - Epoch  37: Train Loss: 0.0788, Val Loss: 0.8122, LR: 2.908626e-04
+2025-09-27 17:22:46,335 - deep_learning.training.trainer - INFO - Epoch  38: Train Loss: 0.0724, Val Loss: 0.8215, LR: 2.903066e-04
+2025-09-27 17:23:35,938 - deep_learning.training.trainer - INFO - Epoch  39: Train Loss: 0.0736, Val Loss: 0.8356, LR: 2.897348e-04
+2025-09-27 17:24:25,607 - deep_learning.training.trainer - INFO - Epoch  40: Train Loss: 0.0711, Val Loss: 0.8416, LR: 2.891471e-04
+2025-09-27 17:25:15,185 - deep_learning.training.trainer - INFO - Epoch  41: Train Loss: 0.0693, Val Loss: 0.8458, LR: 2.885437e-04
+2025-09-27 17:26:04,584 - deep_learning.training.trainer - INFO - Epoch  42: Train Loss: 0.0699, Val Loss: 0.8699, LR: 2.879247e-04
+2025-09-27 17:26:54,696 - deep_learning.training.trainer - INFO - Epoch  43: Train Loss: 0.0655, Val Loss: 0.8709, LR: 2.872900e-04
+2025-09-27 17:27:44,278 - deep_learning.training.trainer - INFO - Epoch  44: Train Loss: 0.0644, Val Loss: 0.8882, LR: 2.866399e-04
+2025-09-27 17:28:33,908 - deep_learning.training.trainer - INFO - Epoch  45: Train Loss: 0.0597, Val Loss: 0.8664, LR: 2.859743e-04
+2025-09-27 17:29:23,494 - deep_learning.training.trainer - INFO - Epoch  46: Train Loss: 0.0582, Val Loss: 0.8848, LR: 2.852934e-04
+2025-09-27 17:30:12,840 - deep_learning.training.trainer - INFO - Epoch  47: Train Loss: 0.0590, Val Loss: 0.9202, LR: 2.845971e-04
+2025-09-27 17:31:02,045 - deep_learning.training.trainer - INFO - Epoch  48: Train Loss: 0.0567, Val Loss: 0.8931, LR: 2.838857e-04
+2025-09-27 17:31:51,732 - deep_learning.training.trainer - INFO - Epoch  49: Train Loss: 0.0545, Val Loss: 0.8864, LR: 2.831591e-04
+2025-09-27 17:32:41,461 - deep_learning.training.trainer - INFO - Epoch  50: Train Loss: 0.0519, Val Loss: 0.9248, LR: 2.824175e-04
+2025-09-27 17:33:30,549 - deep_learning.training.trainer - INFO - Epoch  51: Train Loss: 0.0546, Val Loss: 0.9340, LR: 2.816610e-04
+2025-09-27 17:34:19,916 - deep_learning.training.trainer - INFO - Epoch  52: Train Loss: 0.0495, Val Loss: 0.9272, LR: 2.808895e-04
+2025-09-27 17:35:09,190 - deep_learning.training.trainer - INFO - Epoch  53: Train Loss: 0.0489, Val Loss: 0.9405, LR: 2.801033e-04
+2025-09-27 17:35:58,791 - deep_learning.training.trainer - INFO - Epoch  54: Train Loss: 0.0521, Val Loss: 0.9486, LR: 2.793023e-04
+2025-09-27 17:36:48,059 - deep_learning.training.trainer - INFO - Epoch  55: Train Loss: 0.0488, Val Loss: 0.9558, LR: 2.784868e-04
+2025-09-27 17:37:37,134 - deep_learning.training.trainer - INFO - Epoch  56: Train Loss: 0.0488, Val Loss: 0.9459, LR: 2.776567e-04
+2025-09-27 17:38:26,358 - deep_learning.training.trainer - INFO - Epoch  57: Train Loss: 0.0439, Val Loss: 0.9538, LR: 2.768123e-04
+2025-09-27 17:39:16,210 - deep_learning.training.trainer - INFO - Epoch  58: Train Loss: 0.0442, Val Loss: 0.9897, LR: 2.759535e-04
+2025-09-27 17:40:06,223 - deep_learning.training.trainer - INFO - Epoch  59: Train Loss: 0.0454, Val Loss: 0.9715, LR: 2.750804e-04
+2025-09-27 17:40:56,161 - deep_learning.training.trainer - INFO - Epoch  60: Train Loss: 0.0427, Val Loss: 0.9814, LR: 2.741933e-04
+2025-09-27 17:41:45,882 - deep_learning.training.trainer - INFO - Epoch  61: Train Loss: 0.0425, Val Loss: 1.0050, LR: 2.732921e-04
+2025-09-27 17:42:35,255 - deep_learning.training.trainer - INFO - Epoch  62: Train Loss: 0.0410, Val Loss: 0.9680, LR: 2.723770e-04
+2025-09-27 17:43:24,741 - deep_learning.training.trainer - INFO - Epoch  63: Train Loss: 0.0391, Val Loss: 1.0014, LR: 2.714480e-04
+2025-09-27 17:44:15,092 - deep_learning.training.trainer - INFO - Epoch  64: Train Loss: 0.0390, Val Loss: 1.0216, LR: 2.705054e-04
+2025-09-27 17:45:05,241 - deep_learning.training.trainer - INFO - Epoch  65: Train Loss: 0.0406, Val Loss: 1.0154, LR: 2.695491e-04
+2025-09-27 17:45:54,954 - deep_learning.training.trainer - INFO - Epoch  66: Train Loss: 0.0393, Val Loss: 1.0255, LR: 2.685794e-04
+2025-09-27 17:46:44,453 - deep_learning.training.trainer - INFO - Epoch  67: Train Loss: 0.0368, Val Loss: 1.0383, LR: 2.675962e-04
+2025-09-27 17:47:33,743 - deep_learning.training.trainer - INFO - Epoch  68: Train Loss: 0.0405, Val Loss: 1.0757, LR: 2.665998e-04
+2025-09-27 17:48:23,011 - deep_learning.training.trainer - INFO - Epoch  69: Train Loss: 0.0384, Val Loss: 1.0591, LR: 2.655902e-04
+2025-09-27 17:49:12,653 - deep_learning.training.trainer - INFO - Epoch  70: Train Loss: 0.0357, Val Loss: 1.0427, LR: 2.645675e-04
+2025-09-27 17:50:02,051 - deep_learning.training.trainer - INFO - Epoch  71: Train Loss: 0.0349, Val Loss: 1.0360, LR: 2.635319e-04
+2025-09-27 17:50:51,764 - deep_learning.training.trainer - INFO - Epoch  72: Train Loss: 0.0343, Val Loss: 1.0619, LR: 2.624835e-04
+2025-09-27 17:51:42,003 - deep_learning.training.trainer - INFO - Epoch  73: Train Loss: 0.0358, Val Loss: 1.0790, LR: 2.614224e-04
+2025-09-27 17:52:31,520 - deep_learning.training.trainer - INFO - Epoch  74: Train Loss: 0.0344, Val Loss: 1.0810, LR: 2.603487e-04
+2025-09-27 17:53:20,886 - deep_learning.training.trainer - INFO - Epoch  75: Train Loss: 0.0357, Val Loss: 1.0939, LR: 2.592626e-04
+2025-09-27 17:54:10,005 - deep_learning.training.trainer - INFO - Epoch  76: Train Loss: 0.0297, Val Loss: 1.0652, LR: 2.581641e-04
+2025-09-27 17:54:59,438 - deep_learning.training.trainer - INFO - Epoch  77: Train Loss: 0.0335, Val Loss: 1.0855, LR: 2.570534e-04
+2025-09-27 17:55:49,248 - deep_learning.training.trainer - INFO - Epoch  78: Train Loss: 0.0305, Val Loss: 1.0931, LR: 2.559306e-04
+2025-09-27 17:56:39,204 - deep_learning.training.trainer - INFO - Epoch  79: Train Loss: 0.0301, Val Loss: 1.0914, LR: 2.547959e-04
+2025-09-27 17:57:28,515 - deep_learning.training.trainer - INFO - Epoch  80: Train Loss: 0.0299, Val Loss: 1.0788, LR: 2.536494e-04
+2025-09-27 17:58:18,381 - deep_learning.training.trainer - INFO - Epoch  81: Train Loss: 0.0299, Val Loss: 1.1171, LR: 2.524911e-04
+2025-09-27 17:59:07,667 - deep_learning.training.trainer - INFO - Epoch  82: Train Loss: 0.0301, Val Loss: 1.1033, LR: 2.513213e-04
+2025-09-27 17:59:57,157 - deep_learning.training.trainer - INFO - Epoch  83: Train Loss: 0.0305, Val Loss: 1.0994, LR: 2.501400e-04
+2025-09-27 18:00:46,341 - deep_learning.training.trainer - INFO - Epoch  84: Train Loss: 0.0272, Val Loss: 1.1196, LR: 2.489475e-04
+2025-09-27 18:01:35,680 - deep_learning.training.trainer - INFO - Epoch  85: Train Loss: 0.0293, Val Loss: 1.1379, LR: 2.477437e-04
+2025-09-27 18:02:24,992 - deep_learning.training.trainer - INFO - Epoch  86: Train Loss: 0.0275, Val Loss: 1.1162, LR: 2.465290e-04
+2025-09-27 18:03:15,086 - deep_learning.training.trainer - INFO - Epoch  87: Train Loss: 0.0266, Val Loss: 1.0988, LR: 2.453033e-04
+2025-09-27 18:04:04,699 - deep_learning.training.trainer - INFO - Epoch  88: Train Loss: 0.0252, Val Loss: 1.1372, LR: 2.440669e-04
+2025-09-27 18:04:54,039 - deep_learning.training.trainer - INFO - Epoch  89: Train Loss: 0.0279, Val Loss: 1.1455, LR: 2.428199e-04
+2025-09-27 18:05:43,630 - deep_learning.training.trainer - INFO - Epoch  90: Train Loss: 0.0255, Val Loss: 1.1688, LR: 2.415625e-04
+2025-09-27 18:06:33,751 - deep_learning.training.trainer - INFO - Epoch  91: Train Loss: 0.0270, Val Loss: 1.1298, LR: 2.402946e-04
+2025-09-27 18:07:23,516 - deep_learning.training.trainer - INFO - Epoch  92: Train Loss: 0.0277, Val Loss: 1.1451, LR: 2.390167e-04
+2025-09-27 18:08:12,872 - deep_learning.training.trainer - INFO - Epoch  93: Train Loss: 0.0248, Val Loss: 1.1538, LR: 2.377286e-04
+2025-09-27 18:09:02,250 - deep_learning.training.trainer - INFO - Epoch  94: Train Loss: 0.0250, Val Loss: 1.1521, LR: 2.364307e-04
+2025-09-27 18:09:52,046 - deep_learning.training.trainer - INFO - Epoch  95: Train Loss: 0.0251, Val Loss: 1.1579, LR: 2.351231e-04
+2025-09-27 18:10:41,996 - deep_learning.training.trainer - INFO - Epoch  96: Train Loss: 0.0233, Val Loss: 1.1563, LR: 2.338058e-04
+2025-09-27 18:11:31,876 - deep_learning.training.trainer - INFO - Epoch  97: Train Loss: 0.0233, Val Loss: 1.1722, LR: 2.324791e-04
+2025-09-27 18:12:21,612 - deep_learning.training.trainer - INFO - Epoch  98: Train Loss: 0.0217, Val Loss: 1.1897, LR: 2.311431e-04
+2025-09-27 18:13:10,249 - deep_learning.training.trainer - INFO - Epoch  99: Train Loss: 0.0226, Val Loss: 1.1834, LR: 2.297979e-04
+2025-09-27 18:13:59,880 - deep_learning.training.trainer - INFO - Epoch 100: Train Loss: 0.0238, Val Loss: 1.2012, LR: 2.284438e-04
+2025-09-27 18:14:49,687 - deep_learning.training.trainer - INFO - Epoch 101: Train Loss: 0.0219, Val Loss: 1.1949, LR: 2.270808e-04
+2025-09-27 18:15:38,124 - deep_learning.training.trainer - INFO - Epoch 102: Train Loss: 0.0222, Val Loss: 1.2038, LR: 2.257091e-04
+2025-09-27 18:16:26,977 - deep_learning.training.trainer - INFO - Epoch 103: Train Loss: 0.0230, Val Loss: 1.1815, LR: 2.243289e-04
+2025-09-27 18:17:16,386 - deep_learning.training.trainer - INFO - Epoch 104: Train Loss: 0.0222, Val Loss: 1.1910, LR: 2.229404e-04
+2025-09-27 18:18:06,535 - deep_learning.training.trainer - INFO - Epoch 105: Train Loss: 0.0191, Val Loss: 1.1867, LR: 2.215436e-04
+2025-09-27 18:18:56,011 - deep_learning.training.trainer - INFO - Epoch 106: Train Loss: 0.0212, Val Loss: 1.2035, LR: 2.201387e-04
+2025-09-27 18:19:45,578 - deep_learning.training.trainer - INFO - Epoch 107: Train Loss: 0.0183, Val Loss: 1.2178, LR: 2.187260e-04
+2025-09-27 18:20:34,922 - deep_learning.training.trainer - INFO - Epoch 108: Train Loss: 0.0184, Val Loss: 1.2450, LR: 2.173055e-04
+2025-09-27 18:21:24,547 - deep_learning.training.trainer - INFO - Epoch 109: Train Loss: 0.0201, Val Loss: 1.2519, LR: 2.158774e-04
+2025-09-27 18:22:14,276 - deep_learning.training.callbacks - INFO - 保存最佳快照: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_110.pth
+2025-09-27 18:22:14,276 - deep_learning.training.trainer - INFO - Epoch 110: Train Loss: 0.0189, Val Loss: 1.2518, LR: 2.144420e-04
+2025-09-27 18:23:03,899 - deep_learning.training.trainer - INFO - Epoch 111: Train Loss: 0.0195, Val Loss: 1.2442, LR: 2.129993e-04
+2025-09-27 18:23:53,483 - deep_learning.training.trainer - INFO - Epoch 112: Train Loss: 0.0193, Val Loss: 1.2393, LR: 2.115494e-04
+2025-09-27 18:24:43,197 - deep_learning.training.trainer - INFO - Epoch 113: Train Loss: 0.0186, Val Loss: 1.2360, LR: 2.100927e-04
+2025-09-27 18:25:32,883 - deep_learning.training.trainer - INFO - Epoch 114: Train Loss: 0.0202, Val Loss: 1.2495, LR: 2.086292e-04
+2025-09-27 18:26:22,396 - deep_learning.training.trainer - INFO - Epoch 115: Train Loss: 0.0166, Val Loss: 1.2742, LR: 2.071591e-04
+2025-09-27 18:27:12,221 - deep_learning.training.trainer - INFO - Epoch 116: Train Loss: 0.0160, Val Loss: 1.2526, LR: 2.056826e-04
+2025-09-27 18:28:01,938 - deep_learning.training.trainer - INFO - Epoch 117: Train Loss: 0.0172, Val Loss: 1.2595, LR: 2.041998e-04
+2025-09-27 18:28:51,361 - deep_learning.training.trainer - INFO - Epoch 118: Train Loss: 0.0174, Val Loss: 1.2619, LR: 2.027110e-04
+2025-09-27 18:29:40,991 - deep_learning.training.trainer - INFO - Epoch 119: Train Loss: 0.0182, Val Loss: 1.2845, LR: 2.012162e-04
+2025-09-27 18:30:30,627 - deep_learning.training.trainer - INFO - Epoch 120: Train Loss: 0.0178, Val Loss: 1.2777, LR: 1.997157e-04
+2025-09-27 18:31:19,923 - deep_learning.training.trainer - INFO - Epoch 121: Train Loss: 0.0170, Val Loss: 1.2777, LR: 1.982096e-04
+2025-09-27 18:32:08,864 - deep_learning.training.trainer - INFO - Epoch 122: Train Loss: 0.0156, Val Loss: 1.2746, LR: 1.966980e-04
+2025-09-27 18:32:58,398 - deep_learning.training.trainer - INFO - Epoch 123: Train Loss: 0.0171, Val Loss: 1.2788, LR: 1.951813e-04
+2025-09-27 18:33:48,117 - deep_learning.training.trainer - INFO - Epoch 124: Train Loss: 0.0187, Val Loss: 1.2549, LR: 1.936594e-04
+2025-09-27 18:34:37,252 - deep_learning.training.trainer - INFO - Epoch 125: Train Loss: 0.0148, Val Loss: 1.2582, LR: 1.921327e-04
+2025-09-27 18:35:26,982 - deep_learning.training.trainer - INFO - Epoch 126: Train Loss: 0.0148, Val Loss: 1.2988, LR: 1.906013e-04
+2025-09-27 18:36:16,809 - deep_learning.training.trainer - INFO - Epoch 127: Train Loss: 0.0157, Val Loss: 1.2665, LR: 1.890653e-04
+2025-09-27 18:37:07,344 - deep_learning.training.trainer - INFO - Epoch 128: Train Loss: 0.0150, Val Loss: 1.2612, LR: 1.875249e-04
+2025-09-27 18:37:56,843 - deep_learning.training.trainer - INFO - Epoch 129: Train Loss: 0.0148, Val Loss: 1.3151, LR: 1.859803e-04
+2025-09-27 18:38:46,181 - deep_learning.training.trainer - INFO - Epoch 130: Train Loss: 0.0156, Val Loss: 1.3380, LR: 1.844318e-04
+2025-09-27 18:39:36,055 - deep_learning.training.trainer - INFO - Epoch 131: Train Loss: 0.0136, Val Loss: 1.3022, LR: 1.828793e-04
+2025-09-27 18:40:25,013 - deep_learning.training.trainer - INFO - Epoch 132: Train Loss: 0.0132, Val Loss: 1.3390, LR: 1.813232e-04
+2025-09-27 18:41:15,302 - deep_learning.training.trainer - INFO - Epoch 133: Train Loss: 0.0134, Val Loss: 1.3115, LR: 1.797636e-04
+2025-09-27 18:42:04,522 - deep_learning.training.trainer - INFO - Epoch 134: Train Loss: 0.0120, Val Loss: 1.3150, LR: 1.782007e-04
+2025-09-27 18:42:53,697 - deep_learning.training.trainer - INFO - Epoch 135: Train Loss: 0.0125, Val Loss: 1.3159, LR: 1.766346e-04
+2025-09-27 18:43:44,112 - deep_learning.training.trainer - INFO - Epoch 136: Train Loss: 0.0123, Val Loss: 1.3125, LR: 1.750656e-04
+2025-09-27 18:44:32,623 - deep_learning.training.trainer - INFO - Epoch 137: Train Loss: 0.0104, Val Loss: 1.3137, LR: 1.734937e-04
+2025-09-27 18:45:23,168 - deep_learning.training.trainer - INFO - Epoch 138: Train Loss: 0.0125, Val Loss: 1.3251, LR: 1.719193e-04
+2025-09-27 18:46:12,257 - deep_learning.training.trainer - INFO - Epoch 139: Train Loss: 0.0122, Val Loss: 1.3129, LR: 1.703425e-04
+2025-09-27 18:47:02,191 - deep_learning.training.trainer - INFO - Epoch 140: Train Loss: 0.0109, Val Loss: 1.3104, LR: 1.687634e-04
+2025-09-27 18:47:52,449 - deep_learning.training.trainer - INFO - Epoch 141: Train Loss: 0.0134, Val Loss: 1.3276, LR: 1.671822e-04
+2025-09-27 18:48:42,176 - deep_learning.training.trainer - INFO - Epoch 142: Train Loss: 0.0123, Val Loss: 1.3179, LR: 1.655991e-04
+2025-09-27 18:49:31,744 - deep_learning.training.trainer - INFO - Epoch 143: Train Loss: 0.0122, Val Loss: 1.3399, LR: 1.640143e-04
+2025-09-27 18:50:21,693 - deep_learning.training.trainer - INFO - Epoch 144: Train Loss: 0.0120, Val Loss: 1.3510, LR: 1.624280e-04
+2025-09-27 18:51:11,342 - deep_learning.training.trainer - INFO - Epoch 145: Train Loss: 0.0120, Val Loss: 1.3489, LR: 1.608404e-04
+2025-09-27 18:52:01,016 - deep_learning.training.trainer - INFO - Epoch 146: Train Loss: 0.0115, Val Loss: 1.3761, LR: 1.592515e-04
+2025-09-27 18:52:50,855 - deep_learning.training.trainer - INFO - Epoch 147: Train Loss: 0.0110, Val Loss: 1.4072, LR: 1.576617e-04
+2025-09-27 18:53:39,941 - deep_learning.training.trainer - INFO - Epoch 148: Train Loss: 0.0095, Val Loss: 1.3817, LR: 1.560710e-04
+2025-09-27 18:54:29,444 - deep_learning.training.trainer - INFO - Epoch 149: Train Loss: 0.0117, Val Loss: 1.3913, LR: 1.544798e-04
+2025-09-27 18:55:18,603 - deep_learning.training.trainer - INFO - Epoch 150: Train Loss: 0.0125, Val Loss: 1.3569, LR: 1.528880e-04
+2025-09-27 18:56:07,629 - deep_learning.training.trainer - INFO - Epoch 151: Train Loss: 0.0111, Val Loss: 1.3801, LR: 1.512960e-04
+2025-09-27 18:56:56,955 - deep_learning.training.trainer - INFO - Epoch 152: Train Loss: 0.0103, Val Loss: 1.3979, LR: 1.497040e-04
+2025-09-27 18:57:46,413 - deep_learning.training.trainer - INFO - Epoch 153: Train Loss: 0.0104, Val Loss: 1.3786, LR: 1.481120e-04
+2025-09-27 18:58:36,256 - deep_learning.training.trainer - INFO - Epoch 154: Train Loss: 0.0096, Val Loss: 1.3913, LR: 1.465202e-04
+2025-09-27 18:59:25,898 - deep_learning.training.trainer - INFO - Epoch 155: Train Loss: 0.0087, Val Loss: 1.4090, LR: 1.449290e-04
+2025-09-27 19:00:15,709 - deep_learning.training.trainer - INFO - Epoch 156: Train Loss: 0.0099, Val Loss: 1.3959, LR: 1.433383e-04
+2025-09-27 19:01:04,942 - deep_learning.training.trainer - INFO - Epoch 157: Train Loss: 0.0109, Val Loss: 1.3683, LR: 1.417485e-04
+2025-09-27 19:01:54,442 - deep_learning.training.trainer - INFO - Epoch 158: Train Loss: 0.0086, Val Loss: 1.3760, LR: 1.401596e-04
+2025-09-27 19:02:43,343 - deep_learning.training.trainer - INFO - Epoch 159: Train Loss: 0.0088, Val Loss: 1.3972, LR: 1.385720e-04
+2025-09-27 19:03:33,103 - deep_learning.training.trainer - INFO - Epoch 160: Train Loss: 0.0083, Val Loss: 1.4021, LR: 1.369857e-04
+2025-09-27 19:04:22,821 - deep_learning.training.trainer - INFO - Epoch 161: Train Loss: 0.0083, Val Loss: 1.4210, LR: 1.354009e-04
+2025-09-27 19:05:12,563 - deep_learning.training.trainer - INFO - Epoch 162: Train Loss: 0.0093, Val Loss: 1.4155, LR: 1.338178e-04
+2025-09-27 19:06:01,687 - deep_learning.training.trainer - INFO - Epoch 163: Train Loss: 0.0095, Val Loss: 1.4247, LR: 1.322366e-04
+2025-09-27 19:06:50,922 - deep_learning.training.trainer - INFO - Epoch 164: Train Loss: 0.0078, Val Loss: 1.4328, LR: 1.306575e-04
+2025-09-27 19:07:40,258 - deep_learning.training.trainer - INFO - Epoch 165: Train Loss: 0.0082, Val Loss: 1.4351, LR: 1.290807e-04
+2025-09-27 19:08:29,531 - deep_learning.training.trainer - INFO - Epoch 166: Train Loss: 0.0101, Val Loss: 1.4291, LR: 1.275063e-04
+2025-09-27 19:09:19,021 - deep_learning.training.trainer - INFO - Epoch 167: Train Loss: 0.0089, Val Loss: 1.4211, LR: 1.259344e-04
+2025-09-27 19:10:09,227 - deep_learning.training.trainer - INFO - Epoch 168: Train Loss: 0.0071, Val Loss: 1.4367, LR: 1.243654e-04
+2025-09-27 19:10:59,297 - deep_learning.training.trainer - INFO - Epoch 169: Train Loss: 0.0085, Val Loss: 1.4471, LR: 1.227993e-04
+2025-09-27 19:11:49,239 - deep_learning.training.trainer - INFO - Epoch 170: Train Loss: 0.0085, Val Loss: 1.4351, LR: 1.212364e-04
+2025-09-27 19:12:39,394 - deep_learning.training.trainer - INFO - Epoch 171: Train Loss: 0.0081, Val Loss: 1.4517, LR: 1.196768e-04
+2025-09-27 19:13:29,042 - deep_learning.training.trainer - INFO - Epoch 172: Train Loss: 0.0077, Val Loss: 1.4465, LR: 1.181207e-04
+2025-09-27 19:14:18,559 - deep_learning.training.trainer - INFO - Epoch 173: Train Loss: 0.0076, Val Loss: 1.4267, LR: 1.165682e-04
+2025-09-27 19:15:08,332 - deep_learning.training.trainer - INFO - Epoch 174: Train Loss: 0.0064, Val Loss: 1.4383, LR: 1.150197e-04
+2025-09-27 19:15:57,996 - deep_learning.training.trainer - INFO - Epoch 175: Train Loss: 0.0063, Val Loss: 1.4512, LR: 1.134751e-04
+2025-09-27 19:16:47,163 - deep_learning.training.trainer - INFO - Epoch 176: Train Loss: 0.0068, Val Loss: 1.4500, LR: 1.119347e-04
+2025-09-27 19:17:37,170 - deep_learning.training.trainer - INFO - Epoch 177: Train Loss: 0.0063, Val Loss: 1.4892, LR: 1.103987e-04
+2025-09-27 19:18:26,625 - deep_learning.training.trainer - INFO - Epoch 178: Train Loss: 0.0070, Val Loss: 1.4568, LR: 1.088673e-04
+2025-09-27 19:19:16,167 - deep_learning.training.trainer - INFO - Epoch 179: Train Loss: 0.0079, Val Loss: 1.4651, LR: 1.073406e-04
+2025-09-27 19:20:05,722 - deep_learning.training.trainer - INFO - Epoch 180: Train Loss: 0.0069, Val Loss: 1.4791, LR: 1.058187e-04
+2025-09-27 19:20:55,487 - deep_learning.training.trainer - INFO - Epoch 181: Train Loss: 0.0065, Val Loss: 1.4637, LR: 1.043020e-04
+2025-09-27 19:21:44,900 - deep_learning.training.trainer - INFO - Epoch 182: Train Loss: 0.0063, Val Loss: 1.4732, LR: 1.027904e-04
+2025-09-27 19:22:34,767 - deep_learning.training.trainer - INFO - Epoch 183: Train Loss: 0.0060, Val Loss: 1.4397, LR: 1.012843e-04
+2025-09-27 19:23:23,885 - deep_learning.training.trainer - INFO - Epoch 184: Train Loss: 0.0060, Val Loss: 1.4903, LR: 9.978379e-05
+2025-09-27 19:24:13,469 - deep_learning.training.trainer - INFO - Epoch 185: Train Loss: 0.0057, Val Loss: 1.5023, LR: 9.828901e-05
+2025-09-27 19:25:02,823 - deep_learning.training.trainer - INFO - Epoch 186: Train Loss: 0.0060, Val Loss: 1.4827, LR: 9.680015e-05
+2025-09-27 19:25:52,019 - deep_learning.training.trainer - INFO - Epoch 187: Train Loss: 0.0063, Val Loss: 1.4909, LR: 9.531738e-05
+2025-09-27 19:26:41,701 - deep_learning.training.trainer - INFO - Epoch 188: Train Loss: 0.0047, Val Loss: 1.5187, LR: 9.384087e-05
+2025-09-27 19:27:31,016 - deep_learning.training.trainer - INFO - Epoch 189: Train Loss: 0.0058, Val Loss: 1.4841, LR: 9.237079e-05
+2025-09-27 19:28:20,704 - deep_learning.training.trainer - INFO - Epoch 190: Train Loss: 0.0060, Val Loss: 1.4913, LR: 9.090729e-05
+2025-09-27 19:29:11,029 - deep_learning.training.trainer - INFO - Epoch 191: Train Loss: 0.0069, Val Loss: 1.4969, LR: 8.945056e-05
+2025-09-27 19:30:00,871 - deep_learning.training.trainer - INFO - Epoch 192: Train Loss: 0.0052, Val Loss: 1.5122, LR: 8.800075e-05
+2025-09-27 19:30:50,340 - deep_learning.training.trainer - INFO - Epoch 193: Train Loss: 0.0051, Val Loss: 1.5116, LR: 8.655803e-05
+2025-09-27 19:31:40,289 - deep_learning.training.trainer - INFO - Epoch 194: Train Loss: 0.0046, Val Loss: 1.5105, LR: 8.512256e-05
+2025-09-27 19:32:29,774 - deep_learning.training.trainer - INFO - Epoch 195: Train Loss: 0.0053, Val Loss: 1.5043, LR: 8.369450e-05
+2025-09-27 19:33:19,410 - deep_learning.training.trainer - INFO - Epoch 196: Train Loss: 0.0041, Val Loss: 1.5162, LR: 8.227402e-05
+2025-09-27 19:34:09,456 - deep_learning.training.trainer - INFO - Epoch 197: Train Loss: 0.0051, Val Loss: 1.5157, LR: 8.086128e-05
+2025-09-27 19:34:59,107 - deep_learning.training.trainer - INFO - Epoch 198: Train Loss: 0.0055, Val Loss: 1.5171, LR: 7.945643e-05
+2025-09-27 19:35:48,734 - deep_learning.training.trainer - INFO - Epoch 199: Train Loss: 0.0052, Val Loss: 1.5180, LR: 7.805964e-05
+2025-09-27 19:36:38,172 - deep_learning.training.trainer - INFO - Epoch 200: Train Loss: 0.0043, Val Loss: 1.5109, LR: 7.667107e-05
+2025-09-27 19:37:27,480 - deep_learning.training.trainer - INFO - Epoch 201: Train Loss: 0.0043, Val Loss: 1.5095, LR: 7.529087e-05
+2025-09-27 19:38:17,156 - deep_learning.training.trainer - INFO - Epoch 202: Train Loss: 0.0049, Val Loss: 1.5189, LR: 7.391920e-05
+2025-09-27 19:39:06,732 - deep_learning.training.trainer - INFO - Epoch 203: Train Loss: 0.0052, Val Loss: 1.5250, LR: 7.255622e-05
+2025-09-27 19:39:56,571 - deep_learning.training.trainer - INFO - Epoch 204: Train Loss: 0.0051, Val Loss: 1.5206, LR: 7.120207e-05
+2025-09-27 19:40:46,556 - deep_learning.training.trainer - INFO - Epoch 205: Train Loss: 0.0048, Val Loss: 1.5312, LR: 6.985692e-05
+2025-09-27 19:41:36,582 - deep_learning.training.trainer - INFO - Epoch 206: Train Loss: 0.0049, Val Loss: 1.5433, LR: 6.852092e-05
+2025-09-27 19:42:26,020 - deep_learning.training.trainer - INFO - Epoch 207: Train Loss: 0.0035, Val Loss: 1.5322, LR: 6.719421e-05
+2025-09-27 19:43:15,586 - deep_learning.training.trainer - INFO - Epoch 208: Train Loss: 0.0040, Val Loss: 1.5476, LR: 6.587695e-05
+2025-09-27 19:44:05,001 - deep_learning.training.trainer - INFO - Epoch 209: Train Loss: 0.0044, Val Loss: 1.5548, LR: 6.456928e-05
+2025-09-27 19:44:53,778 - deep_learning.training.callbacks - INFO - 保存最佳快照: /home/hjd/PRRSV/HJD/logs/checkpoints/ckpt_epoch_210.pth
+2025-09-27 19:44:53,778 - deep_learning.training.trainer - INFO - Epoch 210: Train Loss: 0.0049, Val Loss: 1.5616, LR: 6.327136e-05
+2025-09-27 19:45:42,778 - deep_learning.training.trainer - INFO - Epoch 211: Train Loss: 0.0042, Val Loss: 1.5236, LR: 6.198334e-05
+2025-09-27 19:46:31,939 - deep_learning.training.trainer - INFO - Epoch 212: Train Loss: 0.0041, Val Loss: 1.5485, LR: 6.070535e-05
+2025-09-27 19:47:21,149 - deep_learning.training.trainer - INFO - Epoch 213: Train Loss: 0.0036, Val Loss: 1.5413, LR: 5.943755e-05
+2025-09-27 19:48:11,039 - deep_learning.training.trainer - INFO - Epoch 214: Train Loss: 0.0042, Val Loss: 1.5618, LR: 5.818007e-05
+2025-09-27 19:48:59,690 - deep_learning.training.trainer - INFO - Epoch 215: Train Loss: 0.0040, Val Loss: 1.5512, LR: 5.693306e-05
+2025-09-27 19:49:49,208 - deep_learning.training.trainer - INFO - Epoch 216: Train Loss: 0.0042, Val Loss: 1.5442, LR: 5.569667e-05
+2025-09-27 19:50:38,942 - deep_learning.training.trainer - INFO - Epoch 217: Train Loss: 0.0033, Val Loss: 1.5434, LR: 5.447103e-05
+2025-09-27 19:51:28,410 - deep_learning.training.trainer - INFO - Epoch 218: Train Loss: 0.0041, Val Loss: 1.5483, LR: 5.325627e-05
+2025-09-27 19:52:17,568 - deep_learning.training.trainer - INFO - Epoch 219: Train Loss: 0.0036, Val Loss: 1.5478, LR: 5.205255e-05
+2025-09-27 19:53:07,252 - deep_learning.training.trainer - INFO - Epoch 220: Train Loss: 0.0040, Val Loss: 1.5504, LR: 5.085999e-05
+2025-09-27 19:53:57,059 - deep_learning.training.trainer - INFO - Epoch 221: Train Loss: 0.0036, Val Loss: 1.5503, LR: 4.967873e-05
+2025-09-27 19:54:46,448 - deep_learning.training.trainer - INFO - Epoch 222: Train Loss: 0.0038, Val Loss: 1.5647, LR: 4.850891e-05
+2025-09-27 19:55:36,061 - deep_learning.training.trainer - INFO - Epoch 223: Train Loss: 0.0031, Val Loss: 1.5656, LR: 4.735065e-05
+2025-09-27 19:56:25,497 - deep_learning.training.trainer - INFO - Epoch 224: Train Loss: 0.0044, Val Loss: 1.5527, LR: 4.620409e-05
+2025-09-27 19:57:15,175 - deep_learning.training.trainer - INFO - Epoch 225: Train Loss: 0.0037, Val Loss: 1.5573, LR: 4.506936e-05
+2025-09-27 19:58:05,177 - deep_learning.training.trainer - INFO - Epoch 226: Train Loss: 0.0024, Val Loss: 1.5411, LR: 4.394658e-05
+2025-09-27 19:58:55,284 - deep_learning.training.trainer - INFO - Epoch 227: Train Loss: 0.0029, Val Loss: 1.5506, LR: 4.283589e-05
+2025-09-27 19:59:45,211 - deep_learning.training.trainer - INFO - Epoch 228: Train Loss: 0.0028, Val Loss: 1.5610, LR: 4.173741e-05
+2025-09-27 20:00:34,522 - deep_learning.training.trainer - INFO - Epoch 229: Train Loss: 0.0030, Val Loss: 1.5610, LR: 4.065126e-05
+2025-09-27 20:01:24,209 - deep_learning.training.trainer - INFO - Epoch 230: Train Loss: 0.0027, Val Loss: 1.5600, LR: 3.957758e-05
+2025-09-27 20:02:13,691 - deep_learning.training.trainer - INFO - Epoch 231: Train Loss: 0.0025, Val Loss: 1.5856, LR: 3.851647e-05
+2025-09-27 20:03:03,265 - deep_learning.training.trainer - INFO - Epoch 232: Train Loss: 0.0029, Val Loss: 1.5752, LR: 3.746806e-05
+2025-09-27 20:03:52,917 - deep_learning.training.trainer - INFO - Epoch 233: Train Loss: 0.0035, Val Loss: 1.5624, LR: 3.643247e-05
+2025-09-27 20:04:42,737 - deep_learning.training.trainer - INFO - Epoch 234: Train Loss: 0.0030, Val Loss: 1.5635, LR: 3.540982e-05
+2025-09-27 20:05:32,379 - deep_learning.training.trainer - INFO - Epoch 235: Train Loss: 0.0028, Val Loss: 1.5798, LR: 3.440022e-05
+2025-09-27 20:06:22,037 - deep_learning.training.trainer - INFO - Epoch 236: Train Loss: 0.0026, Val Loss: 1.5709, LR: 3.340379e-05
+2025-09-27 20:07:11,705 - deep_learning.training.trainer - INFO - Epoch 237: Train Loss: 0.0024, Val Loss: 1.5463, LR: 3.242063e-05
+2025-09-27 20:08:01,321 - deep_learning.training.trainer - INFO - Epoch 238: Train Loss: 0.0027, Val Loss: 1.5756, LR: 3.145087e-05
+2025-09-27 20:08:51,024 - deep_learning.training.trainer - INFO - Epoch 239: Train Loss: 0.0028, Val Loss: 1.5683, LR: 3.049461e-05
+2025-09-27 20:09:40,324 - deep_learning.training.trainer - INFO - Epoch 240: Train Loss: 0.0026, Val Loss: 1.5647, LR: 2.955196e-05
+2025-09-27 20:10:30,228 - deep_learning.training.trainer - INFO - Epoch 241: Train Loss: 0.0036, Val Loss: 1.5701, LR: 2.862303e-05
+2025-09-27 20:11:20,353 - deep_learning.training.trainer - INFO - Epoch 242: Train Loss: 0.0026, Val Loss: 1.5715, LR: 2.770791e-05
+2025-09-27 20:12:09,528 - deep_learning.training.trainer - INFO - Epoch 243: Train Loss: 0.0031, Val Loss: 1.5784, LR: 2.680673e-05
+2025-09-27 20:12:59,243 - deep_learning.training.trainer - INFO - Epoch 244: Train Loss: 0.0026, Val Loss: 1.5908, LR: 2.591957e-05
+2025-09-27 20:13:48,954 - deep_learning.training.trainer - INFO - Epoch 245: Train Loss: 0.0024, Val Loss: 1.5947, LR: 2.504654e-05
+2025-09-27 20:14:38,294 - deep_learning.training.trainer - INFO - Epoch 246: Train Loss: 0.0027, Val Loss: 1.6027, LR: 2.418774e-05
+2025-09-27 20:15:27,832 - deep_learning.training.trainer - INFO - Epoch 247: Train Loss: 0.0028, Val Loss: 1.5587, LR: 2.334326e-05
+2025-09-27 20:16:17,718 - deep_learning.training.trainer - INFO - Epoch 248: Train Loss: 0.0023, Val Loss: 1.5650, LR: 2.251321e-05
+2025-09-27 20:17:07,359 - deep_learning.training.trainer - INFO - Epoch 249: Train Loss: 0.0024, Val Loss: 1.5737, LR: 2.169766e-05
+2025-09-27 20:17:56,815 - deep_learning.training.trainer - INFO - Epoch 250: Train Loss: 0.0020, Val Loss: 1.5910, LR: 2.089673e-05
+2025-09-27 20:18:46,599 - deep_learning.training.trainer - INFO - Epoch 251: Train Loss: 0.0024, Val Loss: 1.5795, LR: 2.011050e-05
+2025-09-27 20:19:36,352 - deep_learning.training.trainer - INFO - Epoch 252: Train Loss: 0.0030, Val Loss: 1.5894, LR: 1.933905e-05
+2025-09-27 20:20:25,852 - deep_learning.training.trainer - INFO - Epoch 253: Train Loss: 0.0020, Val Loss: 1.5825, LR: 1.858248e-05
+2025-09-27 20:21:15,210 - deep_learning.training.trainer - INFO - Epoch 254: Train Loss: 0.0021, Val Loss: 1.5646, LR: 1.784086e-05
+2025-09-27 20:22:04,538 - deep_learning.training.trainer - INFO - Epoch 255: Train Loss: 0.0027, Val Loss: 1.5769, LR: 1.711430e-05
+2025-09-27 20:22:54,353 - deep_learning.training.trainer - INFO - Epoch 256: Train Loss: 0.0024, Val Loss: 1.5904, LR: 1.640286e-05
+2025-09-27 20:23:44,334 - deep_learning.training.trainer - INFO - Epoch 257: Train Loss: 0.0022, Val Loss: 1.5720, LR: 1.570663e-05
+2025-09-27 20:24:33,643 - deep_learning.training.trainer - INFO - Epoch 258: Train Loss: 0.0021, Val Loss: 1.5891, LR: 1.502568e-05
+2025-09-27 20:25:23,886 - deep_learning.training.trainer - INFO - Epoch 259: Train Loss: 0.0021, Val Loss: 1.5777, LR: 1.436010e-05
+2025-09-27 20:26:13,969 - deep_learning.training.trainer - INFO - Epoch 260: Train Loss: 0.0023, Val Loss: 1.5714, LR: 1.370996e-05
+2025-09-27 20:27:02,992 - deep_learning.training.trainer - INFO - Epoch 261: Train Loss: 0.0021, Val Loss: 1.5817, LR: 1.307533e-05
+2025-09-27 20:27:52,382 - deep_learning.training.trainer - INFO - Epoch 262: Train Loss: 0.0027, Val Loss: 1.5789, LR: 1.245629e-05
+2025-09-27 20:28:42,572 - deep_learning.training.trainer - INFO - Epoch 263: Train Loss: 0.0023, Val Loss: 1.5852, LR: 1.185290e-05
+2025-09-27 20:29:32,454 - deep_learning.training.trainer - INFO - Epoch 264: Train Loss: 0.0025, Val Loss: 1.5955, LR: 1.126524e-05
+2025-09-27 20:30:22,172 - deep_learning.training.trainer - INFO - Epoch 265: Train Loss: 0.0020, Val Loss: 1.5967, LR: 1.069337e-05
+2025-09-27 20:31:11,983 - deep_learning.training.trainer - INFO - Epoch 266: Train Loss: 0.0025, Val Loss: 1.5940, LR: 1.013735e-05
+2025-09-27 20:32:00,644 - deep_learning.training.trainer - INFO - Epoch 267: Train Loss: 0.0021, Val Loss: 1.5991, LR: 9.597255e-06
+2025-09-27 20:32:50,872 - deep_learning.training.trainer - INFO - Epoch 268: Train Loss: 0.0023, Val Loss: 1.6020, LR: 9.073137e-06
+2025-09-27 20:33:40,467 - deep_learning.training.trainer - INFO - Epoch 269: Train Loss: 0.0017, Val Loss: 1.6105, LR: 8.565058e-06
+2025-09-27 20:34:30,215 - deep_learning.training.trainer - INFO - Epoch 270: Train Loss: 0.0019, Val Loss: 1.5973, LR: 8.073075e-06
+2025-09-27 20:35:20,166 - deep_learning.training.trainer - INFO - Epoch 271: Train Loss: 0.0023, Val Loss: 1.6089, LR: 7.597246e-06
+2025-09-27 20:36:09,552 - deep_learning.training.trainer - INFO - Epoch 272: Train Loss: 0.0023, Val Loss: 1.5954, LR: 7.137623e-06
+2025-09-27 20:36:59,542 - deep_learning.training.trainer - INFO - Epoch 273: Train Loss: 0.0021, Val Loss: 1.6012, LR: 6.694259e-06
+2025-09-27 20:37:49,294 - deep_learning.training.trainer - INFO - Epoch 274: Train Loss: 0.0022, Val Loss: 1.5924, LR: 6.267204e-06
+2025-09-27 20:38:38,566 - deep_learning.training.trainer - INFO - Epoch 275: Train Loss: 0.0017, Val Loss: 1.5859, LR: 5.856506e-06
+2025-09-27 20:39:27,867 - deep_learning.training.trainer - INFO - Epoch 276: Train Loss: 0.0022, Val Loss: 1.6006, LR: 5.462212e-06
+2025-09-27 20:40:17,411 - deep_learning.training.trainer - INFO - Epoch 277: Train Loss: 0.0018, Val Loss: 1.5939, LR: 5.084367e-06
+2025-09-27 20:41:06,793 - deep_learning.training.trainer - INFO - Epoch 278: Train Loss: 0.0019, Val Loss: 1.6004, LR: 4.723014e-06
+2025-09-27 20:41:56,345 - deep_learning.training.trainer - INFO - Epoch 279: Train Loss: 0.0023, Val Loss: 1.5968, LR: 4.378193e-06
+2025-09-27 20:42:45,932 - deep_learning.training.trainer - INFO - Epoch 280: Train Loss: 0.0022, Val Loss: 1.5956, LR: 4.049944e-06
+2025-09-27 20:43:34,683 - deep_learning.training.trainer - INFO - Epoch 281: Train Loss: 0.0020, Val Loss: 1.5868, LR: 3.738304e-06
+2025-09-27 20:44:23,935 - deep_learning.training.trainer - INFO - Epoch 282: Train Loss: 0.0029, Val Loss: 1.5966, LR: 3.443308e-06
+2025-09-27 20:45:13,222 - deep_learning.training.trainer - INFO - Epoch 283: Train Loss: 0.0027, Val Loss: 1.5892, LR: 3.164990e-06
+2025-09-27 20:46:02,795 - deep_learning.training.trainer - INFO - Epoch 284: Train Loss: 0.0020, Val Loss: 1.6018, LR: 2.903381e-06
+2025-09-27 20:46:53,329 - deep_learning.training.trainer - INFO - Epoch 285: Train Loss: 0.0020, Val Loss: 1.6021, LR: 2.658511e-06
+2025-09-27 20:47:43,313 - deep_learning.training.trainer - INFO - Epoch 286: Train Loss: 0.0023, Val Loss: 1.5944, LR: 2.430408e-06
+2025-09-27 20:48:33,122 - deep_learning.training.trainer - INFO - Epoch 287: Train Loss: 0.0020, Val Loss: 1.6009, LR: 2.219097e-06
+2025-09-27 20:49:22,629 - deep_learning.training.trainer - INFO - Epoch 288: Train Loss: 0.0021, Val Loss: 1.5978, LR: 2.024603e-06
+2025-09-27 20:50:12,541 - deep_learning.training.trainer - INFO - Epoch 289: Train Loss: 0.0028, Val Loss: 1.6018, LR: 1.846947e-06
+2025-09-27 20:51:02,165 - deep_learning.training.trainer - INFO - Epoch 290: Train Loss: 0.0019, Val Loss: 1.5825, LR: 1.686151e-06
+2025-09-27 20:51:52,073 - deep_learning.training.trainer - INFO - Epoch 291: Train Loss: 0.0021, Val Loss: 1.6097, LR: 1.542231e-06
+2025-09-27 20:52:41,589 - deep_learning.training.trainer - INFO - Epoch 292: Train Loss: 0.0021, Val Loss: 1.6106, LR: 1.415204e-06
+2025-09-27 20:53:30,916 - deep_learning.training.trainer - INFO - Epoch 293: Train Loss: 0.0021, Val Loss: 1.5915, LR: 1.305086e-06
+2025-09-27 20:54:20,744 - deep_learning.training.trainer - INFO - Epoch 294: Train Loss: 0.0021, Val Loss: 1.6164, LR: 1.211887e-06
+2025-09-27 20:55:10,507 - deep_learning.training.trainer - INFO - Epoch 295: Train Loss: 0.0020, Val Loss: 1.5800, LR: 1.135619e-06
+2025-09-27 20:56:00,154 - deep_learning.training.trainer - INFO - Epoch 296: Train Loss: 0.0020, Val Loss: 1.5896, LR: 1.076291e-06
+2025-09-27 20:56:49,646 - deep_learning.training.trainer - INFO - Epoch 297: Train Loss: 0.0021, Val Loss: 1.6073, LR: 1.033909e-06
+2025-09-27 20:57:39,522 - deep_learning.training.trainer - INFO - Epoch 298: Train Loss: 0.0017, Val Loss: 1.6015, LR: 1.008477e-06
+2025-09-27 20:58:29,302 - deep_learning.training.trainer - INFO - Epoch 299: Train Loss: 0.0020, Val Loss: 1.5885, LR: 1.000000e-06
+2025-09-27 20:58:29,338 - deep_learning.training.callbacks - INFO - 保存最终最佳模型: /home/hjd/PRRSV/HJD/logs/best_model.pth
+2025-09-27 20:58:29,338 - deep_learning.training.trainer - INFO - Training completed
+2025-09-27 20:58:29,338 - __main__ - INFO - ==================================================
+2025-09-27 20:58:29,338 - __main__ - INFO - 训练完成!
+2025-09-27 20:58:29,338 - __main__ - INFO - ==================================================
+2025-09-27 20:58:29,338 - __main__ - INFO - 加载最佳验证模型进行测试评估...
+2025-09-27 20:58:29,355 - __main__ - INFO - ✓ 已加载最佳验证权重
+2025-09-27 20:58:29,355 - __main__ - INFO - 在测试集上评估...
+2025-09-27 20:58:31,421 - __main__ - INFO - 测试指标: {'accuracy': 0.7659799260433174, 'precision': 0.7554540842212075, 'recall': 0.786582144743793, 'f1': 0.770703933747412, 'auc': 0.8476420342524759, 'ap': 0.8374790346856795, 'loss': 1.5567241589228311}
+2025-09-27 20:58:31,421 - __main__ - INFO - 测试概率概览: shape=(3786, 1), min=0.000000, mean=0.520015, max=1.000000
+2025-09-27 20:58:31,552 - __main__ - INFO - ✓ 测试评估JSON已保存: results/test_eval.json
+2025-09-27 20:58:31,563 - __main__ - INFO - ✓ 最终模型已保存: /home/hjd/PRRSV/HJD/logs/final_model.pth

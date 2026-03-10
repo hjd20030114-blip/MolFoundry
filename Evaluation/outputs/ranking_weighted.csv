@@ -1,0 +1,9 @@
+rank,model
+1,our_model
+2,organ
+3,bimodal
+4,qadd
+5,transformer
+6,egnn
+7,diffusion
+8,mars

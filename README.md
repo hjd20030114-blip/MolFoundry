@@ -301,7 +301,7 @@ For questions or suggestions, please contact us via:
 This project targets small-molecule discovery for PRRSV viral capsid protein–integrin PPI inhibitors, integrating a complete workflow of “deep learning generation → molecular docking → ADMET analysis → 2D/3D visualization → result management”. It supports batch generation and screening of thousands of molecules, emphasizing traceability, reproducibility, and extensibility.
 
 ### Feature Matrix
-- **[Molecular Generation]** Deep learning generation (Transformer/Diffusion placeholder implementations + external model integration), rule/template library dynamic expansion (thousands of unique molecules), Top-K optimization and Final-N convergence.
+- **[Molecular Generation]** Deep learning generation (Pocket-Conditioned Cross-Attention Transformer + external model integration), rule/template library dynamic expansion (thousands of unique molecules), Top-K optimization and Final-N convergence.
 - **[Molecular Docking]** AutoDock Vina batch docking; RDKit+Meeko conformation generation, hydrogenation, and optimization; results archived as CSV.
 - **[ADMET Analysis]** RDKit descriptors and Lipinski compliance; automatically enables “simplified mode” when RDKit is unavailable.
 - **[2D Visualization]** Top-N (up to 1000) individual and grid plots, HTML reports; automatically falls back to ligand CSV when docking results are unavailable.
@@ -309,7 +309,7 @@ This project targets small-molecule discovery for PRRSV viral capsid protein–i
 - **[Result Management]** Run-based directory structure, automatic copying of deep learning Phase2/Phase3 outputs to `ligands/`, full workflow traceability.
 
 ### Models & Algorithms (SOTA Model Integration Ready)
-- **[Generative Models]** Currently provides “placeholder generation + chemical space dynamic expansion” capabilities, with reserved interfaces for external pocket-conditioned Transformer, Diffusion + Reinforcement Learning (RL) models (`deep_learning_pipeline.py`).
+- **[Generative Models]** Pocket-conditioned cross-attention Transformer autoregressive generator with multi-objective Pareto optimization. Reserved interfaces for external baseline models (BIMODAL, QADD, SMILES-Transformer, Diffusion) for comparison experiments (`deep_learning_pipeline.py`).
 - **[Docking Scoring]** AutoDock Vina; RDKit and Meeko for 3D conformation generation and energy minimization (`scripts/docking_engine.py`).
 - **[ADMET Metrics]** MW, LogP, HBD/HBA, RotB, TPSA, aromaticity and ring counts, Lipinski's rules (`scripts/admet_analyzer.py`).
 - **[Visualization]** 2D based on RDKit rdMolDraw2D (Cairo/SVG) with PIL fallback; 3D based on py3Dmol and Plotly (`scripts/visualization_3d.py`).
